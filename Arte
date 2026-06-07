@@ -1,0 +1,1196 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PIETRO MONTIS — Opere Originali</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --ink: #1A1714;
+    --rust: #8B3A2A;
+    --gold: #C8A96E;
+    --warm-grey: #9E9589;
+    --light-grey: #E8E3D9;
+    --white: #FDFAF5;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 8px; height: 8px;
+    background: var(--ink);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, background 0.2s ease;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.25s ease, width 0.3s ease, height 0.3s ease, border-color 0.2s ease;
+    opacity: 0.5;
+  }
+  .cursor-ring.hover { width: 60px; height: 60px; opacity: 0.3; }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 2rem 4rem;
+    z-index: 100;
+    mix-blend-mode: multiply;
+  }
+  .nav-logo {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 3rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+  .nav-links a:hover { opacity: 1; }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 4rem 5rem;
+  }
+  .hero-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+  .hero-title {
+    font-size: clamp(4rem, 7vw, 7rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--rust);
+  }
+  .hero-subtitle {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    color: var(--warm-grey);
+    max-width: 380px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.7s forwards;
+  }
+  .hero-cta {
+    margin-top: 3rem;
+    display: inline-flex; align-items: center; gap: 1rem;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+    transition: gap 0.3s ease;
+  }
+  .hero-cta:hover { gap: 2rem; }
+  .hero-cta::after { content: '→'; font-size: 1rem; }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-image-slot {
+    width: 100%; height: 100%;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1rem;
+    opacity: 0;
+    animation: fadeIn 1.5s ease 0.2s forwards;
+  }
+  .hero-image-slot .placeholder-text {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+  .hero-image-slot img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+  .hero-counter {
+    position: absolute; bottom: 2rem; right: 2rem;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    display: flex; align-items: center; gap: 2rem;
+    padding: 0 4rem;
+    margin: 2rem 0;
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--light-grey);
+  }
+  .section-divider span {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    white-space: nowrap;
+  }
+
+  /* GALLERY SECTION */
+  .gallery-section {
+    padding: 6rem 4rem;
+  }
+  .gallery-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+  .section-title {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .section-title em { font-style: italic; color: var(--rust); }
+  .filter-bar {
+    display: flex; gap: 1.5rem;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .filter-btn {
+    background: none; border: none;
+    color: var(--warm-grey);
+    cursor: none;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .filter-btn.active { color: var(--ink); border-color: var(--ink); }
+  .filter-btn:hover { color: var(--ink); }
+
+  /* Masonry grid */
+  .gallery-grid {
+    columns: 3;
+    column-gap: 1.5rem;
+  }
+  .artwork-card {
+    break-inside: avoid;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--light-grey);
+    cursor: none;
+  }
+  .artwork-card:hover .artwork-overlay { opacity: 1; }
+  .artwork-card:hover .artwork-image { transform: scale(1.03); }
+  .artwork-image-wrapper {
+    overflow: hidden;
+    aspect-ratio: var(--ratio, 4/5);
+    background: var(--ink);
+  }
+  .artwork-image {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .artwork-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #2a2420 0%, #1a1714 100%);
+    color: rgba(255,255,255,0.15);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .artwork-overlay {
+    position: absolute; inset: 0;
+    background: rgba(26,23,20,0.85);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .artwork-title-overlay {
+    font-size: 1.4rem;
+    color: var(--cream);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+  }
+  .artwork-meta-overlay {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .btn-view {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: none;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 0.7rem 1.5rem;
+    cursor: none;
+    transition: background 0.2s, border-color 0.2s;
+    width: fit-content;
+  }
+  .btn-view:hover { background: var(--rust); border-color: var(--rust); }
+
+  .artwork-info {
+    padding: 1.2rem 1.5rem;
+    background: var(--white);
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+  .artwork-title { font-size: 1rem; font-weight: 400; }
+  .artwork-year {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--warm-grey);
+  }
+  .artwork-price {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--rust);
+  }
+  .artwork-price.sold { color: var(--warm-grey); text-decoration: line-through; }
+
+  /* UPLOAD SECTION */
+  .upload-section {
+    padding: 6rem 4rem;
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .upload-section .section-title { color: var(--cream); }
+  .upload-section .section-title em { color: var(--gold); }
+  .upload-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 4rem;
+  }
+  .upload-dropzone {
+    border: 1px solid rgba(255,255,255,0.15);
+    aspect-ratio: 3/2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 1.5rem;
+    cursor: none;
+    transition: border-color 0.3s ease, background 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .upload-dropzone:hover, .upload-dropzone.drag-over {
+    border-color: var(--gold);
+    background: rgba(200,169,110,0.05);
+  }
+  .upload-dropzone-icon {
+    font-size: 2rem;
+    opacity: 0.3;
+  }
+  .upload-dropzone-text {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    line-height: 1.8;
+  }
+  .upload-dropzone input[type=file] {
+    position: absolute; inset: 0;
+    opacity: 0; cursor: pointer;
+  }
+  .upload-preview {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: none;
+    padding: 1rem;
+  }
+
+  .upload-form { display: flex; flex-direction: column; gap: 1.5rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .form-input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    padding: 0.8rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    cursor: none;
+  }
+  .form-input::placeholder { color: rgba(255,255,255,0.2); }
+  .form-input:focus { border-color: var(--gold); }
+  .form-select {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--cream);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    padding: 0.8rem 1rem;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  option { background: var(--ink); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+    outline: none;
+    resize: vertical;
+    min-height: 100px;
+    transition: border-color 0.2s;
+  }
+  .form-textarea:focus { border-color: var(--gold); }
+  .btn-publish {
+    background: var(--rust);
+    border: none;
+    color: var(--cream);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 1.1rem 2.5rem;
+    cursor: none;
+    transition: background 0.2s;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
+  .btn-publish:hover { background: #6e2d1f; }
+
+  /* CART / MODAL */
+  .modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(26,23,20,0.92);
+    z-index: 500;
+    display: none; align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--cream);
+    max-width: 900px; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    max-height: 85vh;
+    overflow: hidden;
+    animation: scaleIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes scaleIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .modal-image {
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .modal-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .modal-image .modal-placeholder {
+    color: rgba(255,255,255,0.1);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+  }
+  .modal-content {
+    padding: 3rem;
+    overflow-y: auto;
+    display: flex; flex-direction: column;
+  }
+  .modal-close {
+    align-self: flex-end;
+    background: none; border: none;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--warm-grey);
+    cursor: none;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+  .modal-artwork-title {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .modal-artwork-title em { font-style: italic; color: var(--rust); }
+  .modal-year {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--warm-grey);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .modal-price-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--light-grey);
+    border-bottom: 1px solid var(--light-grey);
+    margin-bottom: 1.5rem;
+  }
+  .modal-price { font-size: 1.8rem; font-weight: 400; color: var(--rust); }
+  .modal-availability {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+  .modal-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--warm-grey);
+    margin-bottom: 2rem;
+    flex: 1;
+  }
+  .modal-meta {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .modal-meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .modal-meta-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+  }
+  .modal-meta-value { font-size: 0.95rem; }
+  .btn-buy {
+    background: var(--ink);
+    border: none;
+    color: var(--cream);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 1.1rem 2rem;
+    cursor: none;
+    transition: background 0.2s;
+    width: 100%;
+  }
+  .btn-buy:hover { background: var(--rust); }
+
+  /* ABOUT */
+  .about-section {
+    padding: 8rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 8rem;
+    align-items: center;
+  }
+  .about-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 2rem;
+  }
+  .about-title {
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+  }
+  .about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--warm-grey);
+    margin-bottom: 1.5rem;
+  }
+  .about-signature {
+    font-size: 2.5rem;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--rust);
+    margin-top: 2rem;
+  }
+  .about-image-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1rem;
+  }
+  .about-img {
+    background: var(--ink);
+    aspect-ratio: 3/4;
+    overflow: hidden;
+  }
+  .about-img:first-child {
+    grid-row: span 2;
+    aspect-ratio: 2/3;
+  }
+  .about-img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.1);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    min-height: 180px;
+  }
+
+  /* STATS */
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--light-grey);
+    border-bottom: 1px solid var(--light-grey);
+  }
+  .stat-item {
+    padding: 3rem 4rem;
+    border-right: 1px solid var(--light-grey);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    color: var(--rust);
+  }
+  .stat-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--warm-grey);
+    margin-top: 0.3rem;
+  }
+
+  /* CONTACT / FOOTER */
+  footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 5rem 4rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+  }
+  .footer-brand .footer-logo {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    color: var(--gold);
+  }
+  .footer-tagline {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.4;
+    max-width: 300px;
+    color: rgba(255,255,255,0.6);
+  }
+  .footer-tagline em { font-style: italic; color: var(--cream); }
+  .footer-col-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 1.5rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+  .footer-links a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-bottom {
+    background: var(--ink);
+    padding: 1.5rem 4rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom-text {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 2rem; right: 2rem;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1rem 1.5rem;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Mobile */
+  @media (max-width: 900px) {
+    nav { padding: 1.5rem 2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 0 2rem 4rem; }
+    .gallery-section { padding: 4rem 2rem; }
+    .gallery-grid { columns: 2; }
+    .gallery-header { flex-direction: column; align-items: flex-start; gap: 2rem; }
+    .upload-section { padding: 4rem 2rem; }
+    .upload-grid { grid-template-columns: 1fr; }
+    .about-section { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+    .about-image-grid { display: none; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat-item { padding: 2rem; }
+    footer { grid-template-columns: 1fr; padding: 3rem 2rem; }
+    .modal { grid-template-columns: 1fr; max-height: 90vh; }
+    .modal-image { display: none; }
+    .section-divider { padding: 0 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Pietro Montis</a>
+  <ul class="nav-links">
+    <li><a href="#gallery">Galleria</a></li>
+    <li><a href="#about">Artista</a></li>
+    <li><a href="#upload">Vendi</a></li>
+    <li><a href="#contact">Contatti</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Opere originali · Londra</p>
+    <h1 class="hero-title">Arte<br>che <em>respira</em></h1>
+    <p class="hero-subtitle">Autoritratti, paesaggi interiori. Ogni opera è unica — matita, acrilico, espressione.</p>
+    <a href="#gallery" class="hero-cta">Scopri la galleria</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-slot" id="hero-slot">
+      <div class="placeholder-text">Opera in primo piano</div>
+      <div class="placeholder-text" style="opacity:0.4; font-size:0.55rem">Carica un'immagine per visualizzarla</div>
+    </div>
+    <div class="hero-counter" id="hero-counter"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar reveal">
+  <div class="stat-item">
+    <div class="stat-number" id="stat-works">0</div>
+    <div class="stat-label">Opere in collezione</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" id="stat-sold">0</div>
+    <div class="stat-label">Opere vendute</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">25+</div>
+    <div class="stat-label">Anni di pratica</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">2</div>
+    <div class="stat-label">Media principali</div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="gallery-header reveal">
+    <h2 class="section-title">La <em>Collezione</em></h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">Tutto</button>
+      <button class="filter-btn" data-filter="matita">Matita</button>
+      <button class="filter-btn" data-filter="acrilico">Acrilico</button>
+      <button class="filter-btn" data-filter="sold">Venduto</button>
+    </div>
+  </div>
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- populated by JS -->
+  </div>
+</section>
+
+<div class="section-divider reveal"><span>Studio & Processo</span></div>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="reveal">
+    <p class="about-label">L'artista</p>
+    <h2 class="about-title">Guardare<br>dentro lo specchio</h2>
+    <p class="about-text">Lavoro dal vivo, di fronte a uno specchio. Ogni segno è un momento di resa dei conti — con la luce, con la forma, con me stesso.</p>
+    <p class="about-text">Matita su carta, acrilico su tela. La tradizione espressionista come punto di partenza: Bacon, Freud, Auerbach. Poi il lavoro ti porta dove vuole.</p>
+    <div class="about-signature">Pietro M.</div>
+  </div>
+  <div class="about-image-grid reveal">
+    <div class="about-img"><div class="about-img-placeholder">Studio</div></div>
+    <div class="about-img"><div class="about-img-placeholder">Dettaglio</div></div>
+    <div class="about-img"><div class="about-img-placeholder">Processo</div></div>
+  </div>
+</section>
+
+<!-- UPLOAD SECTION -->
+<section class="upload-section" id="upload">
+  <div class="reveal">
+    <p style="font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;">Aggiungi un'opera</p>
+    <h2 class="section-title">Pubblica &amp; <em>Vendi</em></h2>
+  </div>
+  <div class="upload-grid">
+    <div>
+      <div class="upload-dropzone reveal" id="dropzone">
+        <div class="upload-dropzone-icon">⊕</div>
+        <div class="upload-dropzone-text">Trascina l'immagine qui<br>o clicca per sfogliare<br><br>JPG, PNG, WEBP · max 20MB</div>
+        <input type="file" id="file-input" accept="image/*">
+        <img id="upload-preview" class="upload-preview">
+      </div>
+    </div>
+    <form class="upload-form reveal" id="upload-form" onsubmit="return false;">
+      <div class="form-group">
+        <label class="form-label">Titolo opera *</label>
+        <input type="text" class="form-input" id="f-title" placeholder="Autoritratto n.7" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Anno</label>
+          <input type="text" class="form-input" id="f-year" placeholder="2026">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tecnica *</label>
+          <select class="form-input form-select" id="f-medium">
+            <option value="matita">Matita su carta</option>
+            <option value="acrilico">Acrilico su tela</option>
+            <option value="misto">Tecnica mista</option>
+            <option value="altro">Altro</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Dimensioni</label>
+          <input type="text" class="form-input" id="f-size" placeholder="50 × 70 cm">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Prezzo (£) *</label>
+          <input type="number" class="form-input" id="f-price" placeholder="450" min="0" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Descrizione</label>
+        <textarea class="form-input form-textarea" id="f-desc" placeholder="Note sull'opera, inspirazione, tecnica usata…"></textarea>
+      </div>
+      <button class="btn-publish" id="btn-publish" type="button" onclick="publishArtwork()">Pubblica opera →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-brand">
+    <div class="footer-logo">Pietro Montis</div>
+    <p class="footer-tagline">Opere <em>originali</em> di un artista londinese.</p>
+  </div>
+  <div>
+    <p class="footer-col-title">Navigazione</p>
+    <ul class="footer-links">
+      <li><a href="#gallery">Galleria</a></li>
+      <li><a href="#about">L'artista</a></li>
+      <li><a href="#upload">Vendi</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="footer-col-title">Contatti</p>
+    <ul class="footer-links">
+      <li><a href="mailto:info@pietromontis.com">Email</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">LinkedIn</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span class="footer-bottom-text">© 2026 Pietro Montis · Tutti i diritti riservati</span>
+  <span class="footer-bottom-text">Torre Hamlets, Londra</span>
+</div>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal-backdrop" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-image" id="modal-image">
+      <div class="modal-placeholder">Immagine opera</div>
+    </div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModalDirect()">✕ Chiudi</button>
+      <h2 class="modal-artwork-title" id="modal-title">Titolo</h2>
+      <p class="modal-year" id="modal-year"></p>
+      <div class="modal-price-row">
+        <span class="modal-price" id="modal-price"></span>
+        <span class="modal-availability" id="modal-avail">Disponibile</span>
+      </div>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-meta" id="modal-meta"></div>
+      <button class="btn-buy" id="modal-buy-btn" onclick="buyArtwork()">Acquista quest'opera</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-dot"></div>
+  <span id="toast-msg">Opera pubblicata</span>
+</div>
+
+<script>
+// ─── DATA ─────────────────────────────────────────────────────────────
+let artworks = [
+  { id: 1, title: 'Autoritratto I', year: '2025', medium: 'matita', size: '50×70 cm', price: 480, sold: false, desc: 'Matita 6B su carta da 200g. Sessione dal vivo, luce laterale sinistra. Il confronto con lo specchio come atto meditativo.' , image: null },
+  { id: 2, title: 'Autoritratto II — Frammento', year: '2025', medium: 'acrilico', size: '60×80 cm', price: 750, sold: false, desc: 'Acrilico grezzo su tela non preparata. Gestualità veloce, segno diretto.', image: null },
+  { id: 3, title: 'Studio in Ocra', year: '2024', medium: 'acrilico', size: '40×50 cm', price: 550, sold: true, desc: 'Acrilico su tela. Palette ridotta — ocra, nero, bianco titanio.', image: null },
+  { id: 4, title: 'Notturno', year: '2024', medium: 'matita', size: '30×42 cm', price: 320, sold: false, desc: 'Matita grafite e carbone su carta. Studio notturno alla luce artificiale.', image: null },
+  { id: 5, title: 'Testa di Tre Quarti', year: '2026', medium: 'matita', size: '50×65 cm', price: 520, sold: false, desc: 'Matita 4B–8B. Sessione lunga, risoluzione del mento e del collo.', image: null },
+  { id: 6, title: 'Rossore', year: '2023', medium: 'acrilico', size: '70×90 cm', price: 900, sold: true, desc: 'Grande formato. Dominanza cromatica del rosso cadmio.', image: null },
+];
+let nextId = 7;
+let activeFilter = 'all';
+let currentArtwork = null;
+let uploadedImageData = null;
+
+const RATIOS = ['4/5','3/4','1/1','5/6','2/3'];
+
+// ─── CURSOR ────────────────────────────────────────────────────────────
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top = e.clientY + 'px';
+  ring.style.left = e.clientX + 'px';
+  ring.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a,button,[class*="btn"],input,select,textarea,.artwork-card,.upload-dropzone').forEach(el => {
+  el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+  el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+});
+
+// ─── REVEAL ────────────────────────────────────────────────────────────
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ─── COUNTERS ──────────────────────────────────────────────────────────
+function animateCount(el, target, duration = 1200) {
+  let start = 0; const step = 16;
+  const inc = target / (duration / step);
+  const t = setInterval(() => {
+    start = Math.min(start + inc, target);
+    el.textContent = Math.floor(start);
+    if (start >= target) clearInterval(t);
+  }, step);
+}
+
+// ─── GALLERY ───────────────────────────────────────────────────────────
+function renderGallery() {
+  const grid = document.getElementById('gallery-grid');
+  const filtered = artworks.filter(a => {
+    if (activeFilter === 'all') return true;
+    if (activeFilter === 'sold') return a.sold;
+    return a.medium === activeFilter && !a.sold;
+  });
+  grid.innerHTML = '';
+  filtered.forEach((a, i) => {
+    const ratio = RATIOS[a.id % RATIOS.length];
+    const card = document.createElement('div');
+    card.className = 'artwork-card reveal';
+    card.style.setProperty('--ratio', ratio);
+    card.innerHTML = `
+      <div class="artwork-image-wrapper" style="aspect-ratio:${ratio}">
+        ${a.image
+          ? `<img class="artwork-image" src="${a.image}" alt="${a.title}">`
+          : `<div class="artwork-placeholder" style="aspect-ratio:${ratio}; min-height:220px;">${a.medium.toUpperCase()}</div>`}
+      </div>
+      <div class="artwork-overlay">
+        <div class="artwork-title-overlay">${a.title}</div>
+        <div class="artwork-meta-overlay">${a.medium} · ${a.year} · ${a.size}</div>
+        <button class="btn-view" onclick="openModal(${a.id})">Vedi dettagli →</button>
+      </div>
+      <div class="artwork-info">
+        <div>
+          <div class="artwork-title">${a.title}</div>
+          <div class="artwork-year">${a.year}</div>
+        </div>
+        <div class="artwork-price ${a.sold ? 'sold' : ''}">£${a.price.toLocaleString()}</div>
+      </div>`;
+    grid.appendChild(card);
+    setTimeout(() => io.observe(card), 10);
+  });
+  updateStats();
+}
+
+function updateStats() {
+  animateCount(document.getElementById('stat-works'), artworks.filter(a => !a.sold).length);
+  animateCount(document.getElementById('stat-sold'), artworks.filter(a => a.sold).length);
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    renderGallery();
+  });
+});
+
+// ─── MODAL ─────────────────────────────────────────────────────────────
+function openModal(id) {
+  currentArtwork = artworks.find(a => a.id === id);
+  if (!currentArtwork) return;
+  const a = currentArtwork;
+  const imgEl = document.getElementById('modal-image');
+  imgEl.innerHTML = a.image
+    ? `<img src="${a.image}" alt="${a.title}">`
+    : `<div class="modal-placeholder">${a.medium.toUpperCase()}</div>`;
+  document.getElementById('modal-title').innerHTML = a.title.replace(/ ([\w]+)$/, ' <em>$1</em>');
+  document.getElementById('modal-year').textContent = `${a.year} · ${a.medium} · ${a.size}`;
+  document.getElementById('modal-price').textContent = `£${a.price.toLocaleString()}`;
+  document.getElementById('modal-avail').textContent = a.sold ? 'Venduto' : 'Disponibile';
+  document.getElementById('modal-desc').textContent = a.desc;
+  document.getElementById('modal-meta').innerHTML = `
+    <div class="modal-meta-item"><span class="modal-meta-label">Tecnica</span><span class="modal-meta-value">${a.medium}</span></div>
+    <div class="modal-meta-item"><span class="modal-meta-label">Anno</span><span class="modal-meta-value">${a.year}</span></div>
+    <div class="modal-meta-item"><span class="modal-meta-label">Dimensioni</span><span class="modal-meta-value">${a.size}</span></div>
+    <div class="modal-meta-item"><span class="modal-meta-label">Disponibilità</span><span class="modal-meta-value">${a.sold ? 'Venduto' : 'Disponibile'}</span></div>`;
+  const buyBtn = document.getElementById('modal-buy-btn');
+  buyBtn.textContent = a.sold ? 'Opera venduta' : 'Acquista quest\'opera';
+  buyBtn.disabled = a.sold;
+  buyBtn.style.opacity = a.sold ? '0.4' : '1';
+  document.getElementById('modal-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-backdrop')) closeModalDirect();
+}
+function closeModalDirect() {
+  document.getElementById('modal-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function buyArtwork() {
+  if (!currentArtwork || currentArtwork.sold) return;
+  const email = `mailto:info@pietromontis.com?subject=Acquisto: ${encodeURIComponent(currentArtwork.title)}&body=Buongiorno,%0A%0ASono interessato all'acquisto di "${currentArtwork.title}" (£${currentArtwork.price}).%0A%0AGrazie`;
+  window.location.href = email;
+  showToast('Apertura email per l\'acquisto…');
+}
+
+// ─── UPLOAD ────────────────────────────────────────────────────────────
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('file-input');
+const preview = document.getElementById('upload-preview');
+
+fileInput.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    uploadedImageData = ev.target.result;
+    preview.src = uploadedImageData;
+    preview.style.display = 'block';
+    dropzone.querySelector('.upload-dropzone-icon').style.display = 'none';
+    dropzone.querySelector('.upload-dropzone-text').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+});
+
+dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('drag-over'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-over'));
+dropzone.addEventListener('drop', e => {
+  e.preventDefault(); dropzone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (!file || !file.type.startsWith('image/')) return;
+  fileInput.files = e.dataTransfer.files;
+  fileInput.dispatchEvent(new Event('change'));
+});
+
+function publishArtwork() {
+  const title = document.getElementById('f-title').value.trim();
+  const price = parseFloat(document.getElementById('f-price').value);
+  if (!title || isNaN(price)) { showToast('Compila titolo e prezzo'); return; }
+  const artwork = {
+    id: nextId++,
+    title,
+    year: document.getElementById('f-year').value || new Date().getFullYear().toString(),
+    medium: document.getElementById('f-medium').value,
+    size: document.getElementById('f-size').value || 'N/D',
+    price,
+    sold: false,
+    desc: document.getElementById('f-desc').value,
+    image: uploadedImageData
+  };
+  artworks.unshift(artwork);
+  // Reset form
+  document.getElementById('upload-form').reset();
+  preview.style.display = 'none';
+  dropzone.querySelector('.upload-dropzone-icon').style.display = '';
+  dropzone.querySelector('.upload-dropzone-text').style.display = '';
+  uploadedImageData = null;
+  // Update hero if first uploaded image
+  if (artwork.image) updateHero();
+  renderGallery();
+  activeFilter = 'all';
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+  showToast('Opera pubblicata con successo!');
+  setTimeout(() => document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' }), 800);
+}
+
+function updateHero() {
+  const latest = artworks.find(a => a.image);
+  if (!latest) return;
+  const slot = document.getElementById('hero-slot');
+  slot.innerHTML = `<img src="${latest.image}" style="width:100%;height:100%;object-fit:cover;">`;
+  document.getElementById('hero-counter').textContent = `${latest.title} · ${latest.year}`;
+}
+
+// ─── TOAST ─────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ─── INIT ──────────────────────────────────────────────────────────────
+renderGallery();
+
+// Re-observe after render
+setTimeout(() => {
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}, 100);
+</script>
+</body>
+</html>
