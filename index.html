@@ -1,764 +1,1111 @@
 
 <!DOCTYPE html>
-<html lang="it-IT">
+<html lang="it">
 <head>
-	<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="pingback" href="https://www.massimoonnis.it/xmlrpc.php" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pietro Montis — Arte in Microgravità</title>
+<style>
+  :root {
+    --black: #0a0a0f;
+    --deep: #0d0d1a;
+    --panel: #111122;
+    --border: rgba(180,160,255,0.15);
+    --red: #cc1a1a;
+    --red-dim: rgba(204,26,26,0.15);
+    --red-glow: rgba(204,26,26,0.08);
+    --gold: #c8a84b;
+    --gold-dim: rgba(200,168,75,0.12);
+    --violet: #7b62e8;
+    --violet-dim: rgba(123,98,232,0.12);
+    --white: #f0ede8;
+    --muted: #888490;
+    --accent: #9d8fcc;
+  }
 
-	<script type="text/javascript">
-		document.documentElement.className = 'js';
-	</script>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-	<script>var et_site_url='https://www.massimoonnis.it';var et_post_id='131';function et_core_page_resource_fallback(a,b){"undefined"===typeof b&&(b=a.sheet.cssRules&&0===a.sheet.cssRules.length);b&&(a.onerror=null,a.onload=null,a.href?a.href=et_site_url+"/?et_core_page_resource="+a.id+et_post_id:a.src&&(a.src=et_site_url+"/?et_core_page_resource="+a.id+et_post_id))}
-</script><title>Massimo Onnis | website</title>
-<link rel="alternate" href="https://www.massimoonnis.it/" hreflang="it" />
-<link rel="alternate" href="https://www.massimoonnis.it/en/home-2/" hreflang="en" />
-<link rel='dns-prefetch' href='//fonts.googleapis.com' />
-<link rel='dns-prefetch' href='//s.w.org' />
-<link rel="alternate" type="application/rss+xml" title="Massimo Onnis &raquo; Feed" href="https://www.massimoonnis.it/feed/" />
-<link rel="alternate" type="application/rss+xml" title="Massimo Onnis &raquo; Feed dei commenti" href="https://www.massimoonnis.it/comments/feed/" />
-		<script type="text/javascript">
-			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.massimoonnis.it\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.6.17"}};
-			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
-		</script>
-		<meta content="Divi v.4.8.2" name="generator"/><style type="text/css">
-img.wp-smiley,
-img.emoji {
-	display: inline !important;
-	border: none !important;
-	box-shadow: none !important;
-	height: 1em !important;
-	width: 1em !important;
-	margin: 0 .07em !important;
-	vertical-align: -0.1em !important;
-	background: none !important;
-	padding: 0 !important;
-}
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Georgia', serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── STARFIELD ─── */
+  #starfield {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,15,0.7);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .logo span { color: var(--red); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: var(--muted);
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: var(--white); }
+
+  /* ─── HERO ─── */
+  #hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 10vw;
+    overflow: hidden;
+  }
+
+  .orbit-ring {
+    position: absolute;
+    right: 8vw;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 520px;
+    height: 520px;
+    border: 1px solid rgba(123,98,232,0.18);
+    border-radius: 50%;
+    animation: slowspin 40s linear infinite;
+  }
+  .orbit-ring::before {
+    content: '';
+    position: absolute;
+    width: 320px; height: 320px;
+    border: 1px solid rgba(200,168,75,0.12);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .orbit-ring::after {
+    content: '';
+    position: absolute;
+    width: 14px; height: 14px;
+    background: var(--red);
+    border-radius: 50%;
+    top: -7px; left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 20px var(--red);
+  }
+
+  @keyframes slowspin { to { transform: translateY(-50%) rotate(360deg); } }
+
+  .hero-eyebrow {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 700px;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-subtitle {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2.5rem;
+    margin-top: 0.6rem;
+  }
+
+  .hero-text {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 3rem;
+  }
+
+  .cta-group { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.8rem 2.2rem;
+    background: var(--red);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-primary:hover { background: #a81515; transform: translateY(-2px); }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.8rem 2.2rem;
+    border: 1px solid var(--border);
+    color: var(--accent);
+    text-decoration: none;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--white); }
+
+  /* ─── SCROLL INDICATOR ─── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.4;
+  }
+  .scroll-hint span {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollpulse 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollpulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+  /* ─── SECTION BASE ─── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 7rem 10vw;
+  }
+
+  .section-label {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+  }
+
+  .divider {
+    width: 48px; height: 1px;
+    background: var(--red);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ─── MANIFESTO ─── */
+  #manifesto {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .manifesto-quote {
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--accent);
+    border-left: 2px solid var(--red);
+    padding-left: 2rem;
+  }
+  .manifesto-quote cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-family: 'Helvetica Neue', sans-serif;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .manifesto-body p {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+  .manifesto-body p strong { color: var(--white); font-weight: 500; }
+
+  /* ─── OPERA / WORKS ─── */
+  #opere .works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    margin-top: 3rem;
+  }
+
+  .work-card {
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    transition: border-color 0.3s;
+    overflow: hidden;
+  }
+  .work-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--red-glow);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .work-card:hover { border-color: rgba(204,26,26,0.4); }
+  .work-card:hover::before { opacity: 1; }
+
+  .work-number {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+  }
+
+  .work-icon {
+    width: 48px; height: 48px;
+    margin-bottom: 1.5rem;
+  }
+
+  .work-title {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.02em;
+  }
+
+  .work-desc {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.75;
+    color: var(--muted);
+  }
+
+  /* ─── ZEBRAFISH ─── */
+  #zebrafish {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .zf-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .zf-canvas {
+    position: relative;
+    height: 360px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .zf-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .stat-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: -0.02em;
+  }
+  .stat-number span { color: var(--red); }
+
+  .stat-label {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  /* ─── PATENTS / RICONOSCIMENTI ─── */
+  .patent-list {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .patent-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.6rem 1.8rem;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .patent-item:hover { border-color: rgba(200,168,75,0.3); }
+
+  .patent-year {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    min-width: 40px;
+  }
+
+  .patent-name {
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+  .patent-name small {
+    display: block;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+    letter-spacing: 0.05em;
+  }
+
+  .patent-badge {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid currentColor;
+  }
+  .badge-granted { color: var(--gold); }
+  .badge-pending { color: var(--accent); }
+
+  /* ─── AGENZIE ─── */
+  .agency-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 3rem;
+  }
+
+  .agency-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .agency-card:hover { background: var(--deep); }
+
+  .agency-abbr {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .agency-full {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .agency-status {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  /* ─── BIOGRAFIA ─── */
+  #biografia {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+  }
+
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .bio-portrait {
+    position: relative;
+    height: 420px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .bio-text p {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+  .bio-text p strong { color: var(--white); font-weight: 500; }
+
+  .trl-bar {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .trl-label {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .trl-track {
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+    position: relative;
+  }
+  .trl-fill {
+    height: 100%;
+    background: var(--red);
+    transition: width 1.5s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  /* ─── CONTATTI ─── */
+  #contatti {
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  #contatti .section-title { margin: 0 auto 1rem; }
+  #contatti .divider { margin: 0 auto 2.5rem; }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+  }
+
+  .contact-link {
+    display: inline-block;
+    padding: 0.75rem 1.8rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    text-decoration: none;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--white); }
+  .contact-link.primary { border-color: var(--red); color: var(--red); }
+  .contact-link.primary:hover { background: var(--red); color: #fff; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 2rem 10vw;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer p {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  footer .foot-logo {
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+  }
+  footer .foot-logo span { color: var(--red); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { gap: 1.2rem; }
+    section { padding: 5rem 6vw; }
+    .manifesto-grid, .zf-split, .bio-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .works-grid { grid-template-columns: 1fr 1fr !important; }
+    .agency-grid { grid-template-columns: 1fr 1fr; }
+    .orbit-ring { display: none; }
+  }
+  @media (max-width: 600px) {
+    .works-grid { grid-template-columns: 1fr !important; }
+    .agency-grid { grid-template-columns: 1fr 1fr; }
+    .zf-stats { grid-template-columns: 1fr 1fr; }
+  }
 </style>
-	<link rel='stylesheet' id='wp-block-library-css'  href='https://www.massimoonnis.it/wp-includes/css/dist/block-library/style.min.css?ver=5.6.17' type='text/css' media='all' />
-<link rel='stylesheet' id='SFSImainCss-css'  href='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/css/sfsi-style.css?ver=5.6.17' type='text/css' media='all' />
-<link rel='stylesheet' id='uaf_client_css-css'  href='https://www.massimoonnis.it/wp-content/uploads/useanyfont/uaf.css?ver=1782203555' type='text/css' media='all' />
-<link rel='stylesheet' id='divi-fonts-css'  href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&#038;subset=latin,latin-ext&#038;display=swap' type='text/css' media='all' />
-<link rel='stylesheet' id='divi-style-css'  href='https://www.massimoonnis.it/wp-content/themes/Divi/style.css?ver=4.8.2' type='text/css' media='all' />
-<link rel='stylesheet' id='et-builder-googlefonts-cached-css'  href='https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic&#038;subset=latin,latin-ext&#038;display=swap' type='text/css' media='all' />
-<link rel='stylesheet' id='dashicons-css'  href='https://www.massimoonnis.it/wp-includes/css/dashicons.min.css?ver=5.6.17' type='text/css' media='all' />
-<script type='text/javascript' src='https://www.massimoonnis.it/wp-includes/js/jquery/jquery.min.js?ver=3.5.1' id='jquery-core-js'></script>
-<script type='text/javascript' src='https://www.massimoonnis.it/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
-<script type='text/javascript' src='https://www.massimoonnis.it/wp-content/plugins/typed//js/typed.js?ver=5.6.17' id='script-typed-js'></script>
-<script type='text/javascript' src='https://www.massimoonnis.it/wp-content/plugins/typed//js/frontend.js?ver=5.6.17' id='script-typed-frontend-js'></script>
-<link rel="https://api.w.org/" href="https://www.massimoonnis.it/wp-json/" /><link rel="alternate" type="application/json" href="https://www.massimoonnis.it/wp-json/wp/v2/pages/131" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.massimoonnis.it/xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.massimoonnis.it/wp-includes/wlwmanifest.xml" /> 
-<meta name="generator" content="WordPress 5.6.17" />
-<link rel="canonical" href="https://www.massimoonnis.it/" />
-<link rel='shortlink' href='https://www.massimoonnis.it/' />
-<link rel="alternate" type="application/json+oembed" href="https://www.massimoonnis.it/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.massimoonnis.it%2F" />
-<link rel="alternate" type="text/xml+oembed" href="https://www.massimoonnis.it/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.massimoonnis.it%2F&#038;format=xml" />
-<style type="text/css" id="custom_fonts">@font-face {
-   font-family: DK Carambola;
-   src: url(https://www.massimoonnis.it/wp-content/uploads/custom_fonts/DK Carambola.otf);
-   font-weight: normal;
-}</style><meta name="follow.it-verification-code-Q2s2SVl2NTJ6MmhmUWVsYTBwZWNSVVlSVFROdG5kM284WjdKWXYxdHRCRm5CRytZWWpBS0oydTd5c0RYR2RiQkNEMEZ3eHI2bkNzM3JEaDZzMUdzN2c4SFFxUzZicHdLSU5lT1JRZWNQWFVMVzBqUUNiMS9aVVd2R2J0MTZvSlJ8TUl5cGNqdzBqcWN1UVZpem9ZYStJN2k2UEp3TTlzdTQ3OWg5RWV0S3EyUT0=" content="GVNG6qySFNtf0Yy3jsGZ"/><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><link rel="preload" href="https://www.massimoonnis.it/wp-content/themes/Divi/core/admin/fonts/modules.ttf" as="font" crossorigin="anonymous"><link rel="stylesheet" id="et-core-unified-131-cached-inline-styles" href="https://www.massimoonnis.it/wp-content/et-cache/131/et-core-unified-131-17807376352068.min.css" onerror="et_core_page_resource_fallback(this, true)" onload="et_core_page_resource_fallback(this)" />	<!-- Fonts Plugin CSS - https://fontsplugin.com/ -->
-	<style>
-			</style>
-	<!-- Fonts Plugin CSS -->
-	</head>
-<body class="home page-template-default page page-id-131 et_color_scheme_red et_pb_button_helper_class et_transparent_nav et_fixed_nav et_show_nav et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter windows et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db et_minified_js et_minified_css">
-	<div id="page-container">
+</head>
+<body>
 
-	
-	
-			<header id="main-header" data-height-onload="146">
-			<div class="container clearfix et_menu_container">
-							<div class="logo_container">
-					<span class="logo_helper"></span>
-					<a href="https://www.massimoonnis.it/">
-						<img src="https://www.massimoonnis.it/wp-content/uploads/2018/12/Senzanome.png" alt="Massimo Onnis" id="logo" data-height-percentage="38" />
-					</a>
-				</div>
-							<div id="et-top-navigation" data-height="146" data-fixed-height="107">
-											<nav id="top-menu-nav">
-						<ul id="top-menu" class="nav"><li id="menu-item-209176" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-131 current_page_item menu-item-209176"><a href="https://www.massimoonnis.it/" aria-current="page">HOME</a></li>
-<li id="menu-item-209186" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209186"><a href="https://www.massimoonnis.it/presentazione/">PRESENTAZIONE</a></li>
-<li id="menu-item-209177" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209177"><a href="https://www.massimoonnis.it/biografia/">BIOGRAFIA</a></li>
-<li id="menu-item-209184" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-209184"><a href="https://www.massimoonnis.it/galleria/">GALLERIA</a>
-<ul class="sub-menu">
-	<li id="menu-item-209183" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209183"><a href="https://www.massimoonnis.it/fotografia-3-2-2-2/">Fotografia</a></li>
-	<li id="menu-item-209187" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209187"><a href="https://www.massimoonnis.it/scultura/">Scultura</a></li>
-	<li id="menu-item-209185" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209185"><a href="https://www.massimoonnis.it/pittura-3-2-2-2-2/">Pittura</a></li>
-	<li id="menu-item-209179" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209179"><a href="https://www.massimoonnis.it/design-2/">Design</a></li>
-	<li id="menu-item-209182" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209182"><a href="https://www.massimoonnis.it/fashion/">Fashion</a></li>
-	<li id="menu-item-209188" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209188"><a href="https://www.massimoonnis.it/installazioni/">Installazioni</a></li>
-	<li id="menu-item-209189" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209189"><a href="https://www.massimoonnis.it/video/">Video</a></li>
-	<li id="menu-item-209190" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209190"><a href="https://www.massimoonnis.it/work-in-progress/">Work in progress</a></li>
-</ul>
-</li>
-<li id="menu-item-209181" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209181"><a href="https://www.massimoonnis.it/eventi/">EVENTI</a></li>
-<li id="menu-item-209180" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209180"><a href="https://www.massimoonnis.it/e-commerce/">E-commerce</a></li>
-<li id="menu-item-209178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209178"><a href="https://www.massimoonnis.it/contatti/">CONTATTI</a></li>
-<li id="menu-item-209554-it" class="lang-item lang-item-10 lang-item-it current-lang lang-item-first menu-item menu-item-type-custom menu-item-object-custom current_page_item menu-item-home menu-item-209554-it"><a href="https://www.massimoonnis.it/" hreflang="it-IT" lang="it-IT"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAMAAABBPP0LAAAAUVBMVEUAiQAAgADk5OTe3t7vAAB3yXf9/f36+vr5Vlb3RkZjwWNYvVj4+Pj1MzP1KChQuFD1GxviAABHtUf19fXzDw4/sT8AcAA2qzYAWgDLy8vDw8ObXclsAAAAVElEQVR4AQXBSwoCQRQEsNT70CC69P5XdCUMA2ISSAiBWAQScg8bN7GJWxFDrCivwhCLMipGx3LKUOi2HAZluy2HgXprxQGfGL6G63B5MJ5FCD/4A3DaCLvbBle5AAAAAElFTkSuQmCC" alt="Italiano" width="16" height="11" style="width: 16px; height: 11px;" /><span style="margin-left:0.3em;">Italiano</span></a></li>
-<li id="menu-item-209554-en" class="lang-item lang-item-13 lang-item-en menu-item menu-item-type-custom menu-item-object-custom menu-item-209554-en"><a href="https://www.massimoonnis.it/en/home-2/" hreflang="en-GB" lang="en-GB"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAALCAMAAABBPP0LAAAAt1BMVEWSmb66z+18msdig8La3u+tYX9IaLc7W7BagbmcUW+kqMr/q6n+//+hsNv/lIr/jIGMnNLJyOP9/fyQttT/wb3/////aWn+YWF5kNT0oqz0i4ueqtIZNJjhvt/8gn//WVr/6+rN1+o9RKZwgcMPJpX/VFT9UEn+RUX8Ozv2Ly+FGzdYZrfU1e/8LS/lQkG/mbVUX60AE231hHtcdMb0mp3qYFTFwNu3w9prcqSURGNDaaIUMX5FNW5wYt7AAAAAjklEQVR4AR3HNUJEMQCGwf+L8RR36ajR+1+CEuvRdd8kK9MNAiRQNgJmVDAt1yM6kSzYVJUsPNssAk5N7ZFKjVNFAY4co6TAOI+kyQm+LFUEBEKKzuWUNB7rSH/rSnvOulOGk+QlXTBqMIrfYX4tSe2nP3iRa/KNK7uTmWJ5a9+erZ3d+18od4ytiZdvZyuKWy8o3UpTVAAAAABJRU5ErkJggg==" alt="English" width="16" height="11" style="width: 16px; height: 11px;" /><span style="margin-left:0.3em;">English</span></a></li>
-</ul>						</nav>
-					
-					
-					
-					
-					<div id="et_mobile_nav_menu">
-				<div class="mobile_nav closed">
-					<span class="select_page">Seleziona una pagina</span>
-					<span class="mobile_menu_bar mobile_menu_bar_toggle"></span>
-				</div>
-			</div>				</div> <!-- #et-top-navigation -->
-			</div> <!-- .container -->
-			<div class="et_search_outer">
-				<div class="container et_search_form_container">
-					<form role="search" method="get" class="et-search-form" action="https://www.massimoonnis.it/">
-					<input type="search" class="et-search-field" placeholder="Cerca &hellip;" value="" name="s" title="Cerca:" />					</form>
-					<span class="et_close_search_field"></span>
-				</div>
-			</div>
-		</header> <!-- #main-header -->
-			<div id="et-main-area">
-	
-<div id="main-content">
+<!-- STARFIELD -->
+<canvas id="starfield"></canvas>
 
+<!-- NAV -->
+<nav>
+  <div class="logo">Pietro<span> ✦</span> Montis</div>
+  <ul>
+    <li><a href="#manifesto">Manifesto</a></li>
+    <li><a href="#opere">Opere</a></li>
+    <li><a href="#zebrafish">Ricerca</a></li>
+    <li><a href="#patenti">Patenti</a></li>
+    <li><a href="#biografia">Biografia</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+</nav>
 
-			
-				<article id="post-131" class="post-131 page type-page status-publish hentry">
+<!-- HERO -->
+<section id="hero">
+  <div class="orbit-ring"></div>
+  <p class="hero-eyebrow">Arte · Scienza · Microgravità</p>
+  <h1 class="hero-title">
+    Pietro<br>
+    <em>Montis</em>
+  </h1>
+  <p class="hero-subtitle">Arte in Microgravità · Londra · TRL 4–5</p>
+  <p class="hero-text">
+    Artista visivo e inventore. La mia pratica esplora il confine tra 
+    corpo umano, organismi acquatici e le forze invisibili che governano
+    la materia sospesa nel vuoto cosmico.
+  </p>
+  <div class="cta-group">
+    <a href="#opere" class="btn-primary">Esplora le Opere</a>
+    <a href="#zebrafish" class="btn-ghost">Progetto ZGFS</a>
+  </div>
+  <div class="scroll-hint">
+    <span>Scorri</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
-				
-					<div class="entry-content">
-					<div id="et-boc" class="et-boc">
-			
-		<div class="et-l et-l--post">
-			<div class="et_builder_inner_content et_pb_gutters3">
-		<div class="et_pb_section et_pb_section_0 et_pb_with_background et_pb_fullwidth_section et_section_regular section_has_divider et_pb_bottom_divider" data-padding="0px|0px|0px|0px" >
-				
-				
-				
-				
-					<section class="et_pb_module et_pb_fullwidth_header et_pb_fullwidth_header_0 et_pb_section_parallax et_pb_text_align_left et_pb_bg_layout_light et_pb_fullscreen">
-				<span class="et_parallax_bg_wrap"><span
-						class="et_parallax_bg et_pb_parallax_css"
-						style="background-image: url(https://www.massimoonnis.it/wp-content/uploads/2018/12/MG_7848.jpg);"
-					></span></span>
-				
-				<div class="et_pb_fullwidth_header_container left">
-					
-					
-				</div>
-				<div class="et_pb_fullwidth_header_overlay"></div>
-				<div class="et_pb_fullwidth_header_scroll"><a href="#" class="scroll-down-container">
-					<span class="scroll-down et-pb-icon">;</span>
-					
-					
-				</a></div>
-			</section>
-				
-				<div class="et_pb_bottom_inside_divider et-no-transition"></div>
-			</div> <!-- .et_pb_section --><div class="et_pb_section et_pb_section_1 et_pb_with_background et_section_regular section_has_divider et_pb_bottom_divider" >
-				
-				
-				
-				
-					<div class="et_pb_row et_pb_row_0">
-				<div class="et_pb_column et_pb_column_1_2 et_pb_column_0  et_pb_css_mix_blend_mode_passthrough">
-				
-				
-				<div class="et_pb_module et_pb_text et_pb_text_0  et_pb_text_align_left et_pb_bg_layout_dark">
-				
-				
-				<div class="et_pb_text_inner"><p style="text-align: center;"><span style="color: #ffffff;">                    <style>
-                        .typed-div-163 {
-                            font-size: 70px;                            font-family: dk-carambola;                                color: #dd0000;                                                        }
+<!-- MANIFESTO -->
+<section id="manifesto">
+  <div class="manifesto-grid">
+    <blockquote class="manifesto-quote">
+      "Tutto si distrugge,<br>tutto si ricostruisce —<br>anche nell'assenza<br>di gravità."
+      <cite>Pietro Montis</cite>
+    </blockquote>
+    <div class="manifesto-body">
+      <p class="section-label">Manifesto</p>
+      <p>
+        La mia opera nasce all'intersezione tra la pratica pittorica 
+        figurativa e la ricerca scientifica sui sistemi acquatici in 
+        <strong>microgravità</strong>. Il ritratto — specchio dell'identità — 
+        si decompone e si riformula nelle stesse leggi fisiche che governano 
+        la materia nello spazio.
+      </p>
+      <p>
+        Con grafite, acrilico e luce, esploro l'anatomia del volto come 
+        habitat: fragilissimo, adattabile, capace di sopravvivere 
+        in condizioni estreme. La serie di autoritratti allo specchio 
+        dialoga con gli esperimenti su <strong>Danio rerio</strong> — il 
+        pesce zebra — in habitat a volume d'acqua ridotto al 10%.
+      </p>
+      <p>
+        Arte e scienza come due facce dello stesso specchio: 
+        entrambe chiedono cosa rimane di noi quando le coordinate 
+        familiari vengono tolte.
+      </p>
+    </div>
+  </div>
+</section>
 
-                        .typed-div-163 a {
-                            color: #dd3333;                        }
+<!-- OPERE -->
+<section id="opere">
+  <p class="section-label">Pratica Artistica</p>
+  <h2 class="section-title">Opere & Serie</h2>
+  <div class="divider"></div>
 
-                        .typed-div-163 .typed-cursor {
-                            color: #dd3333;                        }
-                        
-                                                    .typed-div-163 .typed-cursor{
-                                opacity: 1;
-                                -webkit-animation: blink 0.7s infinite;
-                                -moz-animation: blink 0.7s infinite;
-                                animation: blink 0.7s infinite;
-                            }
-                            @keyframes blink{
-                                0% { opacity:1; }
-                                50% { opacity:0; }
-                                100% { opacity:1; }
-                            }
-                            @-webkit-keyframes blink{
-                                0% { opacity:1; }
-                                50% { opacity:0; }
-                                100% { opacity:1; }
-                            }
-                            @-moz-keyframes blink{
-                                0% { opacity:1; }
-                                50% { opacity:0; }
-                                100% { opacity:1; }
-                            }
-                                            </style>
-                    <div class="typed-div-163">                        
-                        <span style="white-space:pre;" class="typed_perview_div" data-cursor-char="|" data-cursor="no" data-strings="Tutto si distrugge;#$#;tutto si ricostruisce." data-speed="100" data-delay="2000" data-back-delay="2000" data-back-speed="10" data-loop="yes"></span>
-                    </div>
-                    </span></p></div>
-			</div> <!-- .et_pb_text -->
-			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_2 et_pb_column_1  et_pb_css_mix_blend_mode_passthrough et-last-child">
-				
-				
-				<div class="et_pb_module et_pb_image et_pb_image_0">
-				
-				
-				<span class="et_pb_image_wrap "><img loading="lazy" src="https://anteprimasito.online/esempio10/wp-content/uploads/2018/10/ink-303244_1280.png" alt="" title="" height="auto" width="auto" /></span>
-			</div>
-			</div> <!-- .et_pb_column -->
-				
-				
-			</div> <!-- .et_pb_row --><div class="et_pb_row et_pb_row_1">
-				<div class="et_pb_column et_pb_column_4_4 et_pb_column_2  et_pb_css_mix_blend_mode_passthrough et-last-child">
-				
-				
-				<div class="et_pb_module et_pb_text et_pb_text_1 et_animated  et_pb_text_align_center et_pb_bg_layout_light">
-				
-				
-				<div class="et_pb_text_inner">Massimo Onnis è un artista a 360°</p>
-<p>Pittore, Scultore, Designer, Fotografo,<br />
-Fashion Designer, Ceramista, performer, installatore, videomaker.</div>
-			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_text et_pb_text_2 et_animated  et_pb_text_align_center et_pb_bg_layout_light">
-				
-				
-				<div class="et_pb_text_inner">Massimo Onnis è un artista a 360°</p>
-<p>Pittore, Scultore, Designer, Fotografo,<br />
-Fashion Designer, Ceramista, performer, installatore, videomaker.</div>
-			</div> <!-- .et_pb_text -->
-			</div> <!-- .et_pb_column -->
-				
-				
-			</div> <!-- .et_pb_row --><div class="et_pb_row et_pb_row_2">
-				<div class="et_pb_column et_pb_column_4_4 et_pb_column_3  et_pb_css_mix_blend_mode_passthrough et-last-child">
-				
-				
-				<div class="et_pb_module et_pb_text et_pb_text_3  et_pb_text_align_left et_pb_bg_layout_light">
-				
-				
-				<div class="et_pb_text_inner"><p style="text-align: center;"><span style="color: #ff0000;">LE MONOGRAFIE</span></p></div>
-			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_divider et_pb_divider_0 et_pb_divider_position_ et_pb_space"><div class="et_pb_divider_internal"></div></div>
-			</div> <!-- .et_pb_column -->
-				
-				
-			</div> <!-- .et_pb_row --><div class="et_pb_row et_pb_row_3">
-				<div class="et_pb_column et_pb_column_1_3 et_pb_column_4  et_pb_css_mix_blend_mode_passthrough">
-				
-				
-				<div class="et_pb_module et_pb_text et_pb_text_4  et_pb_text_align_left et_pb_bg_layout_light">
-				
-				
-				<div class="et_pb_text_inner"><p style="text-align: center;"><span style="color: #ffffff;">2014</span></p></div>
-			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_image et_pb_image_1">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/DEEP_RED-ilovepdf-compressed.pdf"><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-15.10.10.png" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-15.10.10.png 1375w, https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-15.10.10-300x109.png 300w, https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-15.10.10-768x280.png 768w, https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-15.10.10-1024x373.png 1024w, https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-15.10.10-1080x394.png 1080w" sizes="(max-width: 1375px) 100vw, 1375px" class="wp-image-206170" /></span></a>
-			</div>
-			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_3 et_pb_column_5  et_pb_css_mix_blend_mode_passthrough">
-				
-				
-				<div class="et_pb_module et_pb_text et_pb_text_5  et_pb_text_align_left et_pb_bg_layout_light">
-				
-				
-				<div class="et_pb_text_inner"><p style="text-align: center;"><span style="color: #ffffff;">2016</span></p></div>
-			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_image et_pb_image_2">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/MONOGRAFIA-WATER-THE-ORIGIN-OF-LIFE-ilovepdf-compressed.pdf"><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-18.10.11.png" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-18.10.11.png 1420w, https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-18.10.11-300x106.png 300w, https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-18.10.11-768x273.png 768w, https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-18.10.11-1024x363.png 1024w, https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-18.10.11-1080x383.png 1080w" sizes="(max-width: 1420px) 100vw, 1420px" class="wp-image-206191" /></span></a>
-			</div>
-			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_3 et_pb_column_6  et_pb_css_mix_blend_mode_passthrough et-last-child">
-				
-				
-				<div class="et_pb_module et_pb_text et_pb_text_6  et_pb_text_align_left et_pb_bg_layout_light">
-				
-				
-				<div class="et_pb_text_inner"><p style="text-align: center;"><span style="color: #ffffff;">2018</span></p></div>
-			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_image et_pb_image_3">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/MONOGRAFIA-EVOLUTION-ilovepdf-compressed-ilovepdf-compressed.pdf"><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-15.34.18.png" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-15.34.18.png 1410w, https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-15.34.18-300x109.png 300w, https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-15.34.18-768x279.png 768w, https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-15.34.18-1024x372.png 1024w, https://www.massimoonnis.it/wp-content/uploads/2018/10/Screen-Shot-2018-10-17-at-15.34.18-1080x392.png 1080w" sizes="(max-width: 1410px) 100vw, 1410px" class="wp-image-206186" /></span></a>
-			</div>
-			</div> <!-- .et_pb_column -->
-				
-				
-			</div> <!-- .et_pb_row --><div class="et_pb_row et_pb_row_4">
-				<div class="et_pb_column et_pb_column_1_4 et_pb_column_7  et_pb_css_mix_blend_mode_passthrough">
-				
-				
-				<div class="et_pb_module et_pb_text et_pb_text_7  et_pb_text_align_left et_pb_bg_layout_light">
-				
-				
-				<div class="et_pb_text_inner"><p style="text-align: center;"><span style="color: #ffffff;">1998</span></p></div>
-			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_image et_pb_image_4">
-				
-				
-				<span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-LA-FORZA-DEL-COLORE-704x1024-1.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-LA-FORZA-DEL-COLORE-704x1024-1.jpg 704w, https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-LA-FORZA-DEL-COLORE-704x1024-1-206x300.jpg 206w" sizes="(max-width: 704px) 100vw, 704px" class="wp-image-209274" /></span>
-			</div>
-			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_4 et_pb_column_8  et_pb_css_mix_blend_mode_passthrough">
-				
-				
-				<div class="et_pb_module et_pb_text et_pb_text_8  et_pb_text_align_left et_pb_bg_layout_light">
-				
-				
-				<div class="et_pb_text_inner"><p style="text-align: center;"><span style="color: #ffffff;">2010</span></p></div>
-			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_image et_pb_image_5">
-				
-				
-				<span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-MASSIMO-ONNIS-1024x808-1.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-MASSIMO-ONNIS-1024x808-1.jpg 1024w, https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-MASSIMO-ONNIS-1024x808-1-300x237.jpg 300w, https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-MASSIMO-ONNIS-1024x808-1-768x606.jpg 768w" sizes="(max-width: 1024px) 100vw, 1024px" class="wp-image-209273" /></span>
-			</div>
-			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_4 et_pb_column_9  et_pb_css_mix_blend_mode_passthrough">
-				
-				
-				<div class="et_pb_module et_pb_text et_pb_text_9  et_pb_text_align_left et_pb_bg_layout_light">
-				
-				
-				<div class="et_pb_text_inner"><p style="text-align: center;"><span style="color: #ffffff;">2011</span></p></div>
-			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_image et_pb_image_6">
-				
-				
-				<span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-GROUND-ZERO-688x1024-1.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-GROUND-ZERO-688x1024-1.jpg 688w, https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-GROUND-ZERO-688x1024-1-202x300.jpg 202w" sizes="(max-width: 688px) 100vw, 688px" class="wp-image-209271" /></span>
-			</div>
-			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_4 et_pb_column_10  et_pb_css_mix_blend_mode_passthrough et-last-child">
-				
-				
-				<div class="et_pb_module et_pb_text et_pb_text_10  et_pb_text_align_left et_pb_bg_layout_light">
-				
-				
-				<div class="et_pb_text_inner"><p style="text-align: center;"><span style="color: #ffffff;">2012</span></p></div>
-			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_image et_pb_image_7">
-				
-				
-				<span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-METAMORFOSI-DEL-COLORE-1024x854-1.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-METAMORFOSI-DEL-COLORE-1024x854-1.jpg 1024w, https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-METAMORFOSI-DEL-COLORE-1024x854-1-300x250.jpg 300w, https://www.massimoonnis.it/wp-content/uploads/2018/12/COPERTINA-METAMORFOSI-DEL-COLORE-1024x854-1-768x641.jpg 768w" sizes="(max-width: 1024px) 100vw, 1024px" class="wp-image-209272" /></span>
-			</div>
-			</div> <!-- .et_pb_column -->
-				
-				
-			</div> <!-- .et_pb_row -->
-				
-				<div class="et_pb_bottom_inside_divider et-no-transition"></div>
-			</div> <!-- .et_pb_section --><div class="et_pb_section et_pb_section_2 et_pb_with_background et_section_regular" >
-				
-				
-				
-				
-					<div class="et_pb_row et_pb_row_5">
-				<div class="et_pb_column et_pb_column_4_4 et_pb_column_11  et_pb_css_mix_blend_mode_passthrough et-last-child">
-				
-				
-				<div class="et_pb_module et_pb_text et_pb_text_11  et_pb_text_align_center et_pb_bg_layout_dark">
-				
-				
-				<div class="et_pb_text_inner"><p><span style="color: #ff0000;">Le opere</span></p></div>
-			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_text et_pb_text_12  et_pb_text_align_center et_pb_bg_layout_light">
-				
-				
-				
-			</div> <!-- .et_pb_text --><div class="et_pb_module et_pb_divider et_pb_divider_1 et_pb_divider_position_ et_pb_space"><div class="et_pb_divider_internal"></div></div>
-			</div> <!-- .et_pb_column -->
-				
-				
-			</div> <!-- .et_pb_row --><div class="et_pb_row et_pb_row_6">
-				<div class="et_pb_column et_pb_column_1_4 et_pb_column_12  et_pb_css_mix_blend_mode_passthrough">
-				
-				
-				<div class="et_pb_module et_pb_divider_2 et_pb_space et_pb_divider_hidden"><div class="et_pb_divider_internal"></div></div><div class="et_pb_module et_pb_divider_3 et_pb_space et_pb_divider_hidden"><div class="et_pb_divider_internal"></div></div><div class="et_pb_module et_pb_image et_pb_image_8">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/ragazza-in-blu.jpg" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/ragazza-in-blu.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/ragazza-in-blu.jpg 672w, https://www.massimoonnis.it/wp-content/uploads/2018/12/ragazza-in-blu-202x300.jpg 202w" sizes="(max-width: 672px) 100vw, 672px" class="wp-image-209252" /></span></a>
-			</div><div class="et_pb_module et_pb_image et_pb_image_9">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/COLLEZIONE-VOYAGER-1024x756.jpg" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/COLLEZIONE-VOYAGER-1024x756.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/COLLEZIONE-VOYAGER-1024x756.jpg 1024w, https://www.massimoonnis.it/wp-content/uploads/2018/12/COLLEZIONE-VOYAGER-1024x756-300x221.jpg 300w, https://www.massimoonnis.it/wp-content/uploads/2018/12/COLLEZIONE-VOYAGER-1024x756-768x567.jpg 768w" sizes="(max-width: 1024px) 100vw, 1024px" class="wp-image-209263" /></span></a>
-			</div><div class="et_pb_module et_pb_image et_pb_image_10">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/INSTALLAZIONE-GRAZIA-DELEDDA-856x1024.jpg" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/INSTALLAZIONE-GRAZIA-DELEDDA-856x1024.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/INSTALLAZIONE-GRAZIA-DELEDDA-856x1024.jpg 856w, https://www.massimoonnis.it/wp-content/uploads/2018/12/INSTALLAZIONE-GRAZIA-DELEDDA-856x1024-251x300.jpg 251w, https://www.massimoonnis.it/wp-content/uploads/2018/12/INSTALLAZIONE-GRAZIA-DELEDDA-856x1024-768x919.jpg 768w" sizes="(max-width: 856px) 100vw, 856px" class="wp-image-209259" /></span></a>
-			</div>
-			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_4 et_pb_column_13  et_pb_css_mix_blend_mode_passthrough">
-				
-				
-				<div class="et_pb_module et_pb_image et_pb_image_11">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/frammenti-in-rosso-e-nero-su-sfondo-nero-acrilico-su-tela-114x114.jpg" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/frammenti-in-rosso-e-nero-su-sfondo-nero-acrilico-su-tela-114x114.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/frammenti-in-rosso-e-nero-su-sfondo-nero-acrilico-su-tela-114x114.jpg 1000w, https://www.massimoonnis.it/wp-content/uploads/2018/12/frammenti-in-rosso-e-nero-su-sfondo-nero-acrilico-su-tela-114x114-150x150.jpg 150w, https://www.massimoonnis.it/wp-content/uploads/2018/12/frammenti-in-rosso-e-nero-su-sfondo-nero-acrilico-su-tela-114x114-300x300.jpg 300w, https://www.massimoonnis.it/wp-content/uploads/2018/12/frammenti-in-rosso-e-nero-su-sfondo-nero-acrilico-su-tela-114x114-768x768.jpg 768w" sizes="(max-width: 1000px) 100vw, 1000px" class="wp-image-209266" /></span></a>
-			</div><div class="et_pb_module et_pb_divider_4 et_pb_space et_pb_divider_hidden"><div class="et_pb_divider_internal"></div></div><div class="et_pb_module et_pb_image et_pb_image_12">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/surzu-682x1024-1.jpg" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/surzu-682x1024-1.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/surzu-682x1024-1.jpg 682w, https://www.massimoonnis.it/wp-content/uploads/2018/12/surzu-682x1024-1-200x300.jpg 200w" sizes="(max-width: 682px) 100vw, 682px" class="wp-image-209262" /></span></a>
-			</div><div class="et_pb_module et_pb_image et_pb_image_13">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/MODELLA-PISA-FASHION-DAYS-1-1.png" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/MODELLA-PISA-FASHION-DAYS-1-1.png" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/MODELLA-PISA-FASHION-DAYS-1-1.png 552w, https://www.massimoonnis.it/wp-content/uploads/2018/12/MODELLA-PISA-FASHION-DAYS-1-1-184x300.png 184w" sizes="(max-width: 552px) 100vw, 552px" class="wp-image-209258" /></span></a>
-			</div>
-			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_4 et_pb_column_14  et_pb_css_mix_blend_mode_passthrough">
-				
-				
-				<div class="et_pb_module et_pb_divider_5 et_pb_space et_pb_divider_hidden"><div class="et_pb_divider_internal"></div></div><div class="et_pb_module et_pb_image et_pb_image_14">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/PROFILO-DI-DONNA-SCULTURA-TECNICA-MISTA-50X20X9-668x1024-1.jpg" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/PROFILO-DI-DONNA-SCULTURA-TECNICA-MISTA-50X20X9-668x1024-1.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/PROFILO-DI-DONNA-SCULTURA-TECNICA-MISTA-50X20X9-668x1024-1.jpg 668w, https://www.massimoonnis.it/wp-content/uploads/2018/12/PROFILO-DI-DONNA-SCULTURA-TECNICA-MISTA-50X20X9-668x1024-1-196x300.jpg 196w" sizes="(max-width: 668px) 100vw, 668px" class="wp-image-209265" /></span></a>
-			</div><div class="et_pb_module et_pb_image et_pb_image_15">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/img_1782.jpg" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/img_1782.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/img_1782.jpg 1000w, https://www.massimoonnis.it/wp-content/uploads/2018/12/img_1782-300x227.jpg 300w, https://www.massimoonnis.it/wp-content/uploads/2018/12/img_1782-768x581.jpg 768w" sizes="(max-width: 1000px) 100vw, 1000px" class="wp-image-209261" /></span></a>
-			</div><div class="et_pb_module et_pb_image et_pb_image_16">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/DONALD-TRUMP-I-LIKE-PEOPLE-WITH-BRAIN-ACRILICO-SU-TELA-188X1055-1-1024x592-1.jpg" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/DONALD-TRUMP-I-LIKE-PEOPLE-WITH-BRAIN-ACRILICO-SU-TELA-188X1055-1-1024x592-1.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/DONALD-TRUMP-I-LIKE-PEOPLE-WITH-BRAIN-ACRILICO-SU-TELA-188X1055-1-1024x592-1.jpg 1024w, https://www.massimoonnis.it/wp-content/uploads/2018/12/DONALD-TRUMP-I-LIKE-PEOPLE-WITH-BRAIN-ACRILICO-SU-TELA-188X1055-1-1024x592-1-300x173.jpg 300w, https://www.massimoonnis.it/wp-content/uploads/2018/12/DONALD-TRUMP-I-LIKE-PEOPLE-WITH-BRAIN-ACRILICO-SU-TELA-188X1055-1-1024x592-1-768x444.jpg 768w" sizes="(max-width: 1024px) 100vw, 1024px" class="wp-image-209257" /></span></a>
-			</div><div class="et_pb_module et_pb_image et_pb_image_17">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/installazione-finale-in-notturna.jpg" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/installazione-finale-in-notturna.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/installazione-finale-in-notturna.jpg 800w, https://www.massimoonnis.it/wp-content/uploads/2018/12/installazione-finale-in-notturna-300x200.jpg 300w, https://www.massimoonnis.it/wp-content/uploads/2018/12/installazione-finale-in-notturna-768x512.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" class="wp-image-209255" /></span></a>
-			</div>
-			</div> <!-- .et_pb_column --><div class="et_pb_column et_pb_column_1_4 et_pb_column_15  et_pb_css_mix_blend_mode_passthrough et-last-child">
-				
-				
-				<div class="et_pb_module et_pb_image et_pb_image_18">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/PROFILO-DI-DONNA-1-3-698x1024-1.jpg" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/PROFILO-DI-DONNA-1-3-698x1024-1.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/PROFILO-DI-DONNA-1-3-698x1024-1.jpg 698w, https://www.massimoonnis.it/wp-content/uploads/2018/12/PROFILO-DI-DONNA-1-3-698x1024-1-204x300.jpg 204w" sizes="(max-width: 698px) 100vw, 698px" class="wp-image-209264" /></span></a>
-			</div><div class="et_pb_module et_pb_image et_pb_image_19">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/water-the-origins-of-life-acrylic-on-canvas-200x200-cm.jpg" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/water-the-origins-of-life-acrylic-on-canvas-200x200-cm.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/water-the-origins-of-life-acrylic-on-canvas-200x200-cm.jpg 1000w, https://www.massimoonnis.it/wp-content/uploads/2018/12/water-the-origins-of-life-acrylic-on-canvas-200x200-cm-300x278.jpg 300w, https://www.massimoonnis.it/wp-content/uploads/2018/12/water-the-origins-of-life-acrylic-on-canvas-200x200-cm-768x713.jpg 768w" sizes="(max-width: 1000px) 100vw, 1000px" class="wp-image-209260" /></span></a>
-			</div><div class="et_pb_module et_pb_image et_pb_image_20">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/FRAMMENTI-DI-DONNA-IN-PELLET-ACRILICO-SU-TELA-70X100-1-1024x709-1.jpg" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/FRAMMENTI-DI-DONNA-IN-PELLET-ACRILICO-SU-TELA-70X100-1-1024x709-1.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/FRAMMENTI-DI-DONNA-IN-PELLET-ACRILICO-SU-TELA-70X100-1-1024x709-1.jpg 1024w, https://www.massimoonnis.it/wp-content/uploads/2018/12/FRAMMENTI-DI-DONNA-IN-PELLET-ACRILICO-SU-TELA-70X100-1-1024x709-1-300x208.jpg 300w, https://www.massimoonnis.it/wp-content/uploads/2018/12/FRAMMENTI-DI-DONNA-IN-PELLET-ACRILICO-SU-TELA-70X100-1-1024x709-1-768x532.jpg 768w" sizes="(max-width: 1024px) 100vw, 1024px" class="wp-image-209256" /></span></a>
-			</div><div class="et_pb_module et_pb_image et_pb_image_21">
-				
-				
-				<a href="https://www.massimoonnis.it/wp-content/uploads/2018/12/SEX-TECNICA-MISTA-SU-TELA-175X145-829x1024-1.jpg" class="et_pb_lightbox_image" title=""><span class="et_pb_image_wrap "><img loading="lazy" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/SEX-TECNICA-MISTA-SU-TELA-175X145-829x1024-1.jpg" alt="" title="" height="auto" width="auto" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/SEX-TECNICA-MISTA-SU-TELA-175X145-829x1024-1.jpg 829w, https://www.massimoonnis.it/wp-content/uploads/2018/12/SEX-TECNICA-MISTA-SU-TELA-175X145-829x1024-1-243x300.jpg 243w, https://www.massimoonnis.it/wp-content/uploads/2018/12/SEX-TECNICA-MISTA-SU-TELA-175X145-829x1024-1-768x949.jpg 768w" sizes="(max-width: 829px) 100vw, 829px" class="wp-image-209254" /></span></a>
-			</div>
-			</div> <!-- .et_pb_column -->
-				
-				
-			</div> <!-- .et_pb_row -->
-				
-				
-			</div> <!-- .et_pb_section --><div class="et_pb_section et_pb_section_3 et_pb_section_parallax et_pb_with_background et_section_regular section_has_divider et_pb_bottom_divider et_pb_top_divider" >
-				<div class="et_pb_top_inside_divider et-no-transition"></div>
-				<div class="et_parallax_bg_wrap"><div
-						class="et_parallax_bg"
-						style="background-image: url(https://www.massimoonnis.it/wp-content/uploads/2018/12/MASSIMO-IN-POLTRONA-1-1.jpg);"
-					></div></div>
-				
-				
-					<div class="et_pb_row et_pb_row_7">
-				<div class="et_pb_column et_pb_column_4_4 et_pb_column_16  et_pb_css_mix_blend_mode_passthrough et-last-child">
-				
-				
-				<div class="et_pb_module et_pb_text et_pb_text_13  et_pb_text_align_center et_pb_bg_layout_light">
-				
-				
-				<div class="et_pb_text_inner">Facesti come colui che cammina di notte, <br />
-                e porta un lume dietro di sé,<br />
-  e con quel lume non aiuta sé stesso.<br />
-Egli cammina al buio, <br />
-si apre la strada nel buio ma dietro di sé illumina gli altri.&#8221;<br />
-                                 Dante Alighieri </div>
-			</div> <!-- .et_pb_text --><div class="et_pb_button_module_wrapper et_pb_button_0_wrapper et_pb_button_alignment_center et_pb_module ">
-				<a class="et_pb_button et_pb_button_0 et_pb_bg_layout_light" href="https://anteprimasito.online/esempio10/contatti/">CONTATTI</a>
-			</div>
-			</div> <!-- .et_pb_column -->
-				
-				
-			</div> <!-- .et_pb_row -->
-				
-				
-			</div> <!-- .et_pb_section -->		</div><!-- .et_builder_inner_content -->
-	</div><!-- .et-l -->
-	
-			
-		</div><!-- #et-boc -->
-							</div> <!-- .entry-content -->
+  <div class="works-grid">
 
-				
-				</article> <!-- .et_pb_post -->
+    <div class="work-card">
+      <p class="work-number">001</p>
+      <svg class="work-icon" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="18" stroke="#9d8fcc" stroke-width="0.8"/>
+        <circle cx="24" cy="24" r="8" stroke="#cc1a1a" stroke-width="0.8"/>
+        <line x1="24" y1="6" x2="24" y2="42" stroke="#888490" stroke-width="0.5"/>
+        <line x1="6" y1="24" x2="42" y2="24" stroke="#888490" stroke-width="0.5"/>
+      </svg>
+      <h3 class="work-title">Autoritratti allo Specchio</h3>
+      <p class="work-desc">
+        Serie progressiva in matita e acrilico su carta. 
+        Ogni opera numerata, ogni sessione un esame ravvicinato 
+        della struttura facciale. Punteggi fino a 9.4/10.
+      </p>
+    </div>
 
-			
+    <div class="work-card">
+      <p class="work-number">002</p>
+      <svg class="work-icon" viewBox="0 0 48 48" fill="none">
+        <rect x="8" y="8" width="32" height="32" stroke="#c8a84b" stroke-width="0.8" rx="1"/>
+        <path d="M16 24 Q24 14 32 24 Q24 34 16 24" stroke="#cc1a1a" stroke-width="0.8"/>
+        <circle cx="24" cy="24" r="2" fill="#9d8fcc"/>
+      </svg>
+      <h3 class="work-title">Hybrida Atmosphera</h3>
+      <p class="work-desc">
+        Progetto video-scientifico che documenta l'habitat acquatico 
+        in microgravità. Arte come protocollo di ricerca. 
+        Candidato spaziale per ISS/Kibo/Columbus.
+      </p>
+    </div>
 
-</div> <!-- #main-content -->
+    <div class="work-card">
+      <p class="work-number">003</p>
+      <svg class="work-icon" viewBox="0 0 48 48" fill="none">
+        <path d="M8 40 L24 8 L40 40 Z" stroke="#7b62e8" stroke-width="0.8"/>
+        <line x1="16" y1="30" x2="32" y2="30" stroke="#888490" stroke-width="0.5"/>
+        <circle cx="24" cy="8" r="2" fill="#cc1a1a"/>
+      </svg>
+      <h3 class="work-title">Figure in Campo Cromatico</h3>
+      <p class="work-desc">
+        Composizioni acriliche su tela: verde strutturale nel volto, 
+        complementari bilanciati. Influenze di Bacon, Freud, 
+        Auerbach, Rouault.
+      </p>
+    </div>
 
+    <div class="work-card">
+      <p class="work-number">004</p>
+      <svg class="work-icon" viewBox="0 0 48 48" fill="none">
+        <ellipse cx="24" cy="24" rx="16" ry="8" stroke="#9d8fcc" stroke-width="0.8" transform="rotate(-20 24 24)"/>
+        <circle cx="24" cy="24" r="3" stroke="#c8a84b" stroke-width="0.8"/>
+        <path d="M10 18 Q24 10 38 18" stroke="#cc1a1a" stroke-width="0.5" stroke-dasharray="2,2"/>
+      </svg>
+      <h3 class="work-title">Orbit — Scultura Concettuale</h3>
+      <p class="work-desc">
+        Installazioni scultoree che evocano la traiettoria orbitale 
+        e il peso assente. Materiali misti, strutture sospese, 
+        dialogo con il vuoto.
+      </p>
+    </div>
 
-			<footer id="main-footer">
-				
-<div class="container">
-    <div id="footer-widgets" class="clearfix">
-		<div class="footer-widget"><div id="media_image-2" class="fwidget et_pb_widget widget_media_image"><img width="300" height="108" src="https://www.massimoonnis.it/wp-content/uploads/2018/12/Senzanome-300x108.png" class="image wp-image-208622  attachment-medium size-medium" alt="" loading="lazy" style="max-width: 100%; height: auto;" srcset="https://www.massimoonnis.it/wp-content/uploads/2018/12/Senzanome-300x108.png 300w, https://www.massimoonnis.it/wp-content/uploads/2018/12/Senzanome-768x277.png 768w, https://www.massimoonnis.it/wp-content/uploads/2018/12/Senzanome.png 958w" sizes="(max-width: 300px) 100vw, 300px" /></div> <!-- end .fwidget --></div> <!-- end .footer-widget --><div class="footer-widget"><div id="text-3" class="fwidget et_pb_widget widget_text">			<div class="textwidget"><p class="p1"><span class="s1">Massimo Onnis è un artista a 360°</span></p>
-<p class="p2"><span class="s2">Pittore, Scultore, Designer, Fotografo,</span><span class="s1"><br />
-</span><span class="s2">Fashion Designer, Ceramista, performer, installatore, videomaker.</span></p>
-<p class="p1"><span class="s1">Copyright © 2018 Massimo Onnis – Arte e Pittura. Tutti i diritti riservati.</span></p>
-</div>
-		</div> <!-- end .fwidget --></div> <!-- end .footer-widget --><div class="footer-widget"><div id="nav_menu-2" class="fwidget et_pb_widget widget_nav_menu"><div class="menu-menuinbasso-container"><ul id="menu-menuinbasso" class="menu"><li id="menu-item-209235" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-131 current_page_item menu-item-209235"><a href="https://www.massimoonnis.it/" aria-current="page">HOME</a></li>
-<li id="menu-item-209237" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209237"><a href="https://www.massimoonnis.it/presentazione/">PRESENTAZIONE</a></li>
-<li id="menu-item-209236" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209236"><a href="https://www.massimoonnis.it/biografia/">BIOGRAFIA</a></li>
-<li id="menu-item-209238" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209238"><a href="https://www.massimoonnis.it/galleria/">GALLERIA</a></li>
-<li id="menu-item-209239" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209239"><a href="https://www.massimoonnis.it/eventi/">EVENTI</a></li>
-<li id="menu-item-209233" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209233"><a href="https://www.massimoonnis.it/privacy/">Privacy</a></li>
-<li id="menu-item-209234" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-209234"><a href="https://www.massimoonnis.it/cookie-policy/">Cookie policy</a></li>
-</ul></div></div> <!-- end .fwidget --></div> <!-- end .footer-widget --><div class="footer-widget"><div id="sfsi-widget-2" class="fwidget et_pb_widget sfsi">		<div class="sfsi_widget" data-position="widget" style="display:flex;flex-wrap:wrap;justify-content: left">
-			<div id='sfsi_wDiv'></div>
-			<div class="norm_row sfsi_wDiv "  style="width:225px;position:absolute;;text-align:left"><div style='width:40px; height:40px;margin-left:5px;margin-bottom:5px; ' class='sfsi_wicons shuffeldiv ' ><div class='inerCnt'><a class=' sficn' data-effect='' target='_blank'  href='http://www.specificfeeds.com/widgets/emailSubscribeEncFeed/Q2s2SVl2NTJ6MmhmUWVsYTBwZWNSVVlSVFROdG5kM284WjdKWXYxdHRCRm5CRytZWWpBS0oydTd5c0RYR2RiQkNEMEZ3eHI2bkNzM3JEaDZzMUdzN2c4SFFxUzZicHdLSU5lT1JRZWNQWFVMVzBqUUNiMS9aVVd2R2J0MTZvSlJ8TUl5cGNqdzBqcWN1UVZpem9ZYStJN2k2UEp3TTlzdTQ3OWg5RWV0S3EyUT0=/OA==/' id='sfsiid_email' style='opacity:1'  ><img data-pin-nopin='true' alt='Follow by Email' title='Follow by Email' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/images/icons_theme/flat/flat_email.png' width='40' height='40' style='' class='sfcm sfsi_wicon ' data-effect=''   /></a></div></div><div style='width:40px; height:40px;margin-left:5px;margin-bottom:5px; ' class='sfsi_wicons shuffeldiv ' ><div class='inerCnt'><a class=' sficn' data-effect='' target='_blank'  href='https://www.facebook.com/massimo.onnis.92' id='sfsiid_facebook' style='opacity:1'  ><img data-pin-nopin='true' alt='Facebook' title='Facebook' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/images/icons_theme/flat/flat_facebook.png' width='40' height='40' style='' class='sfcm sfsi_wicon ' data-effect=''   /></a><div class="sfsi_tool_tip_2 fb_tool_bdr sfsiTlleft" style="width:62px ;opacity:0;z-index:-1;margin-left:-47.5px;" id="sfsiid_facebook"><span class="bot_arow bot_fb_arow"></span><div class="sfsi_inside"><div  class='icon1'><a href='https://www.facebook.com/massimo.onnis.92' target='_blank'><img data-pin-nopin='true' class='sfsi_wicon' alt='Facebook' title='Facebook' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/images/visit_icons/facebook.png'  /></a></div><div  class='icon2'><div class="fb-like" data-href="https://www.massimoonnis.it/" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div></div><div  class='icon3'><a target='_blank' href='https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.massimoonnis.it%2F' style='display:inline-block;'  > <img class='sfsi_wicon'  data-pin-nopin='true' width='auto' height='auto' alt='fb-share-icon' title='Facebook Share' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/images/visit_icons/fbshare_bck.png'  /></a></div></div></div></div></div><div style='width:40px; height:40px;margin-left:5px;margin-bottom:5px; ' class='sfsi_wicons shuffeldiv ' ><div class='inerCnt'><a class=' sficn' data-effect='' target='_blank'  href='http://www.twitter.com/massimo_onnis' id='sfsiid_twitter' style='opacity:1'  ><img data-pin-nopin='true' alt='' title='' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/images/icons_theme/flat/flat_twitter.png' width='40' height='40' style='' class='sfcm sfsi_wicon ' data-effect=''   /></a><div class="sfsi_tool_tip_2 twt_tool_bdr sfsiTlleft" style="width:59px ;opacity:0;z-index:-1;margin-left:-46px;" id="sfsiid_twitter"><span class="bot_arow bot_twt_arow"></span><div class="sfsi_inside"><div  class='cstmicon1'><a href='http://www.twitter.com/massimo_onnis' target='_blank'><img data-pin-nopin='true' class='sfsi_wicon' alt='Visit Us' title='Visit Us' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/images/visit_icons/twitter.png'  /></a></div><div  class='icon1'><a target="_blank" href="https://twitter.com/intent/user?screen_name=massimo_onnis">
-			<img data-pin-nopin= true width="auto" src="https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/images/visit_icons/en_US_Follow.svg" class="sfsi_wicon" alt="Follow Me" title="Follow Me" style="opacity: 1;" />
-			</a></div></div></div></div></div><div style='width:40px; height:40px;margin-left:5px;margin-bottom:5px; ' class='sfsi_wicons shuffeldiv ' ><div class='inerCnt'><a class=' sficn' data-effect='' target='_blank'  href='http://pinterest.com/massimoonnis92/massimo-onnis/' id='sfsiid_pinterest' style='opacity:1'  ><img data-pin-nopin='true' alt='' title='' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/images/icons_theme/flat/flat_pinterest.png' width='40' height='40' style='' class='sfcm sfsi_wicon ' data-effect=''   /></a><div class="sfsi_tool_tip_2 printst_tool_bdr sfsiTlleft" style="width:85px ;opacity:0;z-index:-1;margin-left:-50px;" id="sfsiid_pinterest"><span class="bot_arow bot_pintst_arow"></span><div class="sfsi_inside"><div  class='icon1'><a href='http://pinterest.com/massimoonnis92/massimo-onnis/' target='_blank'><img data-pin-nopin='true' class='sfsi_wicon'  alt='' title='' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/images/visit_icons/pinterest.png'  /></a></div><div  class='icon2'><a href='#'  onclick='sfsi_pinterest_modal_images(event)' class='sfsi_pinterest_sm_click' style='display:inline-block;'  > <img class='sfsi_wicon'  data-pin-nopin='true' width='auto' height='auto' alt='fb-share-icon' title='Pin Share' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/images/share_icons/Pinterest_Save/en_US_save.svg'  /></a></div></div></div></div></div><div style='width:40px; height:40px;margin-left:5px;margin-bottom:5px; ' class='sfsi_wicons shuffeldiv ' ><div class='inerCnt'><a class=' sficn' data-effect='' target='_blank'  href='http://www.linkedin.com/pub/massimo-onnis/52/63/78b' id='sfsiid_linkedin' style='opacity:1'  ><img data-pin-nopin='true' alt='' title='' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/images/icons_theme/flat/flat_linkedin.png' width='40' height='40' style='' class='sfcm sfsi_wicon ' data-effect=''   /></a></div></div><div style='width:40px; height:40px;margin-left:5px;margin-bottom:5px; ' class='sfsi_wicons shuffeldiv ' ><div class='inerCnt'><a class=' sficn' data-effect='' target='_blank'  href='http://www.instagram.com/massimoonnis92/' id='sfsiid_instagram' style='opacity:1'  ><img data-pin-nopin='true' alt='' title='' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/images/icons_theme/flat/flat_instagram.png' width='40' height='40' style='' class='sfcm sfsi_wicon ' data-effect=''   /></a></div></div></div ><div id="sfsi_holder" class="sfsi_holders" style="position: relative; float: left;width:100%;z-index:-1;"></div ><script>window.addEventListener("sfsi_functions_loaded", function() 
-			{
-				if (typeof sfsi_widget_set == "function") {
-					sfsi_widget_set();
-				}
-			}); </script>			<div style="clear: both;"></div>
-		</div>
-	</div> <!-- end .fwidget --></div> <!-- end .footer-widget -->    </div> <!-- #footer-widgets -->
-</div>    <!-- .container -->
+    <div class="work-card">
+      <p class="work-number">005</p>
+      <svg class="work-icon" viewBox="0 0 48 48" fill="none">
+        <path d="M12 36 C12 28 16 24 24 24 C32 24 36 28 36 36" stroke="#c8a84b" stroke-width="0.8"/>
+        <path d="M18 24 C18 18 24 12 24 12 C24 12 30 18 30 24" stroke="#7b62e8" stroke-width="0.8"/>
+        <line x1="24" y1="12" x2="24" y2="8" stroke="#cc1a1a" stroke-width="0.8"/>
+      </svg>
+      <h3 class="work-title">Ritratti — Grafite su Carta</h3>
+      <p class="work-desc">
+        Disegno osservativo dal vivo, specchio come strumento. 
+        Studio continuo della struttura e dell'espressione. 
+        Radici nella tradizione di Rembrandt.
+      </p>
+    </div>
 
-		
-				<div id="footer-bottom">
-					<div class="container clearfix">
-									</div>	<!-- .container -->
-				</div>
-			</footer> <!-- #main-footer -->
-		</div> <!-- #et-main-area -->
+    <div class="work-card">
+      <p class="work-number">006</p>
+      <svg class="work-icon" viewBox="0 0 48 48" fill="none">
+        <rect x="10" y="20" width="28" height="18" stroke="#9d8fcc" stroke-width="0.8" rx="1"/>
+        <path d="M14 20 L14 14 Q14 10 18 10 L30 10 Q34 10 34 14 L34 20" stroke="#9d8fcc" stroke-width="0.8"/>
+        <circle cx="24" cy="29" r="4" stroke="#cc1a1a" stroke-width="0.8"/>
+        <line x1="24" y1="29" x2="30" y2="23" stroke="#c8a84b" stroke-width="0.5"/>
+      </svg>
+      <h3 class="work-title">Zero Gravity Fish Space — Arte</h3>
+      <p class="work-desc">
+        La startup come opera d'arte totale: invenzione, brevetto, 
+        prototipo, e ricerca come pratica estetica radicale 
+        con radici nel 1998.
+      </p>
+    </div>
 
+  </div>
+</section>
 
-	</div> <!-- #page-container -->
+<!-- ZEBRAFISH / RICERCA -->
+<section id="zebrafish">
+  <div class="zf-split">
+    <div>
+      <p class="section-label">Ricerca Scientifica</p>
+      <h2 class="section-title">Zero Gravity Fish Space</h2>
+      <div class="divider"></div>
+      <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.9rem;line-height:1.9;color:var(--muted);margin-bottom:1.2rem;">
+        Un habitat acquatico brevettato che permette a <strong style="color:var(--white)">Danio rerio</strong> 
+        (pesce zebra) di sopravvivere usando solo il <strong style="color:var(--red)">10% del volume 
+        d'acqua</strong> convenzionale — candidato per esperimenti 
+        a bordo dell'ISS, modulo Kibo (JAXA) e Columbus (ESA).
+      </p>
+      <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.9rem;line-height:1.9;color:var(--muted);margin-bottom:2rem;">
+        Applicazioni terrestri nell'acquacoltura e nella 
+        logistica dei molluschi. <strong style="color:var(--white)">Hello Tomorrow Deep Tech Pioneer 2024</strong>, 
+        Stage 2.
+      </p>
+      <div class="zf-stats">
+        <div class="stat-card">
+          <div class="stat-number">10<span>%</span></div>
+          <div class="stat-label">Volume d'acqua</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">TRL<span> 4–5</span></div>
+          <div class="stat-label">Livello tecnologico</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Brevetti UK</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1998</div>
+          <div class="stat-label">Patent originale</div>
+        </div>
+      </div>
+    </div>
 
-				<!--facebook like and share js -->
-			<div id="fb-root"></div>
-			<script>
-				(function(d, s, id) {
-					var js, fjs = d.getElementsByTagName(s)[0];
-					if (d.getElementById(id)) return;
-					js = d.createElement(s);
-					js.id = id;
-					js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-					fjs.parentNode.insertBefore(js, fjs);
-				}(document, 'script', 'facebook-jssdk'));
-			</script>
-		<script>
-window.addEventListener('sfsi_functions_loaded', function() {
-    if (typeof sfsi_responsive_toggle == 'function') {
-        sfsi_responsive_toggle(0);
-        // console.log('sfsi_responsive_toggle');
+    <div class="zf-canvas">
+      <svg width="100%" height="100%" viewBox="0 0 400 360">
+        <!-- Habitat vessel -->
+        <ellipse cx="200" cy="200" rx="130" ry="90" fill="rgba(123,98,232,0.06)" stroke="rgba(123,98,232,0.3)" stroke-width="0.8"/>
+        <!-- Water level -->
+        <path d="M80 210 Q130 205 200 210 Q270 215 320 210 L320 260 Q270 265 200 260 Q130 255 80 260 Z" fill="rgba(59,130,200,0.08)" stroke="rgba(59,130,200,0.2)" stroke-width="0.5"/>
+        <!-- Fish shapes -->
+        <g opacity="0.8">
+          <path d="M155 195 Q170 188 185 195 Q170 202 155 195 Z" fill="none" stroke="#9d8fcc" stroke-width="1"/>
+          <path d="M185 195 L192 191 L192 199 Z" fill="#9d8fcc" opacity="0.5"/>
+          <circle cx="162" cy="194" r="1.5" fill="#cc1a1a"/>
+        </g>
+        <g opacity="0.7">
+          <path d="M205 212 Q220 205 235 212 Q220 219 205 212 Z" fill="none" stroke="#c8a84b" stroke-width="1"/>
+          <path d="M235 212 L242 208 L242 216 Z" fill="#c8a84b" opacity="0.5"/>
+          <circle cx="212" cy="211" r="1.5" fill="#cc1a1a"/>
+        </g>
+        <g opacity="0.6">
+          <path d="M170 220 Q185 213 200 220 Q185 227 170 220 Z" fill="none" stroke="#7b62e8" stroke-width="1"/>
+          <path d="M200 220 L207 216 L207 224 Z" fill="#7b62e8" opacity="0.5"/>
+          <circle cx="177" cy="219" r="1.5" fill="#cc1a1a"/>
+        </g>
+        <!-- Orbit lines -->
+        <ellipse cx="200" cy="140" rx="80" ry="40" fill="none" stroke="rgba(204,26,26,0.2)" stroke-width="0.5" stroke-dasharray="3,4"/>
+        <circle cx="280" cy="140" r="4" fill="rgba(204,26,26,0.5)"/>
+        <!-- Labels -->
+        <text x="200" y="310" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#888490" letter-spacing="3">DANIO RERIO — HABITAT BREVETTATO</text>
+        <text x="200" y="52" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="rgba(157,143,204,0.6)" letter-spacing="1" font-style="italic">microgravità simulata</text>
+        <!-- Gravity vector -->
+        <line x1="200" y1="75" x2="200" y2="100" stroke="rgba(204,26,26,0.4)" stroke-width="0.8"/>
+        <path d="M196 97 L200 104 L204 97" fill="none" stroke="rgba(204,26,26,0.4)" stroke-width="0.8"/>
+        <text x="208" y="92" font-family="Helvetica Neue,sans-serif" font-size="8" fill="#888490" letter-spacing="1">g →0</text>
+      </svg>
+    </div>
+  </div>
+</section>
 
+<!-- PATENTI -->
+<section id="patenti">
+  <p class="section-label">Proprietà Intellettuale</p>
+  <h2 class="section-title">Brevetti & Riconoscimenti</h2>
+  <div class="divider"></div>
+
+  <div class="patent-list">
+    <div class="patent-item">
+      <span class="patent-year">1998</span>
+      <div class="patent-name">
+        GB2325385B — Sistema ad alta pressione per organismi acquatici
+        <small>Patent fondativo · Zero Gravity Fish Space Ltd</small>
+      </div>
+      <span class="patent-badge badge-granted">Concesso</span>
+    </div>
+    <div class="patent-item">
+      <span class="patent-year">2023</span>
+      <div class="patent-name">
+        UK Patent II — Habitat a galleggiamento stabilizzato
+        <small>Applicazione microgravità · Volume ridotto al 10%</small>
+      </div>
+      <span class="patent-badge badge-granted">Concesso</span>
+    </div>
+    <div class="patent-item">
+      <span class="patent-year">2024</span>
+      <div class="patent-name">
+        UK Patent III — Sistema dual-use acquacoltura/spazio
+        <small>In esame · Innovate UK Business Connect</small>
+      </div>
+      <span class="patent-badge badge-pending">In Esame</span>
+    </div>
+    <div class="patent-item">
+      <span class="patent-year">2024</span>
+      <div class="patent-name">
+        Hello Tomorrow Deep Tech Pioneer — Stage 2
+        <small>Riconoscimento internazionale deep tech</small>
+      </div>
+      <span class="patent-badge badge-granted">Selezionato</span>
+    </div>
+  </div>
+
+  <p class="section-label" style="margin-top:4rem;">Agenzie Spaziali</p>
+  <div class="agency-grid">
+    <div class="agency-card">
+      <div class="agency-abbr">NASA</div>
+      <div class="agency-full">Space Biology<br>Notice of Intent</div>
+      <span class="agency-status">Sottomesso</span>
+    </div>
+    <div class="agency-card">
+      <div class="agency-abbr">JAXA</div>
+      <div class="agency-full">Modulo Kibo<br>ISS Inquiry</div>
+      <span class="agency-status">In Preparazione</span>
+    </div>
+    <div class="agency-card">
+      <div class="agency-abbr">ESA</div>
+      <div class="agency-full">Columbus Module<br>Research Announcement</div>
+      <span class="agency-status">In Preparazione</span>
+    </div>
+    <div class="agency-card">
+      <div class="agency-abbr">UKRI</div>
+      <div class="agency-full">BBSRC-STFC DTC Bio<br>Expression of Interest</div>
+      <span class="agency-status">In Valutazione</span>
+    </div>
+  </div>
+</section>
+
+<!-- BIOGRAFIA -->
+<section id="biografia">
+  <div class="bio-grid">
+    <div>
+      <div class="bio-portrait">
+        <svg width="100%" height="100%" viewBox="0 0 300 420">
+          <!-- Abstract self-portrait sketch -->
+          <circle cx="150" cy="130" r="60" fill="none" stroke="rgba(157,143,204,0.3)" stroke-width="0.7"/>
+          <ellipse cx="150" cy="160" rx="45" ry="55" fill="none" stroke="rgba(157,143,204,0.2)" stroke-width="0.5"/>
+          <!-- Eyes - left -->
+          <ellipse cx="133" cy="118" rx="8" ry="5" fill="none" stroke="rgba(204,26,26,0.6)" stroke-width="0.8"/>
+          <circle cx="133" cy="118" r="2.5" fill="rgba(204,26,26,0.4)"/>
+          <!-- Eyes - right -->
+          <ellipse cx="167" cy="118" rx="8" ry="5" fill="none" stroke="rgba(204,26,26,0.6)" stroke-width="0.8"/>
+          <circle cx="167" cy="118" r="2.5" fill="rgba(204,26,26,0.4)"/>
+          <!-- Nose -->
+          <path d="M150 122 L146 134 L154 134" fill="none" stroke="rgba(200,168,75,0.4)" stroke-width="0.7"/>
+          <!-- Mouth -->
+          <path d="M140 143 Q150 148 160 143" fill="none" stroke="rgba(157,143,204,0.5)" stroke-width="0.8"/>
+          <!-- Neck/torso -->
+          <line x1="145" y1="190" x2="142" y2="240" stroke="rgba(157,143,204,0.15)" stroke-width="0.5"/>
+          <line x1="155" y1="190" x2="158" y2="240" stroke="rgba(157,143,204,0.15)" stroke-width="0.5"/>
+          <!-- Hair lines -->
+          <path d="M105 120 Q115 90 150 85 Q185 90 195 120" fill="none" stroke="rgba(157,143,204,0.25)" stroke-width="0.5"/>
+          <!-- Grid overlay -->
+          <line x1="150" y1="60" x2="150" y2="200" stroke="rgba(204,26,26,0.08)" stroke-width="0.4" stroke-dasharray="2,4"/>
+          <line x1="90" y1="130" x2="210" y2="130" stroke="rgba(204,26,26,0.08)" stroke-width="0.4" stroke-dasharray="2,4"/>
+          <!-- Label -->
+          <text x="150" y="290" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="rgba(157,143,204,0.4)" letter-spacing="2" font-style="italic">autoritratto</text>
+          <text x="150" y="305" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="7" fill="rgba(136,132,144,0.4)" letter-spacing="3">serie #9903—</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="bio-text">
+      <p class="section-label">Biografia</p>
+      <h2 class="section-title">Pietro Montis</h2>
+      <div class="divider"></div>
+      <p>
+        Artista figurativo e inventore, con sede a <strong>Londra</strong>. 
+        La pratica artistica si sviluppa principalmente in grafite e acrilico, 
+        con una serie intensiva e continua di <strong>autoritratti dal vivo 
+        davanti allo specchio</strong> — registrazione sistematica dei 
+        cambiamenti dell'identità nel tempo.
+      </p>
+      <p>
+        Fondatore e CEO di <strong>Zero Gravity Fish Space Ltd</strong> 
+        (Company No. 16720954), deep tech startup britannica che sviluppa 
+        tecnologie di habitat acquatico per la sopravvivenza di organismi 
+        marini in microgravità con minimo consumo d'acqua.
+      </p>
+      <p>
+        Le radici del progetto risalgono al <strong>1998</strong>, quando 
+        il brevetto fondativo UK GB2325385B stabilisce il principio 
+        della flottazione stabilizzata. L'interesse per la chitarra classica — 
+        manutenzione e costruzione — completa un profilo d'artigiano integrale.
+      </p>
+
+      <div class="trl-bar">
+        <p class="trl-label">Livello di Maturità Tecnologica (TRL)</p>
+        <div class="trl-track">
+          <div class="trl-fill" style="width:55%"></div>
+        </div>
+        <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.7rem;color:var(--muted);display:flex;justify-content:space-between;">
+          <span>TRL 1</span><span style="color:var(--red)">TRL 4–5 ▲</span><span>TRL 9</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATTI -->
+<section id="contatti">
+  <p class="section-label">Collaborazioni & Contatti</p>
+  <h2 class="section-title">Costruiamo qualcosa di nuovo</h2>
+  <div class="divider"></div>
+  <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.9rem;line-height:1.9;color:var(--muted);max-width:540px;margin:0 auto;">
+    Per collaborazioni artistiche, partnership scientifiche, 
+    opportunità spaziali o semplicemente una conversazione 
+    tra chi non teme il vuoto.
+  </p>
+  <div class="contact-links">
+    <a href="https://www.zerogravityfishspace.com" class="contact-link primary" target="_blank">Zero Gravity Fish Space</a>
+    <a href="mailto:info@pietromontis.com" class="contact-link">Email</a>
+    <a href="https://linkedin.com" class="contact-link">LinkedIn</a>
+    <a href="https://github.com" class="contact-link">GitHub</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">Pietro<span> ✦</span> Montis</div>
+  <p>Arte in Microgravità · Londra · © 2024</p>
+  <p>Zero Gravity Fish Space Ltd · Co. 16720954</p>
+</footer>
+
+<script>
+// Starfield
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function initStars() {
+  stars = [];
+  for (let i = 0; i < 200; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.2,
+      o: Math.random() * 0.6 + 0.1,
+      s: Math.random() * 0.3 + 0.05
+    });
+  }
+}
+
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(200,190,255,${s.o})`;
+    ctx.fill();
+    s.y += s.s;
+    if (s.y > canvas.height) { s.y = 0; s.x = Math.random() * canvas.width; }
+  });
+  requestAnimationFrame(drawStars);
+}
+
+resize();
+initStars();
+drawStars();
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+// TRL bar animate on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.trl-fill').forEach(el => {
+        el.style.width = el.style.width;
+      });
     }
-})
+  });
+}, { threshold: 0.5 });
+
+const bioSection = document.getElementById('biografia');
+if (bioSection) observer.observe(bioSection);
 </script>
-    <script>
-        window.addEventListener('sfsi_functions_loaded', function() {
-            if (typeof sfsi_plugin_version == 'function') {
-                sfsi_plugin_version(2.63);
-            }
-        });
-
-        function sfsi_processfurther(ref) {
-            var feed_id = 'Q2s2SVl2NTJ6MmhmUWVsYTBwZWNSVVlSVFROdG5kM284WjdKWXYxdHRCRm5CRytZWWpBS0oydTd5c0RYR2RiQkNEMEZ3eHI2bkNzM3JEaDZzMUdzN2c4SFFxUzZicHdLSU5lT1JRZWNQWFVMVzBqUUNiMS9aVVd2R2J0MTZvSlJ8TUl5cGNqdzBqcWN1UVZpem9ZYStJN2k2UEp3TTlzdTQ3OWg5RWV0S3EyUT0=';
-            var feedtype = 8;
-            var email = jQuery(ref).find('input[name="email"]').val();
-            var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            if ((email != "Enter your email") && (filter.test(email))) {
-                if (feedtype == "8") {
-                    var url = "https://api.follow.it/subscription-form/" + feed_id + "/" + feedtype;
-                    window.open(url, "popupwindow", "scrollbars=yes,width=1080,height=760");
-                    return true;
-                }
-            } else {
-                alert("Please enter email address");
-                jQuery(ref).find('input[name="email"]').focus();
-                return false;
-            }
-        }
-    </script>
-    <style type="text/css" aria-selected="true">
-        .sfsi_subscribe_Popinner {
-            width: 100% !important;
-
-            height: auto !important;
-
-            padding: 18px 0px !important;
-
-            background-color: #ffffff !important;
-
-        }
-
-        .sfsi_subscribe_Popinner form {
-
-            margin: 0 20px !important;
-
-        }
-
-        .sfsi_subscribe_Popinner h5 {
-
-            font-family: Helvetica,Arial,sans-serif !important;
-
-            font-weight: bold !important;
-
-            color: #000000 !important;
-
-            font-size: 16px !important;
-
-            text-align: center !important;
-
-            margin: 0 0 10px !important;
-
-            padding: 0 !important;
-
-        }
-
-        .sfsi_subscription_form_field {
-
-            margin: 5px 0 !important;
-
-            width: 100% !important;
-
-            display: inline-flex;
-
-            display: -webkit-inline-flex;
-
-        }
-
-        .sfsi_subscription_form_field input {
-
-            width: 100% !important;
-
-            padding: 10px 0px !important;
-
-        }
-
-        .sfsi_subscribe_Popinner input[type=email] {
-
-            font-family: Helvetica,Arial,sans-serif !important;
-
-            font-style: normal !important;
-
-            color:  !important;
-
-            font-size: 14px !important;
-
-            text-align: center !important;
-
-        }
-
-        .sfsi_subscribe_Popinner input[type=email]::-webkit-input-placeholder {
-
-            font-family: Helvetica,Arial,sans-serif !important;
-
-            font-style: normal !important;
-
-            color:  !important;
-
-            font-size: 14px !important;
-
-            text-align: center !important;
-
-        }
-
-        .sfsi_subscribe_Popinner input[type=email]:-moz-placeholder {
-            /* Firefox 18- */
-
-            font-family: Helvetica,Arial,sans-serif !important;
-
-            font-style: normal !important;
-
-            color:  !important;
-
-            font-size: 14px !important;
-
-            text-align: center !important;
-
-        }
-
-        .sfsi_subscribe_Popinner input[type=email]::-moz-placeholder {
-            /* Firefox 19+ */
-
-            font-family: Helvetica,Arial,sans-serif !important;
-
-            font-style: normal !important;
-
-            color:  !important;
-
-            font-size: 14px !important;
-
-            text-align: center !important;
-
-        }
-
-        .sfsi_subscribe_Popinner input[type=email]:-ms-input-placeholder {
-
-            font-family: Helvetica,Arial,sans-serif !important;
-
-            font-style: normal !important;
-
-            color:  !important;
-
-            font-size: 14px !important;
-
-            text-align: center !important;
-
-        }
-
-        .sfsi_subscribe_Popinner input[type=submit] {
-
-            font-family: Helvetica,Arial,sans-serif !important;
-
-            font-weight: bold !important;
-
-            color: #000000 !important;
-
-            font-size: 16px !important;
-
-            text-align: center !important;
-
-            background-color: #dedede !important;
-
-        }
-
-        .sfsi_shortcode_container {
-            float: left;
-        }
-
-        .sfsi_shortcode_container .norm_row .sfsi_wDiv {
-            position: relative !important;
-        }
-
-        .sfsi_shortcode_container .sfsi_holders {
-            display: none;
-        }
-
-            </style>
-
-	<script type="text/javascript">
-				var et_animation_data = [{"class":"et_pb_text_1","style":"zoom","repeat":"once","duration":"5200ms","delay":"1600ms","intensity":"50%","starting_opacity":"0%","speed_curve":"ease-in-out"},{"class":"et_pb_text_2","style":"zoom","repeat":"once","duration":"5200ms","delay":"1600ms","intensity":"50%","starting_opacity":"0%","speed_curve":"ease-in-out"}];
-				</script>
-	<script type='text/javascript' src='https://www.massimoonnis.it/wp-includes/js/jquery/ui/core.min.js?ver=1.12.1' id='jquery-ui-core-js'></script>
-<script type='text/javascript' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/js/shuffle/modernizr.custom.min.js?ver=5.6.17' id='SFSIjqueryModernizr-js'></script>
-<script type='text/javascript' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/js/shuffle/jquery.shuffle.min.js?ver=5.6.17' id='SFSIjqueryShuffle-js'></script>
-<script type='text/javascript' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/js/shuffle/random-shuffle-min.js?ver=5.6.17' id='SFSIjqueryrandom-shuffle-js'></script>
-<script type='text/javascript' id='SFSICustomJs-js-extra'>
-/* <![CDATA[ */
-var sfsi_icon_ajax_object = {"ajax_url":"https:\/\/www.massimoonnis.it\/wp-admin\/admin-ajax.php"};
-var sfsi_icon_ajax_object = {"ajax_url":"https:\/\/www.massimoonnis.it\/wp-admin\/admin-ajax.php","plugin_url":"https:\/\/www.massimoonnis.it\/wp-content\/plugins\/ultimate-social-media-icons\/"};
-/* ]]> */
-</script>
-<script type='text/javascript' src='https://www.massimoonnis.it/wp-content/plugins/ultimate-social-media-icons/js/custom.js?ver=5.6.17' id='SFSICustomJs-js'></script>
-<script type='text/javascript' id='divi-custom-script-js-extra'>
-/* <![CDATA[ */
-var DIVI = {"item_count":"%d Item","items_count":"%d Items"};
-var et_shortcodes_strings = {"previous":"Precedente","next":"Avanti"};
-var et_pb_custom = {"ajaxurl":"https:\/\/www.massimoonnis.it\/wp-admin\/admin-ajax.php","images_uri":"https:\/\/www.massimoonnis.it\/wp-content\/themes\/Divi\/images","builder_images_uri":"https:\/\/www.massimoonnis.it\/wp-content\/themes\/Divi\/includes\/builder\/images","et_frontend_nonce":"1f31db1f5d","subscription_failed":"Si prega di verificare i campi di seguito per assicurarsi di aver inserito le informazioni corrette.","et_ab_log_nonce":"7c365589cb","fill_message":"Compila i seguenti campi:","contact_error_message":"Per favore, correggi i seguenti errori:","invalid":"E-mail non valido","captcha":"Captcha","prev":"Indietro","previous":"Precedente","next":"Accanto","wrong_captcha":"Hai inserito un numero errato nei captcha.","wrong_checkbox":"Checkbox","ignore_waypoints":"no","is_divi_theme_used":"1","widget_search_selector":".widget_search","ab_tests":[],"is_ab_testing_active":"","page_id":"131","unique_test_id":"","ab_bounce_rate":"5","is_cache_plugin_active":"no","is_shortcode_tracking":"","tinymce_uri":""}; var et_builder_utils_params = {"condition":{"diviTheme":true,"extraTheme":false},"scrollLocations":["app","top"],"builderScrollLocations":{"desktop":"app","tablet":"app","phone":"app"},"onloadScrollLocation":"app","builderType":"fe"}; var et_frontend_scripts = {"builderCssContainerPrefix":"#et-boc","builderCssLayoutPrefix":"#et-boc .et-l"};
-var et_pb_box_shadow_elements = [];
-var et_pb_motion_elements = {"desktop":[],"tablet":[],"phone":[]};
-var et_pb_sticky_elements = [];
-/* ]]> */
-</script>
-<script type='text/javascript' src='https://www.massimoonnis.it/wp-content/themes/Divi/js/custom.unified.js?ver=4.8.2' id='divi-custom-script-js'></script>
-<script type='text/javascript' src='https://www.massimoonnis.it/wp-content/themes/Divi/core/admin/js/common.js?ver=4.8.2' id='et-core-common-js'></script>
-<script type='text/javascript' src='https://www.massimoonnis.it/wp-includes/js/wp-embed.min.js?ver=5.6.17' id='wp-embed-js'></script>
 </body>
 </html>
