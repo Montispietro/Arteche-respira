@@ -30,14 +30,12 @@
     font-family: 'Georgia', serif;
     overflow-x: hidden;
   }
-  /* ─── STARFIELD ─── */
   #starfield {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 0;
   }
-  /* ─── NAV ─── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -118,7 +116,6 @@
     min-width: 18px;
     text-align: center;
   }
-  /* ─── HERO ─── */
   #hero {
     position: relative;
     z-index: 1;
@@ -227,7 +224,6 @@
     transition: border-color 0.3s, color 0.3s;
   }
   .btn-ghost:hover { border-color: var(--accent); color: var(--white); }
-  /* ─── SCROLL INDICATOR ─── */
   .scroll-hint {
     position: absolute;
     bottom: 2.5rem;
@@ -251,7 +247,6 @@
     animation: scrollpulse 1.8s ease-in-out infinite;
   }
   @keyframes scrollpulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
-  /* ─── SECTION BASE ─── */
   section {
     position: relative;
     z-index: 1;
@@ -278,7 +273,6 @@
     background: var(--red);
     margin-bottom: 2.5rem;
   }
-  /* ─── MANIFESTO ─── */
   #manifesto {
     background: var(--deep);
     border-top: 1px solid var(--border);
@@ -317,7 +311,6 @@
     margin-bottom: 1.2rem;
   }
   .manifesto-body p strong { color: var(--white); font-weight: 500; }
-  /* ─── OPERE / WORKS ─── */
   #opere .works-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -384,7 +377,6 @@
     color: white;
     border-color: var(--red);
   }
-  /* ─── GALLERIA ─── */
   #galleria {
     background: var(--deep);
     border-top: 1px solid var(--border);
@@ -445,7 +437,6 @@
     color: var(--muted);
     letter-spacing: 0.05em;
   }
-  /* ─── ZEBRAFISH ─── */
   #zebrafish {
     background: var(--deep);
     border-top: 1px solid var(--border);
@@ -493,7 +484,6 @@
     color: var(--muted);
     margin-top: 0.3rem;
   }
-  /* ─── PATENTS / RICONOSCIMENTI ─── */
   .patent-list {
     margin-top: 2rem;
     display: flex;
@@ -540,7 +530,6 @@
   }
   .badge-granted { color: var(--gold); }
   .badge-pending { color: var(--accent); }
-  /* ─── AGENZIE ─── */
   .agency-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -578,7 +567,6 @@
     text-transform: uppercase;
     color: var(--red);
   }
-  /* ─── BIOGRAFIA ─── */
   #biografia {
     background: var(--deep);
     border-top: 1px solid var(--border);
@@ -666,7 +654,53 @@
     line-height: 1.7;
     margin-top: 0.3rem;
   }
-  /* ─── NEGOZIO / SHOP ─── */
+  /* === NUOVA SEZIONE ESIBIZIONI === */
+  #esibizioni {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .exhibitions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5px;
+    margin-top: 3rem;
+  }
+  .exhibition-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 2rem 2.2rem;
+    transition: all 0.3s;
+  }
+  .exhibition-card:hover {
+    border-color: var(--gold);
+  }
+  .exhibition-year {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.6rem;
+  }
+  .exhibition-title {
+    font-size: 1.15rem;
+    font-weight: 300;
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+  .exhibition-venue {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .exhibition-desc {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  /* === NEGOZIO === */
   #negozio {
     border-top: 1px solid var(--border);
   }
@@ -785,7 +819,6 @@
   .btn-add:hover {
     background: #a81515;
   }
-  /* ─── CART DRAWER ─── */
   .cart-drawer {
     position: fixed;
     top: 0;
@@ -898,7 +931,6 @@
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.9rem;
   }
-  /* ─── MODAL ─── */
   .modal {
     position: fixed;
     inset: 0;
@@ -966,7 +998,6 @@
     gap: 1rem;
     flex-wrap: wrap;
   }
-  /* ─── CONTATTI ─── */
   #contatti {
     border-top: 1px solid var(--border);
     text-align: center;
@@ -995,7 +1026,6 @@
   .contact-link:hover { border-color: var(--accent); color: var(--white); }
   .contact-link.primary { border-color: var(--red); color: var(--red); }
   .contact-link.primary:hover { background: var(--red); color: #fff; }
-  /* ─── FOOTER ─── */
   footer {
     position: relative;
     z-index: 1;
@@ -1019,7 +1049,6 @@
     color: var(--accent);
   }
   footer .foot-logo span { color: var(--red); }
-  /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     nav ul { gap: 1.2rem; }
@@ -1048,6 +1077,7 @@
     <li><a href="#manifesto">Manifesto</a></li>
     <li><a href="#opere">Opere</a></li>
     <li><a href="#galleria">Galleria</a></li>
+    <li><a href="#esibizioni">Mostre</a></li>
     <li><a href="#zebrafish">Ricerca</a></li>
     <li><a href="#patenti">Patenti</a></li>
     <li><a href="#biografia">Biografia</a></li>
@@ -1224,6 +1254,56 @@
       </p>
       <button class="btn-small">Dettagli & Acquista</button>
     </div>
+
+    <!-- NUOVE OPERE AGGIUNTE -->
+    <div class="work-card" onclick="openWorkModal(6)">
+      <p class="work-number">007</p>
+      <svg class="work-icon" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="20" stroke="#cc1a1a" stroke-width="0.8"/>
+        <ellipse cx="24" cy="24" rx="12" ry="6" stroke="#9d8fcc" stroke-width="0.8" transform="rotate(-30 24 24)"/>
+        <circle cx="24" cy="24" r="4" fill="#c8a84b"/>
+      </svg>
+      <h3 class="work-title">Microgravità #07</h3>
+      <p class="work-desc">
+        Autoritratto in condizioni di microgravità simulata.
+        Il volto si dissolve in orbite concentriche. Tecnica mista
+        su carta cotone con interventi di luce UV.
+      </p>
+      <button class="btn-small">Dettagli & Acquista</button>
+    </div>
+
+    <div class="work-card" onclick="openWorkModal(7)">
+      <p class="work-number">008</p>
+      <svg class="work-icon" viewBox="0 0 48 48" fill="none">
+        <path d="M8 30 Q24 10 40 30" stroke="#7b62e8" stroke-width="0.8"/>
+        <circle cx="24" cy="24" r="6" stroke="#cc1a1a" stroke-width="0.8"/>
+        <circle cx="16" cy="28" r="3" fill="#c8a84b"/>
+        <circle cx="32" cy="28" r="3" fill="#c8a84b"/>
+      </svg>
+      <h3 class="work-title">Danio in Orbita</h3>
+      <p class="work-desc">
+        Installazione ibrida: pesci zebra conservati in resina
+        trasparente sospesi in traiettorie orbitali. Dialogo tra
+        vita acquatica e vuoto cosmico.
+      </p>
+      <button class="btn-small">Dettagli & Acquista</button>
+    </div>
+
+    <div class="work-card" onclick="openWorkModal(8)">
+      <p class="work-number">009</p>
+      <svg class="work-icon" viewBox="0 0 48 48" fill="none">
+        <rect x="6" y="6" width="36" height="36" stroke="#9d8fcc" stroke-width="0.8" rx="2"/>
+        <path d="M14 18 Q24 28 34 18" stroke="#cc1a1a" stroke-width="0.8"/>
+        <circle cx="24" cy="32" r="3" fill="#c8a84b"/>
+      </svg>
+      <h3 class="work-title">Suspended Identity</h3>
+      <p class="work-desc">
+        Performance documentata + fotografie. Il corpo viene
+        sospeso con sistemi di carrucole in studio. Esplorazione
+        del peso dell'identità in assenza di gravità.
+      </p>
+      <button class="btn-small">Dettagli & Acquista</button>
+    </div>
   </div>
 </section>
 
@@ -1238,7 +1318,6 @@
   </p>
   
   <div class="gallery-grid">
-    <!-- Gallery Item 1 -->
     <div class="gallery-item" onclick="openGalleryModal(0)">
       <img src="imagine_images/Ornhz.jpg" alt="Autoritratti allo Specchio #042 - Grafite su carta">
       <div class="gallery-overlay">
@@ -1247,7 +1326,6 @@
       </div>
     </div>
     
-    <!-- Gallery Item 2 -->
     <div class="gallery-item" onclick="openGalleryModal(1)">
       <img src="imagine_images/p2c8o.jpg" alt="Riflesso Cosmico - Acrilico e grafite">
       <div class="gallery-overlay">
@@ -1256,7 +1334,6 @@
       </div>
     </div>
     
-    <!-- Gallery Item 3 -->
     <div class="gallery-item" onclick="openGalleryModal(2)">
       <img src="imagine_images/J526L.jpg" alt="Orbit — Scultura Concettuale">
       <div class="gallery-overlay">
@@ -1265,7 +1342,6 @@
       </div>
     </div>
     
-    <!-- Gallery Item 4 -->
     <div class="gallery-item" onclick="openGalleryModal(3)">
       <img src="imagine_images/zlHuV.jpg" alt="Hybrida Atmosphera — Frame #07">
       <div class="gallery-overlay">
@@ -1274,36 +1350,73 @@
       </div>
     </div>
     
-    <!-- Additional gallery items with placeholders for demo -->
+    <!-- Nuove opere nella galleria -->
     <div class="gallery-item" onclick="openGalleryModal(4)">
       <div style="width:100%;height:100%;background:linear-gradient(145deg, #1a1a2e, #0d0d1a);display:flex;align-items:center;justify-content:center;position:relative;">
         <svg width="120" height="120" viewBox="0 0 48 48" fill="none" style="opacity:0.6">
-          <path d="M8 40 L24 8 L40 40 Z" stroke="#7b62e8" stroke-width="1.5"/>
-          <line x1="16" y1="30" x2="32" y2="30" stroke="#c8a84b" stroke-width="1"/>
+          <circle cx="24" cy="24" r="20" stroke="#cc1a1a" stroke-width="1.5"/>
+          <ellipse cx="24" cy="24" rx="12" ry="6" stroke="#9d8fcc" stroke-width="1.5" transform="rotate(-30 24 24)"/>
         </svg>
       </div>
       <div class="gallery-overlay">
-        <h4>Figure in Campo Cromatico #19</h4>
-        <p>Acrilico su tela • 2022</p>
+        <h4>Microgravità #07</h4>
+        <p>Tecnica mista su carta • 2025</p>
       </div>
     </div>
     
     <div class="gallery-item" onclick="openGalleryModal(5)">
       <div style="width:100%;height:100%;background:linear-gradient(145deg, #1a1a2e, #0d0d1a);display:flex;align-items:center;justify-content:center;position:relative;">
         <svg width="120" height="120" viewBox="0 0 48 48" fill="none" style="opacity:0.6">
-          <circle cx="24" cy="24" r="18" stroke="#9d8fcc" stroke-width="1.5"/>
-          <circle cx="24" cy="24" r="8" stroke="#cc1a1a" stroke-width="1.5"/>
+          <path d="M8 30 Q24 10 40 30" stroke="#7b62e8" stroke-width="1.5"/>
+          <circle cx="24" cy="24" r="6" stroke="#cc1a1a" stroke-width="1.5"/>
         </svg>
       </div>
       <div class="gallery-overlay">
-        <h4>Specchio #058 — Studio</h4>
-        <p>Grafite e acrilico • 2024</p>
+        <h4>Danio in Orbita</h4>
+        <p>Installazione ibrida • 2025</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ZEBRAFISH / RICERCA -->
+<!-- NUOVA SEZIONE: ESIBIZIONI -->
+<section id="esibizioni">
+  <p class="section-label">Mostre & Esposizioni</p>
+  <h2 class="section-title">Esibizioni Selezionate</h2>
+  <div class="divider"></div>
+  
+  <div class="exhibitions-grid">
+    <div class="exhibition-card">
+      <div class="exhibition-year">2025</div>
+      <h3 class="exhibition-title">Microgravità — Solo Show</h3>
+      <p class="exhibition-venue">Galerie Raum mit Licht, Berlino</p>
+      <p class="exhibition-desc">Mostra personale dedicata alla serie degli autoritratti in microgravità e alle nuove installazioni orbitali.</p>
+    </div>
+    
+    <div class="exhibition-card">
+      <div class="exhibition-year">2024</div>
+      <h3 class="exhibition-title">Hello Tomorrow Global Summit</h3>
+      <p class="exhibition-venue">Grand Palais, Parigi</p>
+      <p class="exhibition-desc">Esposizione del prototipo ZGFS e delle opere "Hybrida Atmosphera" all'interno del programma Deep Tech Pioneer.</p>
+    </div>
+    
+    <div class="exhibition-card">
+      <div class="exhibition-year">2023</div>
+      <h3 class="exhibition-title">Weightless — Group Exhibition</h3>
+      <p class="exhibition-venue">The Crypt Gallery, Londra</p>
+      <p class="exhibition-desc">Collettiva internazionale sul tema della gravità e dell'assenza di peso. Opere: Orbit e Suspended Identity.</p>
+    </div>
+    
+    <div class="exhibition-card">
+      <div class="exhibition-year">2022</div>
+      <h3 class="exhibition-title">Figure in Campo Cromatico</h3>
+      <p class="exhibition-venue">Studio Montis, Londra</p>
+      <p class="exhibition-desc">Prima mostra personale a Londra. Serie completa degli autoritratti e delle composizioni cromatiche.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ZEBRAFISH -->
 <section id="zebrafish">
   <div class="zf-split">
     <div>
@@ -1470,12 +1583,16 @@
           <div class="timeline-year">2024</div>
           <div class="timeline-text">Hello Tomorrow Deep Tech Pioneer (Stage 2). Candidature NASA/JAXA/ESA.</div>
         </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2025</div>
+          <div class="timeline-text">Prima mostra personale a Berlino e lancio della serie Microgravità #07.</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- NEGOZIO -->
+<!-- NEGOZIO (con prezzi aggiornati) -->
 <section id="negozio">
   <p class="section-label">Colleziona l'Opera</p>
   <h2 class="section-title">Negozio Online</h2>
@@ -1490,7 +1607,6 @@
   </div>
 
   <div class="shop-grid">
-    <!-- Product 1 -->
     <div class="product-card">
       <div class="product-image">
         <img src="imagine_images/Ornhz.jpg" alt="Stampa fine art - Autoritratti allo Specchio #042">
@@ -1501,13 +1617,12 @@
         <p class="product-meta">Stampa giclée • Carta cotone 310gsm • 40×50 cm</p>
         <p class="product-desc">Stampa firmata e numerata (edizione di 25). Include certificato di autenticità.</p>
         <div class="product-footer">
-          <div class="product-price">€185 <span>/ edizione</span></div>
+          <div class="product-price">€220 <span>/ edizione</span></div>
           <button class="btn-add" onclick="addToCart(0)">Aggiungi</button>
         </div>
       </div>
     </div>
 
-    <!-- Product 2 -->
     <div class="product-card">
       <div class="product-image">
         <img src="imagine_images/p2c8o.jpg" alt="Riflesso Cosmico - Stampa">
@@ -1518,13 +1633,12 @@
         <p class="product-meta">Stampa fine art • 50×70 cm • Ed. 15</p>
         <p class="product-desc">Dall'opera acrilica e grafite del 2024. Supporta il progetto ZGFS.</p>
         <div class="product-footer">
-          <div class="product-price">€320 <span>/ edizione</span></div>
+          <div class="product-price">€380 <span>/ edizione</span></div>
           <button class="btn-add" onclick="addToCart(1)">Aggiungi</button>
         </div>
       </div>
     </div>
 
-    <!-- Product 3 -->
     <div class="product-card">
       <div class="product-image">
         <img src="imagine_images/J526L.jpg" alt="Orbit Sculpture - Stampa">
@@ -1534,13 +1648,12 @@
         <p class="product-meta">Stampa fotografica • 30×45 cm</p>
         <p class="product-desc">Documentazione dell'installazione scultorea. Ideale per collezionisti.</p>
         <div class="product-footer">
-          <div class="product-price">€95</div>
+          <div class="product-price">€110</div>
           <button class="btn-add" onclick="addToCart(2)">Aggiungi</button>
         </div>
       </div>
     </div>
 
-    <!-- Product 4 -->
     <div class="product-card">
       <div class="product-image">
         <img src="imagine_images/zlHuV.jpg" alt="Hybrida Atmosphera - Poster">
@@ -1551,13 +1664,12 @@
         <p class="product-meta">Poster artistico • 50×70 cm</p>
         <p class="product-desc">Stampa su carta premium. Perfetta per studio o ufficio.</p>
         <div class="product-footer">
-          <div class="product-price">€48</div>
+          <div class="product-price">€55</div>
           <button class="btn-add" onclick="addToCart(3)">Aggiungi</button>
         </div>
       </div>
     </div>
 
-    <!-- Product 5 - Merch -->
     <div class="product-card">
       <div class="product-image" style="background: linear-gradient(135deg, #1a1a2e, #111122); display:flex; align-items:center; justify-content:center;">
         <svg width="90" height="90" viewBox="0 0 48 48" fill="none">
@@ -1571,13 +1683,12 @@
         <p class="product-meta">Cotone organico • 38×42 cm</p>
         <p class="product-desc">Borsa tote con stampa a mano del logo orbitale. Edizione speciale.</p>
         <div class="product-footer">
-          <div class="product-price">€42</div>
+          <div class="product-price">€48</div>
           <button class="btn-add" onclick="addToCart(4)">Aggiungi</button>
         </div>
       </div>
     </div>
 
-    <!-- Product 6 -->
     <div class="product-card">
       <div class="product-image" style="background: linear-gradient(135deg, #1a1a2e, #111122); display:flex; align-items:center; justify-content:center;">
         <svg width="90" height="90" viewBox="0 0 48 48" fill="none">
@@ -1590,7 +1701,7 @@
         <p class="product-meta">Carta cotone • 120 pagine • A5</p>
         <p class="product-desc">Taccuino premium con dettagli orbitali in copertina. Ideale per schizzi.</p>
         <div class="product-footer">
-          <div class="product-price">€28</div>
+          <div class="product-price">€32</div>
           <button class="btn-add" onclick="addToCart(5)">Aggiungi</button>
         </div>
       </div>
@@ -1623,12 +1734,12 @@
   <p>Zero Gravity Fish Space Ltd · Co. 16720954</p>
 </footer>
 
-<!-- MODAL for Works & Gallery -->
+<!-- MODAL -->
 <div class="modal" id="modal">
   <div class="modal-content">
     <button class="modal-close" onclick="closeModal()">&times;</button>
     <div class="modal-body" id="modal-body">
-      <!-- Dynamic content injected by JS -->
+      <!-- Dynamic content -->
     </div>
   </div>
 </div>
@@ -1639,9 +1750,7 @@
     <h3>Il tuo Carrello</h3>
     <button class="cart-close" onclick="toggleCart()">&times;</button>
   </div>
-  <div class="cart-items" id="cart-items">
-    <!-- Populated by JS -->
-  </div>
+  <div class="cart-items" id="cart-items"></div>
   <div class="cart-footer">
     <div class="cart-total">
       <span>Totale</span>
@@ -1701,7 +1810,7 @@ window.addEventListener('resize', () => { resize(); initStars(); });
 
 // ==================== ACTIVE NAV ====================
 const navLinks = document.querySelectorAll('nav a');
-const sections = ['manifesto', 'opere', 'galleria', 'zebrafish', 'patenti', 'biografia', 'negozio', 'contatti'];
+const sections = ['manifesto', 'opere', 'galleria', 'esibizioni', 'zebrafish', 'patenti', 'biografia', 'negozio', 'contatti'];
 
 function updateActiveNav() {
   let current = '';
@@ -1724,142 +1833,122 @@ function updateActiveNav() {
 window.addEventListener('scroll', updateActiveNav);
 updateActiveNav();
 
-// ==================== WORKS DATA ====================
+// ==================== WORKS DATA (con 3 nuove opere) ====================
 const works = [
   {
-    id: 0,
-    number: "001",
-    title: "Autoritratti allo Specchio",
-    year: "2020 — in corso",
-    medium: "Grafite e acrilico su carta",
+    id: 0, number: "001", title: "Autoritratti allo Specchio",
+    year: "2020 — in corso", medium: "Grafite e acrilico su carta",
     size: "Variable (30×40 cm — 50×70 cm)",
     desc: "Serie progressiva di autoritratti realizzati dal vivo davanti allo specchio. Ogni sessione è un esame ravvicinato della struttura facciale e dell'evoluzione dell'identità nel tempo. Tecnica mista con enfasi sulla texture e sulla luce.",
-    price: "Da €1.200 (originale) / €185 (stampa)",
-    edition: "Serie aperta — originali unici"
+    price: "Da €1.400 (originale) / €220 (stampa)", edition: "Serie aperta — originali unici"
   },
   {
-    id: 1,
-    number: "002",
-    title: "Hybrida Atmosphera",
-    year: "2023 — 2024",
-    medium: "Video 4K + installazione",
+    id: 1, number: "002", title: "Hybrida Atmosphera",
+    year: "2023 — 2024", medium: "Video 4K + installazione",
     size: "Durata 18'42\"",
     desc: "Progetto video-scientifico che documenta il comportamento di Danio rerio in habitat a volume ridotto in condizioni di microgravità simulata. L'opera è anche un protocollo di ricerca candidato per la ISS.",
-    price: "€2.800 (edizione video) / €95 (stampa)",
-    edition: "Edizione di 7 + 2 AP"
+    price: "€3.200 (edizione video) / €110 (stampa)", edition: "Edizione di 7 + 2 AP"
   },
   {
-    id: 2,
-    number: "003",
-    title: "Figure in Campo Cromatico",
-    year: "2022 — 2024",
-    medium: "Acrilico su tela",
+    id: 2, number: "003", title: "Figure in Campo Cromatico",
+    year: "2022 — 2024", medium: "Acrilico su tela",
     size: "80×100 cm / 100×120 cm",
     desc: "Composizioni che esplorano il volto come campo cromatico. Verde strutturale, complementari bilanciati e texture dense. Influenze dichiarate: Bacon, Freud, Auerbach e Rouault.",
-    price: "Da €3.400",
-    edition: "Opere uniche"
+    price: "Da €3.800", edition: "Opere uniche"
   },
   {
-    id: 3,
-    number: "004",
-    title: "Orbit — Scultura Concettuale",
-    year: "2023",
-    medium: "Filo metallico, resina, LED",
+    id: 3, number: "004", title: "Orbit — Scultura Concettuale",
+    year: "2023", medium: "Filo metallico, resina, LED",
     size: "120×80×80 cm",
     desc: "Installazione scultorea che evoca la traiettoria orbitale e l'assenza di peso. Il corpo umano diventa traiettoria luminosa sospesa nel vuoto. Dialogo tra materia e assenza.",
-    price: "€8.500 (edizione di 3)",
-    edition: "Edizione di 3 + 1 AP"
+    price: "€9.500 (edizione di 3)", edition: "Edizione di 3 + 1 AP"
   },
   {
-    id: 4,
-    number: "005",
-    title: "Ritratti — Grafite su Carta",
-    year: "2019 — in corso",
-    medium: "Grafite su carta cotone",
+    id: 4, number: "005", title: "Ritratti — Grafite su Carta",
+    year: "2019 — in corso", medium: "Grafite su carta cotone",
     size: "Variable",
     desc: "Disegno osservativo dal vivo con specchio come strumento primario. Studio continuo della struttura ossea, espressione e luce. Radici profonde nella tradizione di Rembrandt e della ritrattistica classica.",
-    price: "Da €680",
-    edition: "Opere uniche"
+    price: "Da €780", edition: "Opere uniche"
   },
   {
-    id: 5,
-    number: "006",
-    title: "Zero Gravity Fish Space — Arte",
-    year: "1998 — 2026",
-    medium: "Concetto, brevetto, prototipo",
+    id: 5, number: "006", title: "Zero Gravity Fish Space — Arte",
+    year: "1998 — 2026", medium: "Concetto, brevetto, prototipo",
     size: "—",
     desc: "L'intera startup come opera d'arte totale. Invenzione, brevetto, prototipo e ricerca come pratica estetica radicale. Un progetto che unisce arte, scienza e imprenditorialità dal 1998.",
-    price: "Su richiesta",
-    edition: "Progetto unico"
+    price: "Su richiesta", edition: "Progetto unico"
+  },
+  // NUOVE OPERE
+  {
+    id: 6, number: "007", title: "Microgravità #07",
+    year: "2025", medium: "Tecnica mista su carta cotone + luce UV",
+    size: "50 × 65 cm",
+    desc: "Autoritratto realizzato in condizioni di microgravità simulata. Il volto si dissolve progressivamente in orbite concentriche. Interventi di luce ultravioletta che rivelano strati nascosti.",
+    price: "€2.800 (originale) / €260 (stampa)", edition: "Edizione di 12 + 2 AP"
+  },
+  {
+    id: 7, number: "008", title: "Danio in Orbita",
+    year: "2025", medium: "Resina trasparente, pesci conservati, struttura metallica",
+    size: "Installazione 180 × 120 × 80 cm",
+    desc: "Installazione ibrida che unisce biologia e scultura. Danio rerio conservati in resina trasparente sospesi lungo traiettorie orbitali. Opera che fonde ricerca scientifica e pratica artistica.",
+    price: "€6.500", edition: "Edizione di 5"
+  },
+  {
+    id: 8, number: "009", title: "Suspended Identity",
+    year: "2024 — 2025", medium: "Performance documentata + fotografia",
+    size: "Variable",
+    desc: "Performance in studio in cui il corpo viene sospeso con sistemi di carrucole. Documentazione fotografica e video dell'esplorazione del peso dell'identità in assenza di gravità. Parte della serie Microgravità.",
+    price: "Da €1.900", edition: "Opere uniche + edizioni limitate"
   }
 ];
 
 // ==================== GALLERY DATA ====================
 const galleryItems = [
   {
-    id: 0,
-    title: "Autoritratti allo Specchio #042",
-    year: "2023",
-    medium: "Grafite su carta cotone",
-    size: "42 × 56 cm",
+    id: 0, title: "Autoritratti allo Specchio #042", year: "2023",
+    medium: "Grafite su carta cotone", size: "42 × 56 cm",
     desc: "Studio preparatorio per la serie degli autoritratti. Particolare enfasi sulla struttura orbitale del cranio e sulla tensione tra identità e spazio.",
     image: "imagine_images/Ornhz.jpg"
   },
   {
-    id: 1,
-    title: "Riflesso Cosmico",
-    year: "2024",
-    medium: "Acrilico e grafite su tela",
-    size: "70 × 90 cm",
+    id: 1, title: "Riflesso Cosmico", year: "2024",
+    medium: "Acrilico e grafite su tela", size: "70 × 90 cm",
     desc: "Opera centrale della serie 2024. Il volto emerge da un campo di forze cosmiche. Tecnica mista con interventi di luce acrilica.",
     image: "imagine_images/p2c8o.jpg"
   },
   {
-    id: 2,
-    title: "Orbit — Scultura Concettuale",
-    year: "2023",
-    medium: "Filo metallico, resina trasparente, LED",
-    size: "120 × 80 × 80 cm",
+    id: 2, title: "Orbit — Scultura Concettuale", year: "2023",
+    medium: "Filo metallico, resina trasparente, LED", size: "120 × 80 × 80 cm",
     desc: "Installazione site-specific. Il corpo umano come traiettoria orbitale. Il cuore rosso al centro rappresenta l'energia vitale in assenza di gravità.",
     image: "imagine_images/J526L.jpg"
   },
   {
-    id: 3,
-    title: "Hybrida Atmosphera — Frame #07",
-    year: "2024",
-    medium: "Stampa fine art da video 4K",
-    size: "50 × 70 cm",
+    id: 3, title: "Hybrida Atmosphera — Frame #07", year: "2024",
+    medium: "Stampa fine art da video 4K", size: "50 × 70 cm",
     desc: "Frame estratto dal video documentario. Danio rerio in habitat brevettato durante test di microgravità simulata.",
     image: "imagine_images/zlHuV.jpg"
   },
   {
-    id: 4,
-    title: "Figure in Campo Cromatico #19",
-    year: "2022",
-    medium: "Acrilico su tela",
-    size: "100 × 120 cm",
-    desc: "Composizione cromatica con forte struttura facciale. Verde ossidato e violetti profondi.",
+    id: 4, title: "Microgravità #07", year: "2025",
+    medium: "Tecnica mista su carta cotone + luce UV", size: "50 × 65 cm",
+    desc: "Autoritratto in microgravità simulata. Il volto si dissolve in orbite concentriche. Interventi di luce ultravioletta rivelano strati nascosti.",
     image: null
   },
   {
-    id: 5,
-    title: "Specchio #058 — Studio",
-    year: "2024",
-    medium: "Grafite e acrilico su carta",
-    size: "38 × 48 cm",
-    desc: "Studio dal vivo. Momento di transizione nell'identità dell'artista.",
+    id: 5, title: "Danio in Orbita", year: "2025",
+    medium: "Resina trasparente, pesci conservati, struttura metallica", size: "Installazione",
+    desc: "Installazione ibrida che fonde biologia e scultura. Danio rerio sospesi in traiettorie orbitali.",
     image: null
   }
 ];
 
-// ==================== SHOP PRODUCTS ====================
+// ==================== SHOP PRODUCTS (prezzi aggiornati) ====================
 const products = [
-  { id: 0, title: "Autoritratti allo Specchio #042", price: 185, type: "Stampa giclée 40×50 cm" },
-  { id: 1, title: "Riflesso Cosmico", price: 320, type: "Stampa fine art 50×70 cm" },
-  { id: 2, title: "Orbit — Scultura", price: 95, type: "Stampa fotografica 30×45 cm" },
-  { id: 3, title: "Hybrida Atmosphera Poster", price: 48, type: "Poster 50×70 cm" },
-  { id: 4, title: "Tote Bag Microgravità", price: 42, type: "Cotone organico" },
-  { id: 5, title: "Taccuino da Studio", price: 28, type: "A5 • 120 pagine" }
+  { id: 0, title: "Autoritratti allo Specchio #042", price: 220, type: "Stampa giclée 40×50 cm" },
+  { id: 1, title: "Riflesso Cosmico", price: 380, type: "Stampa fine art 50×70 cm" },
+  { id: 2, title: "Orbit — Scultura", price: 110, type: "Stampa fotografica 30×45 cm" },
+  { id: 3, title: "Hybrida Atmosphera Poster", price: 55, type: "Poster 50×70 cm" },
+  { id: 4, title: "Tote Bag Microgravità", price: 48, type: "Cotone organico" },
+  { id: 5, title: "Taccuino da Studio", price: 32, type: "A5 • 120 pagine" }
 ];
 
 let cart = JSON.parse(localStorage.getItem('pm_cart')) || [];
@@ -1888,7 +1977,6 @@ function addToCart(productId) {
   
   saveCart();
   
-  // Visual feedback
   const btns = document.querySelectorAll('.btn-add');
   btns.forEach(btn => {
     if (btn.onclick.toString().includes(productId)) {
@@ -1902,7 +1990,6 @@ function addToCart(productId) {
     }
   });
   
-  // Open cart automatically on first add
   if (cart.length === 1) {
     setTimeout(() => {
       document.getElementById('cart-drawer').classList.add('open');
@@ -2072,7 +2159,6 @@ function finishPurchase() {
   document.getElementById('modal').classList.remove('open');
   document.getElementById('cart-drawer').classList.remove('open');
   
-  // Show thank you toast
   const toast = document.createElement('div');
   toast.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#111122;border:1px solid var(--gold);padding:1rem 2.5rem;color:var(--gold);font-family:Helvetica Neue,sans-serif;font-size:0.85rem;letter-spacing:0.1em;z-index:500;';
   toast.textContent = 'ORDINE CONFERMATO — GRAZIE!';
@@ -2086,14 +2172,10 @@ function finishPurchase() {
 }
 
 // ==================== MODAL FUNCTIONS ====================
-let currentModalType = null;
-
 function openWorkModal(workIndex) {
   const work = works[workIndex];
   const modal = document.getElementById('modal');
   const body = document.getElementById('modal-body');
-  
-  currentModalType = 'work';
   
   body.innerHTML = `
     <div style="display:flex; gap:2.5rem; align-items:flex-start; flex-wrap:wrap;">
@@ -2151,8 +2233,6 @@ function openGalleryModal(galleryIndex) {
   const modal = document.getElementById('modal');
   const body = document.getElementById('modal-body');
   
-  currentModalType = 'gallery';
-  
   let imageHTML = '';
   if (item.image) {
     imageHTML = `<img src="${item.image}" alt="${item.title}" class="modal-image">`;
@@ -2186,7 +2266,7 @@ function openGalleryModal(galleryIndex) {
             <div style="margin-bottom:1.2rem;">
               <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
                 <span>Stampa fine art</span>
-                <span style="color:var(--gold);">€185</span>
+                <span style="color:var(--gold);">€220</span>
               </div>
               <div style="display:flex; justify-content:space-between;">
                 <span>Originale</span>
@@ -2210,15 +2290,14 @@ function closeModal() {
 }
 
 function addWorkToCart(workIndex) {
-  // Map work to product (simplified)
-  const productMap = {0: 0, 1: 3, 2: 1, 3: 2, 4: 0, 5: 4};
+  const productMap = {0: 0, 1: 3, 2: 1, 3: 2, 4: 0, 5: 4, 6: 0, 7: 2, 8: 1};
   const productId = productMap[workIndex] ?? 0;
   addToCart(productId);
   closeModal();
 }
 
 function addGalleryToCart(galleryIndex) {
-  const productMap = {0: 0, 1: 1, 2: 2, 3: 3, 4: 0, 5: 0};
+  const productMap = {0: 0, 1: 1, 2: 2, 3: 3, 4: 0, 5: 2};
   const productId = productMap[galleryIndex] ?? 0;
   addToCart(productId);
   closeModal();
@@ -2250,14 +2329,12 @@ function init() {
   updateCartCount();
   renderCart();
   
-  // Close modal on outside click
   document.getElementById('modal').addEventListener('click', function(e) {
     if (e.target.id === 'modal') {
       closeModal();
     }
   });
   
-  // Keyboard escape
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
       const modal = document.getElementById('modal');
@@ -2271,7 +2348,6 @@ function init() {
     }
   });
   
-  // TRL bar animation on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -2284,11 +2360,9 @@ function init() {
   const bio = document.getElementById('biografia');
   if (bio) observer.observe(bio);
   
-  // Welcome message in console for developers
-  console.log('%c[Pietro Montis] Sito portfolio personalizzabile caricato. Per modificare contenuti, prodotti o immagini: modifica direttamente l\'HTML o l\'array products/works nel <script>.', 'color:#666');
+  console.log('%c[Pietro Montis] Sito aggiornato con 3 nuove opere + sezione Mostre + prezzi aggiornati. Pronto per la personalizzazione.', 'color:#666');
 }
 
-// Boot
 init();
 </script>
 </body>
