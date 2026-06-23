@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -21,18 +22,14 @@
     --muted: #888490;
     --accent: #9d8fcc;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
-
   body {
     background: var(--black);
     color: var(--white);
     font-family: 'Georgia', serif;
     overflow-x: hidden;
   }
-
   /* ─── STARFIELD ─── */
   #starfield {
     position: fixed;
@@ -40,36 +37,33 @@
     pointer-events: none;
     z-index: 0;
   }
-
   /* ─── NAV ─── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 200;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.2rem 3rem;
-    background: rgba(10,10,15,0.7);
-    backdrop-filter: blur(12px);
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
-
   .logo {
     font-family: 'Georgia', serif;
     font-size: 1rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--accent);
+    transition: color 0.3s;
   }
   .logo span { color: var(--red); }
-
   nav ul {
     list-style: none;
     display: flex;
-    gap: 2.5rem;
+    gap: 2.2rem;
   }
-
   nav a {
     text-decoration: none;
     color: var(--muted);
@@ -78,9 +72,52 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     transition: color 0.3s;
+    position: relative;
   }
   nav a:hover { color: var(--white); }
-
+  nav a.active { color: var(--white); }
+  nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--red);
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .cart-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 0.5rem 1rem;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .cart-btn:hover {
+    border-color: var(--accent);
+    color: var(--white);
+  }
+  .cart-count {
+    background: var(--red);
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+  }
   /* ─── HERO ─── */
   #hero {
     position: relative;
@@ -93,7 +130,6 @@
     padding: 0 10vw;
     overflow: hidden;
   }
-
   .orbit-ring {
     position: absolute;
     right: 8vw;
@@ -124,9 +160,7 @@
     transform: translateX(-50%);
     box-shadow: 0 0 20px var(--red);
   }
-
   @keyframes slowspin { to { transform: translateY(-50%) rotate(360deg); } }
-
   .hero-eyebrow {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.68rem;
@@ -135,7 +169,6 @@
     color: var(--red);
     margin-bottom: 1.8rem;
   }
-
   .hero-title {
     font-size: clamp(3rem, 6vw, 5.5rem);
     font-weight: 300;
@@ -144,12 +177,10 @@
     max-width: 700px;
     margin-bottom: 0.4rem;
   }
-
   .hero-title em {
     font-style: italic;
     color: var(--accent);
   }
-
   .hero-subtitle {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.8rem;
@@ -159,7 +190,6 @@
     margin-bottom: 2.5rem;
     margin-top: 0.6rem;
   }
-
   .hero-text {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.92rem;
@@ -168,9 +198,7 @@
     max-width: 480px;
     margin-bottom: 3rem;
   }
-
   .cta-group { display: flex; gap: 1.2rem; flex-wrap: wrap; }
-
   .btn-primary {
     display: inline-block;
     padding: 0.8rem 2.2rem;
@@ -182,9 +210,10 @@
     letter-spacing: 0.25em;
     text-transform: uppercase;
     transition: background 0.3s, transform 0.2s;
+    border: none;
+    cursor: pointer;
   }
   .btn-primary:hover { background: #a81515; transform: translateY(-2px); }
-
   .btn-ghost {
     display: inline-block;
     padding: 0.8rem 2.2rem;
@@ -198,7 +227,6 @@
     transition: border-color 0.3s, color 0.3s;
   }
   .btn-ghost:hover { border-color: var(--accent); color: var(--white); }
-
   /* ─── SCROLL INDICATOR ─── */
   .scroll-hint {
     position: absolute;
@@ -223,14 +251,12 @@
     animation: scrollpulse 1.8s ease-in-out infinite;
   }
   @keyframes scrollpulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
-
   /* ─── SECTION BASE ─── */
   section {
     position: relative;
     z-index: 1;
     padding: 7rem 10vw;
   }
-
   .section-label {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.65rem;
@@ -239,7 +265,6 @@
     color: var(--red);
     margin-bottom: 1rem;
   }
-
   .section-title {
     font-size: clamp(1.8rem, 3vw, 2.8rem);
     font-weight: 300;
@@ -248,27 +273,23 @@
     margin-bottom: 2.5rem;
     max-width: 600px;
   }
-
   .divider {
     width: 48px; height: 1px;
     background: var(--red);
     margin-bottom: 2.5rem;
   }
-
   /* ─── MANIFESTO ─── */
   #manifesto {
     background: var(--deep);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
-
   .manifesto-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
     align-items: center;
   }
-
   .manifesto-quote {
     font-size: clamp(1.4rem, 2.2vw, 2rem);
     font-weight: 300;
@@ -288,7 +309,6 @@
     text-transform: uppercase;
     color: var(--gold);
   }
-
   .manifesto-body p {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.9rem;
@@ -297,22 +317,21 @@
     margin-bottom: 1.2rem;
   }
   .manifesto-body p strong { color: var(--white); font-weight: 500; }
-
-  /* ─── OPERA / WORKS ─── */
+  /* ─── OPERE / WORKS ─── */
   #opere .works-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5px;
     margin-top: 3rem;
   }
-
   .work-card {
     position: relative;
     background: var(--panel);
     border: 1px solid var(--border);
     padding: 2.5rem 2rem;
-    transition: border-color 0.3s;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     overflow: hidden;
+    cursor: pointer;
   }
   .work-card::before {
     content: '';
@@ -322,9 +341,11 @@
     opacity: 0;
     transition: opacity 0.4s;
   }
-  .work-card:hover { border-color: rgba(204,26,26,0.4); }
+  .work-card:hover { 
+    border-color: rgba(204,26,26,0.4); 
+    transform: translateY(-4px);
+  }
   .work-card:hover::before { opacity: 1; }
-
   .work-number {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.62rem;
@@ -332,40 +353,110 @@
     color: var(--red);
     margin-bottom: 1.5rem;
   }
-
   .work-icon {
     width: 48px; height: 48px;
     margin-bottom: 1.5rem;
   }
-
   .work-title {
     font-size: 1.1rem;
     font-weight: 300;
     margin-bottom: 0.8rem;
     letter-spacing: 0.02em;
   }
-
   .work-desc {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.82rem;
     line-height: 1.75;
     color: var(--muted);
   }
-
+  .work-card .btn-small {
+    margin-top: 1.2rem;
+    font-size: 0.65rem;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--border);
+    color: var(--accent);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .work-card .btn-small:hover {
+    background: var(--red);
+    color: white;
+    border-color: var(--red);
+  }
+  /* ─── GALLERIA ─── */
+  #galleria {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5px;
+    margin-top: 3rem;
+  }
+  .gallery-item {
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 4/3;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s;
+  }
+  .gallery-item:hover {
+    transform: scale(1.01);
+    border-color: var(--accent);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .gallery-item:hover img {
+    transform: scale(1.08);
+  }
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(10,10,15,0.85) 70%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+  }
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+  .gallery-overlay h4 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.02em;
+  }
+  .gallery-overlay p {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
   /* ─── ZEBRAFISH ─── */
   #zebrafish {
     background: var(--deep);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
-
   .zf-split {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
     align-items: center;
   }
-
   .zf-canvas {
     position: relative;
     height: 360px;
@@ -374,21 +465,19 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background: #0a0a12;
   }
-
   .zf-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
     margin-top: 2.5rem;
   }
-
   .stat-card {
     background: var(--panel);
     border: 1px solid var(--border);
     padding: 1.5rem;
   }
-
   .stat-number {
     font-size: 2rem;
     font-weight: 300;
@@ -396,7 +485,6 @@
     letter-spacing: -0.02em;
   }
   .stat-number span { color: var(--red); }
-
   .stat-label {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.7rem;
@@ -405,7 +493,6 @@
     color: var(--muted);
     margin-top: 0.3rem;
   }
-
   /* ─── PATENTS / RICONOSCIMENTI ─── */
   .patent-list {
     margin-top: 2rem;
@@ -413,7 +500,6 @@
     flex-direction: column;
     gap: 1px;
   }
-
   .patent-item {
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -425,7 +511,6 @@
     transition: border-color 0.3s;
   }
   .patent-item:hover { border-color: rgba(200,168,75,0.3); }
-
   .patent-year {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.7rem;
@@ -433,7 +518,6 @@
     color: var(--gold);
     min-width: 40px;
   }
-
   .patent-name {
     font-size: 0.95rem;
     font-weight: 300;
@@ -446,7 +530,6 @@
     margin-top: 0.2rem;
     letter-spacing: 0.05em;
   }
-
   .patent-badge {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.62rem;
@@ -457,7 +540,6 @@
   }
   .badge-granted { color: var(--gold); }
   .badge-pending { color: var(--accent); }
-
   /* ─── AGENZIE ─── */
   .agency-grid {
     display: grid;
@@ -465,7 +547,6 @@
     gap: 1px;
     margin-top: 3rem;
   }
-
   .agency-card {
     background: var(--panel);
     border: 1px solid var(--border);
@@ -474,7 +555,6 @@
     transition: background 0.3s;
   }
   .agency-card:hover { background: var(--deep); }
-
   .agency-abbr {
     font-size: 1.5rem;
     font-weight: 300;
@@ -482,7 +562,6 @@
     color: var(--white);
     margin-bottom: 0.5rem;
   }
-
   .agency-full {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.68rem;
@@ -490,7 +569,6 @@
     color: var(--muted);
     line-height: 1.5;
   }
-
   .agency-status {
     display: inline-block;
     margin-top: 1rem;
@@ -500,31 +578,30 @@
     text-transform: uppercase;
     color: var(--red);
   }
-
   /* ─── BIOGRAFIA ─── */
   #biografia {
     background: var(--deep);
     border-top: 1px solid var(--border);
   }
-
   .bio-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 5rem;
     align-items: start;
   }
-
   .bio-portrait {
     position: relative;
-    height: 420px;
+    height: 520px;
     background: var(--panel);
     border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
   }
-
+  .bio-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.9) contrast(1.05);
+  }
   .bio-text p {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.9rem;
@@ -533,7 +610,6 @@
     margin-bottom: 1.2rem;
   }
   .bio-text p strong { color: var(--white); font-weight: 500; }
-
   .trl-bar {
     margin-top: 2rem;
     display: flex;
@@ -558,16 +634,345 @@
     background: var(--red);
     transition: width 1.5s cubic-bezier(0.16,1,0.3,1);
   }
-
+  .timeline {
+    margin-top: 2.5rem;
+    border-left: 1px solid var(--border);
+    padding-left: 1.8rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.8rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.85rem;
+    top: 0.35rem;
+    width: 9px;
+    height: 9px;
+    background: var(--red);
+    border-radius: 50%;
+  }
+  .timeline-year {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+  }
+  .timeline-text {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-top: 0.3rem;
+  }
+  /* ─── NEGOZIO / SHOP ─── */
+  #negozio {
+    border-top: 1px solid var(--border);
+  }
+  .shop-intro {
+    max-width: 620px;
+    margin-bottom: 3rem;
+  }
+  .shop-intro p {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--muted);
+  }
+  .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5px;
+    margin-top: 1rem;
+  }
+  .product-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 0;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+  .product-image {
+    height: 220px;
+    background: #0a0a12;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .product-card:hover .product-image img {
+    transform: scale(1.06);
+  }
+  .product-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    padding: 0.25rem 0.7rem;
+    background: rgba(10,10,15,0.7);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .product-info {
+    padding: 1.6rem 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-title {
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.01em;
+  }
+  .product-meta {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 0.9rem;
+  }
+  .product-desc {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--muted);
+    flex: 1;
+    margin-bottom: 1.2rem;
+  }
+  .product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .product-price {
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--white);
+  }
+  .product-price span {
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+  .btn-add {
+    background: var(--red);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .btn-add:hover {
+    background: #a81515;
+  }
+  /* ─── CART DRAWER ─── */
+  .cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 380px;
+    height: 100vh;
+    background: var(--deep);
+    border-left: 1px solid var(--border);
+    z-index: 300;
+    transition: right 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.4);
+  }
+  .cart-drawer.open {
+    right: 0;
+  }
+  .cart-header {
+    padding: 1.8rem 2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cart-header h3 {
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+  .cart-close {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.6rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem 2rem;
+  }
+  .cart-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .cart-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .cart-item-info {
+    flex: 1;
+  }
+  .cart-item-title {
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+  .cart-item-price {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.85rem;
+    color: var(--gold);
+  }
+  .cart-item-remove {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+    align-self: flex-start;
+  }
+  .cart-footer {
+    padding: 1.8rem 2rem;
+    border-top: 1px solid var(--border);
+    background: var(--panel);
+  }
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+  .cart-total span:last-child {
+    color: var(--gold);
+    font-weight: 300;
+  }
+  .btn-checkout {
+    width: 100%;
+    padding: 1rem;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-checkout:hover {
+    background: #e8c56a;
+  }
+  .empty-cart {
+    text-align: center;
+    color: var(--muted);
+    padding: 3rem 1rem;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.9rem;
+  }
+  /* ─── MODAL ─── */
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,15,0.92);
+    z-index: 400;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .modal.open {
+    display: flex;
+  }
+  .modal-content {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    max-width: 820px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+  }
+  .modal-body {
+    padding: 3rem 3.5rem;
+  }
+  .modal-image {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+  .modal h2 {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 0.8rem;
+  }
+  .modal-meta {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+  }
+  .modal-desc {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+  .modal-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
   /* ─── CONTATTI ─── */
   #contatti {
     border-top: 1px solid var(--border);
     text-align: center;
   }
-
   #contatti .section-title { margin: 0 auto 1rem; }
   #contatti .divider { margin: 0 auto 2.5rem; }
-
   .contact-links {
     display: flex;
     justify-content: center;
@@ -575,7 +980,6 @@
     flex-wrap: wrap;
     margin-top: 2.5rem;
   }
-
   .contact-link {
     display: inline-block;
     padding: 0.75rem 1.8rem;
@@ -591,7 +995,6 @@
   .contact-link:hover { border-color: var(--accent); color: var(--white); }
   .contact-link.primary { border-color: var(--red); color: var(--red); }
   .contact-link.primary:hover { background: var(--red); color: #fff; }
-
   /* ─── FOOTER ─── */
   footer {
     position: relative;
@@ -604,40 +1007,37 @@
     flex-wrap: wrap;
     gap: 1rem;
   }
-
   footer p {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.72rem;
     letter-spacing: 0.1em;
     color: var(--muted);
   }
-
   footer .foot-logo {
     font-size: 0.85rem;
     letter-spacing: 0.3em;
     color: var(--accent);
   }
   footer .foot-logo span { color: var(--red); }
-
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     nav ul { gap: 1.2rem; }
     section { padding: 5rem 6vw; }
     .manifesto-grid, .zf-split, .bio-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .works-grid { grid-template-columns: 1fr 1fr !important; }
+    .works-grid, .shop-grid { grid-template-columns: repeat(2, 1fr) !important; }
     .agency-grid { grid-template-columns: 1fr 1fr; }
     .orbit-ring { display: none; }
+    .cart-drawer { width: 100%; right: -100%; }
   }
   @media (max-width: 600px) {
-    .works-grid { grid-template-columns: 1fr !important; }
+    .works-grid, .shop-grid, .gallery-grid { grid-template-columns: 1fr !important; }
     .agency-grid { grid-template-columns: 1fr 1fr; }
     .zf-stats { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
 <body>
-
 <!-- STARFIELD -->
 <canvas id="starfield"></canvas>
 
@@ -647,11 +1047,19 @@
   <ul>
     <li><a href="#manifesto">Manifesto</a></li>
     <li><a href="#opere">Opere</a></li>
+    <li><a href="#galleria">Galleria</a></li>
     <li><a href="#zebrafish">Ricerca</a></li>
     <li><a href="#patenti">Patenti</a></li>
     <li><a href="#biografia">Biografia</a></li>
+    <li><a href="#negozio">Negozio</a></li>
     <li><a href="#contatti">Contatti</a></li>
   </ul>
+  <div class="nav-right">
+    <button class="cart-btn" onclick="toggleCart()">
+      <span>Carrello</span>
+      <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -664,13 +1072,13 @@
   </h1>
   <p class="hero-subtitle">Arte in Microgravità · Londra · TRL 4–5</p>
   <p class="hero-text">
-    Artista visivo e inventore. La mia pratica esplora il confine tra 
+    Artista visivo e inventore. La mia pratica esplora il confine tra
     corpo umano, organismi acquatici e le forze invisibili che governano
     la materia sospesa nel vuoto cosmico.
   </p>
   <div class="cta-group">
     <a href="#opere" class="btn-primary">Esplora le Opere</a>
-    <a href="#zebrafish" class="btn-ghost">Progetto ZGFS</a>
+    <a href="#negozio" class="btn-ghost">Acquista Opere</a>
   </div>
   <div class="scroll-hint">
     <span>Scorri</span>
@@ -688,22 +1096,22 @@
     <div class="manifesto-body">
       <p class="section-label">Manifesto</p>
       <p>
-        La mia opera nasce all'intersezione tra la pratica pittorica 
-        figurativa e la ricerca scientifica sui sistemi acquatici in 
-        <strong>microgravità</strong>. Il ritratto — specchio dell'identità — 
-        si decompone e si riformula nelle stesse leggi fisiche che governano 
+        La mia opera nasce all'intersezione tra la pratica pittorica
+        figurativa e la ricerca scientifica sui sistemi acquatici in
+        <strong>microgravità</strong>. Il ritratto — specchio dell'identità —
+        si decompone e si riformula nelle stesse leggi fisiche che governano
         la materia nello spazio.
       </p>
       <p>
-        Con grafite, acrilico e luce, esploro l'anatomia del volto come 
-        habitat: fragilissimo, adattabile, capace di sopravvivere 
-        in condizioni estreme. La serie di autoritratti allo specchio 
-        dialoga con gli esperimenti su <strong>Danio rerio</strong> — il 
+        Con grafite, acrilico e luce, esploro l'anatomia del volto come
+        habitat: fragilissimo, adattabile, capace di sopravvivere
+        in condizioni estreme. La serie di autoritratti allo specchio
+        dialoga con gli esperimenti su <strong>Danio rerio</strong> — il
         pesce zebra — in habitat a volume d'acqua ridotto al 10%.
       </p>
       <p>
-        Arte e scienza come due facce dello stesso specchio: 
-        entrambe chiedono cosa rimane di noi quando le coordinate 
+        Arte e scienza come due facce dello stesso specchio:
+        entrambe chiedono cosa rimane di noi quando le coordinate
         familiari vengono tolte.
       </p>
     </div>
@@ -715,10 +1123,9 @@
   <p class="section-label">Pratica Artistica</p>
   <h2 class="section-title">Opere & Serie</h2>
   <div class="divider"></div>
-
   <div class="works-grid">
-
-    <div class="work-card">
+    <!-- Work 001 -->
+    <div class="work-card" onclick="openWorkModal(0)">
       <p class="work-number">001</p>
       <svg class="work-icon" viewBox="0 0 48 48" fill="none">
         <circle cx="24" cy="24" r="18" stroke="#9d8fcc" stroke-width="0.8"/>
@@ -728,13 +1135,15 @@
       </svg>
       <h3 class="work-title">Autoritratti allo Specchio</h3>
       <p class="work-desc">
-        Serie progressiva in matita e acrilico su carta. 
-        Ogni opera numerata, ogni sessione un esame ravvicinato 
+        Serie progressiva in matita e acrilico su carta.
+        Ogni opera numerata, ogni sessione un esame ravvicinato
         della struttura facciale. Punteggi fino a 9.4/10.
       </p>
+      <button class="btn-small">Dettagli & Acquista</button>
     </div>
 
-    <div class="work-card">
+    <!-- Work 002 -->
+    <div class="work-card" onclick="openWorkModal(1)">
       <p class="work-number">002</p>
       <svg class="work-icon" viewBox="0 0 48 48" fill="none">
         <rect x="8" y="8" width="32" height="32" stroke="#c8a84b" stroke-width="0.8" rx="1"/>
@@ -743,13 +1152,15 @@
       </svg>
       <h3 class="work-title">Hybrida Atmosphera</h3>
       <p class="work-desc">
-        Progetto video-scientifico che documenta l'habitat acquatico 
-        in microgravità. Arte come protocollo di ricerca. 
+        Progetto video-scientifico che documenta l'habitat acquatico
+        in microgravità. Arte come protocollo di ricerca.
         Candidato spaziale per ISS/Kibo/Columbus.
       </p>
+      <button class="btn-small">Dettagli & Acquista</button>
     </div>
 
-    <div class="work-card">
+    <!-- Work 003 -->
+    <div class="work-card" onclick="openWorkModal(2)">
       <p class="work-number">003</p>
       <svg class="work-icon" viewBox="0 0 48 48" fill="none">
         <path d="M8 40 L24 8 L40 40 Z" stroke="#7b62e8" stroke-width="0.8"/>
@@ -758,13 +1169,14 @@
       </svg>
       <h3 class="work-title">Figure in Campo Cromatico</h3>
       <p class="work-desc">
-        Composizioni acriliche su tela: verde strutturale nel volto, 
-        complementari bilanciati. Influenze di Bacon, Freud, 
+        Composizioni acriliche su tela: verde strutturale nel volto,
+        complementari bilanciati. Influenze di Bacon, Freud,
         Auerbach, Rouault.
       </p>
+      <button class="btn-small">Dettagli & Acquista</button>
     </div>
 
-    <div class="work-card">
+    <div class="work-card" onclick="openWorkModal(3)">
       <p class="work-number">004</p>
       <svg class="work-icon" viewBox="0 0 48 48" fill="none">
         <ellipse cx="24" cy="24" rx="16" ry="8" stroke="#9d8fcc" stroke-width="0.8" transform="rotate(-20 24 24)"/>
@@ -773,13 +1185,14 @@
       </svg>
       <h3 class="work-title">Orbit — Scultura Concettuale</h3>
       <p class="work-desc">
-        Installazioni scultoree che evocano la traiettoria orbitale 
-        e il peso assente. Materiali misti, strutture sospese, 
+        Installazioni scultoree che evocano la traiettoria orbitale
+        e il peso assente. Materiali misti, strutture sospese,
         dialogo con il vuoto.
       </p>
+      <button class="btn-small">Dettagli & Acquista</button>
     </div>
 
-    <div class="work-card">
+    <div class="work-card" onclick="openWorkModal(4)">
       <p class="work-number">005</p>
       <svg class="work-icon" viewBox="0 0 48 48" fill="none">
         <path d="M12 36 C12 28 16 24 24 24 C32 24 36 28 36 36" stroke="#c8a84b" stroke-width="0.8"/>
@@ -788,13 +1201,14 @@
       </svg>
       <h3 class="work-title">Ritratti — Grafite su Carta</h3>
       <p class="work-desc">
-        Disegno osservativo dal vivo, specchio come strumento. 
-        Studio continuo della struttura e dell'espressione. 
+        Disegno osservativo dal vivo, specchio come strumento.
+        Studio continuo della struttura e dell'espressione.
         Radici nella tradizione di Rembrandt.
       </p>
+      <button class="btn-small">Dettagli & Acquista</button>
     </div>
 
-    <div class="work-card">
+    <div class="work-card" onclick="openWorkModal(5)">
       <p class="work-number">006</p>
       <svg class="work-icon" viewBox="0 0 48 48" fill="none">
         <rect x="10" y="20" width="28" height="18" stroke="#9d8fcc" stroke-width="0.8" rx="1"/>
@@ -804,12 +1218,88 @@
       </svg>
       <h3 class="work-title">Zero Gravity Fish Space — Arte</h3>
       <p class="work-desc">
-        La startup come opera d'arte totale: invenzione, brevetto, 
-        prototipo, e ricerca come pratica estetica radicale 
+        La startup come opera d'arte totale: invenzione, brevetto,
+        prototipo, e ricerca come pratica estetica radicale
         con radici nel 1998.
       </p>
+      <button class="btn-small">Dettagli & Acquista</button>
     </div>
+  </div>
+</section>
 
+<!-- GALLERIA -->
+<section id="galleria">
+  <p class="section-label">Archivio Visivo</p>
+  <h2 class="section-title">Galleria delle Opere</h2>
+  <div class="divider"></div>
+  <p style="max-width:620px; font-family:'Helvetica Neue',sans-serif; font-size:0.95rem; color:var(--muted); margin-bottom:2.5rem;">
+    Una selezione di opere originali, studi preparatori e installazioni. 
+    Ogni immagine è disponibile come stampa fine art su richiesta.
+  </p>
+  
+  <div class="gallery-grid">
+    <!-- Gallery Item 1 -->
+    <div class="gallery-item" onclick="openGalleryModal(0)">
+      <img src="imagine_images/Ornhz.jpg" alt="Autoritratti allo Specchio #042 - Grafite su carta">
+      <div class="gallery-overlay">
+        <h4>Autoritratti allo Specchio #042</h4>
+        <p>Grafite su carta • 2023 • Londra</p>
+      </div>
+    </div>
+    
+    <!-- Gallery Item 2 -->
+    <div class="gallery-item" onclick="openGalleryModal(1)">
+      <img src="imagine_images/p2c8o.jpg" alt="Riflesso Cosmico - Acrilico e grafite">
+      <div class="gallery-overlay">
+        <h4>Riflesso Cosmico</h4>
+        <p>Acrilico e grafite su tela • 2024 • Edizione limitata</p>
+      </div>
+    </div>
+    
+    <!-- Gallery Item 3 -->
+    <div class="gallery-item" onclick="openGalleryModal(2)">
+      <img src="imagine_images/J526L.jpg" alt="Orbit — Scultura Concettuale">
+      <div class="gallery-overlay">
+        <h4>Orbit — Scultura Concettuale</h4>
+        <p>Installazione • Filo metallico e resina • 2023</p>
+      </div>
+    </div>
+    
+    <!-- Gallery Item 4 -->
+    <div class="gallery-item" onclick="openGalleryModal(3)">
+      <img src="imagine_images/zlHuV.jpg" alt="Hybrida Atmosphera — Frame #07">
+      <div class="gallery-overlay">
+        <h4>Hybrida Atmosphera — Frame #07</h4>
+        <p>Stampa fine art da video • 2024</p>
+      </div>
+    </div>
+    
+    <!-- Additional gallery items with placeholders for demo -->
+    <div class="gallery-item" onclick="openGalleryModal(4)">
+      <div style="width:100%;height:100%;background:linear-gradient(145deg, #1a1a2e, #0d0d1a);display:flex;align-items:center;justify-content:center;position:relative;">
+        <svg width="120" height="120" viewBox="0 0 48 48" fill="none" style="opacity:0.6">
+          <path d="M8 40 L24 8 L40 40 Z" stroke="#7b62e8" stroke-width="1.5"/>
+          <line x1="16" y1="30" x2="32" y2="30" stroke="#c8a84b" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="gallery-overlay">
+        <h4>Figure in Campo Cromatico #19</h4>
+        <p>Acrilico su tela • 2022</p>
+      </div>
+    </div>
+    
+    <div class="gallery-item" onclick="openGalleryModal(5)">
+      <div style="width:100%;height:100%;background:linear-gradient(145deg, #1a1a2e, #0d0d1a);display:flex;align-items:center;justify-content:center;position:relative;">
+        <svg width="120" height="120" viewBox="0 0 48 48" fill="none" style="opacity:0.6">
+          <circle cx="24" cy="24" r="18" stroke="#9d8fcc" stroke-width="1.5"/>
+          <circle cx="24" cy="24" r="8" stroke="#cc1a1a" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="gallery-overlay">
+        <h4>Specchio #058 — Studio</h4>
+        <p>Grafite e acrilico • 2024</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -821,14 +1311,14 @@
       <h2 class="section-title">Zero Gravity Fish Space</h2>
       <div class="divider"></div>
       <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.9rem;line-height:1.9;color:var(--muted);margin-bottom:1.2rem;">
-        Un habitat acquatico brevettato che permette a <strong style="color:var(--white)">Danio rerio</strong> 
-        (pesce zebra) di sopravvivere usando solo il <strong style="color:var(--red)">10% del volume 
-        d'acqua</strong> convenzionale — candidato per esperimenti 
+        Un habitat acquatico brevettato che permette a <strong style="color:var(--white)">Danio rerio</strong>
+        (pesce zebra) di sopravvivere usando solo il <strong style="color:var(--red)">10% del volume
+        d'acqua</strong> convenzionale — candidato per esperimenti
         a bordo dell'ISS, modulo Kibo (JAXA) e Columbus (ESA).
       </p>
       <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.9rem;line-height:1.9;color:var(--muted);margin-bottom:2rem;">
-        Applicazioni terrestri nell'acquacoltura e nella 
-        logistica dei molluschi. <strong style="color:var(--white)">Hello Tomorrow Deep Tech Pioneer 2024</strong>, 
+        Applicazioni terrestri nell'acquacoltura e nella
+        logistica dei molluschi. <strong style="color:var(--white)">Hello Tomorrow Deep Tech Pioneer 2024</strong>,
         Stage 2.
       </p>
       <div class="zf-stats">
@@ -850,40 +1340,8 @@
         </div>
       </div>
     </div>
-
     <div class="zf-canvas">
-      <svg width="100%" height="100%" viewBox="0 0 400 360">
-        <!-- Habitat vessel -->
-        <ellipse cx="200" cy="200" rx="130" ry="90" fill="rgba(123,98,232,0.06)" stroke="rgba(123,98,232,0.3)" stroke-width="0.8"/>
-        <!-- Water level -->
-        <path d="M80 210 Q130 205 200 210 Q270 215 320 210 L320 260 Q270 265 200 260 Q130 255 80 260 Z" fill="rgba(59,130,200,0.08)" stroke="rgba(59,130,200,0.2)" stroke-width="0.5"/>
-        <!-- Fish shapes -->
-        <g opacity="0.8">
-          <path d="M155 195 Q170 188 185 195 Q170 202 155 195 Z" fill="none" stroke="#9d8fcc" stroke-width="1"/>
-          <path d="M185 195 L192 191 L192 199 Z" fill="#9d8fcc" opacity="0.5"/>
-          <circle cx="162" cy="194" r="1.5" fill="#cc1a1a"/>
-        </g>
-        <g opacity="0.7">
-          <path d="M205 212 Q220 205 235 212 Q220 219 205 212 Z" fill="none" stroke="#c8a84b" stroke-width="1"/>
-          <path d="M235 212 L242 208 L242 216 Z" fill="#c8a84b" opacity="0.5"/>
-          <circle cx="212" cy="211" r="1.5" fill="#cc1a1a"/>
-        </g>
-        <g opacity="0.6">
-          <path d="M170 220 Q185 213 200 220 Q185 227 170 220 Z" fill="none" stroke="#7b62e8" stroke-width="1"/>
-          <path d="M200 220 L207 216 L207 224 Z" fill="#7b62e8" opacity="0.5"/>
-          <circle cx="177" cy="219" r="1.5" fill="#cc1a1a"/>
-        </g>
-        <!-- Orbit lines -->
-        <ellipse cx="200" cy="140" rx="80" ry="40" fill="none" stroke="rgba(204,26,26,0.2)" stroke-width="0.5" stroke-dasharray="3,4"/>
-        <circle cx="280" cy="140" r="4" fill="rgba(204,26,26,0.5)"/>
-        <!-- Labels -->
-        <text x="200" y="310" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="#888490" letter-spacing="3">DANIO RERIO — HABITAT BREVETTATO</text>
-        <text x="200" y="52" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="rgba(157,143,204,0.6)" letter-spacing="1" font-style="italic">microgravità simulata</text>
-        <!-- Gravity vector -->
-        <line x1="200" y1="75" x2="200" y2="100" stroke="rgba(204,26,26,0.4)" stroke-width="0.8"/>
-        <path d="M196 97 L200 104 L204 97" fill="none" stroke="rgba(204,26,26,0.4)" stroke-width="0.8"/>
-        <text x="208" y="92" font-family="Helvetica Neue,sans-serif" font-size="8" fill="#888490" letter-spacing="1">g →0</text>
-      </svg>
+      <img src="imagine_images/zlHuV.jpg" alt="Habitat Zero Gravity Fish Space - Danio rerio" style="width:100%; height:100%; object-fit:cover; opacity:0.85;">
     </div>
   </div>
 </section>
@@ -893,7 +1351,6 @@
   <p class="section-label">Proprietà Intellettuale</p>
   <h2 class="section-title">Brevetti & Riconoscimenti</h2>
   <div class="divider"></div>
-
   <div class="patent-list">
     <div class="patent-item">
       <span class="patent-year">1998</span>
@@ -928,7 +1385,7 @@
       <span class="patent-badge badge-granted">Selezionato</span>
     </div>
   </div>
-
+  
   <p class="section-label" style="margin-top:4rem;">Agenzie Spaziali</p>
   <div class="agency-grid">
     <div class="agency-card">
@@ -959,59 +1416,33 @@
   <div class="bio-grid">
     <div>
       <div class="bio-portrait">
-        <svg width="100%" height="100%" viewBox="0 0 300 420">
-          <!-- Abstract self-portrait sketch -->
-          <circle cx="150" cy="130" r="60" fill="none" stroke="rgba(157,143,204,0.3)" stroke-width="0.7"/>
-          <ellipse cx="150" cy="160" rx="45" ry="55" fill="none" stroke="rgba(157,143,204,0.2)" stroke-width="0.5"/>
-          <!-- Eyes - left -->
-          <ellipse cx="133" cy="118" rx="8" ry="5" fill="none" stroke="rgba(204,26,26,0.6)" stroke-width="0.8"/>
-          <circle cx="133" cy="118" r="2.5" fill="rgba(204,26,26,0.4)"/>
-          <!-- Eyes - right -->
-          <ellipse cx="167" cy="118" rx="8" ry="5" fill="none" stroke="rgba(204,26,26,0.6)" stroke-width="0.8"/>
-          <circle cx="167" cy="118" r="2.5" fill="rgba(204,26,26,0.4)"/>
-          <!-- Nose -->
-          <path d="M150 122 L146 134 L154 134" fill="none" stroke="rgba(200,168,75,0.4)" stroke-width="0.7"/>
-          <!-- Mouth -->
-          <path d="M140 143 Q150 148 160 143" fill="none" stroke="rgba(157,143,204,0.5)" stroke-width="0.8"/>
-          <!-- Neck/torso -->
-          <line x1="145" y1="190" x2="142" y2="240" stroke="rgba(157,143,204,0.15)" stroke-width="0.5"/>
-          <line x1="155" y1="190" x2="158" y2="240" stroke="rgba(157,143,204,0.15)" stroke-width="0.5"/>
-          <!-- Hair lines -->
-          <path d="M105 120 Q115 90 150 85 Q185 90 195 120" fill="none" stroke="rgba(157,143,204,0.25)" stroke-width="0.5"/>
-          <!-- Grid overlay -->
-          <line x1="150" y1="60" x2="150" y2="200" stroke="rgba(204,26,26,0.08)" stroke-width="0.4" stroke-dasharray="2,4"/>
-          <line x1="90" y1="130" x2="210" y2="130" stroke="rgba(204,26,26,0.08)" stroke-width="0.4" stroke-dasharray="2,4"/>
-          <!-- Label -->
-          <text x="150" y="290" text-anchor="middle" font-family="Georgia,serif" font-size="9" fill="rgba(157,143,204,0.4)" letter-spacing="2" font-style="italic">autoritratto</text>
-          <text x="150" y="305" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="7" fill="rgba(136,132,144,0.4)" letter-spacing="3">serie #9903—</text>
-        </svg>
+        <img src="imagine_images/p2c8o.jpg" alt="Pietro Montis - Autoritratto">
       </div>
     </div>
-
     <div class="bio-text">
       <p class="section-label">Biografia</p>
       <h2 class="section-title">Pietro Montis</h2>
       <div class="divider"></div>
       <p>
-        Artista figurativo e inventore, con sede a <strong>Londra</strong>. 
-        La pratica artistica si sviluppa principalmente in grafite e acrilico, 
-        con una serie intensiva e continua di <strong>autoritratti dal vivo 
-        davanti allo specchio</strong> — registrazione sistematica dei 
+        Artista figurativo e inventore, con sede a <strong>Londra</strong>.
+        La pratica artistica si sviluppa principalmente in grafite e acrilico,
+        con una serie intensiva e continua di <strong>autoritratti dal vivo
+        davanti allo specchio</strong> — registrazione sistematica dei
         cambiamenti dell'identità nel tempo.
       </p>
       <p>
-        Fondatore e CEO di <strong>Zero Gravity Fish Space Ltd</strong> 
-        (Company No. 16720954), deep tech startup britannica che sviluppa 
-        tecnologie di habitat acquatico per la sopravvivenza di organismi 
+        Fondatore e CEO di <strong>Zero Gravity Fish Space Ltd</strong>
+        (Company No. 16720954), deep tech startup britannica che sviluppa
+        tecnologie di habitat acquatico per la sopravvivenza di organismi
         marini in microgravità con minimo consumo d'acqua.
       </p>
       <p>
-        Le radici del progetto risalgono al <strong>1998</strong>, quando 
-        il brevetto fondativo UK GB2325385B stabilisce il principio 
-        della flottazione stabilizzata. L'interesse per la chitarra classica — 
+        Le radici del progetto risalgono al <strong>1998</strong>, quando
+        il brevetto fondativo UK GB2325385B stabilisce il principio
+        della flottazione stabilizzata. L'interesse per la chitarra classica —
         manutenzione e costruzione — completa un profilo d'artigiano integrale.
       </p>
-
+      
       <div class="trl-bar">
         <p class="trl-label">Livello di Maturità Tecnologica (TRL)</p>
         <div class="trl-track">
@@ -1020,6 +1451,148 @@
         <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.7rem;color:var(--muted);display:flex;justify-content:space-between;">
           <span>TRL 1</span><span style="color:var(--red)">TRL 4–5 ▲</span><span>TRL 9</span>
         </p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">1998</div>
+          <div class="timeline-text">Brevetto fondativo GB2325385B — nasce il concetto di habitat acquatico in microgravità.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2018</div>
+          <div class="timeline-text">Trasferimento a Londra. Inizio della serie intensiva di autoritratti allo specchio.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2023</div>
+          <div class="timeline-text">Fondazione di Zero Gravity Fish Space Ltd. Sviluppo del prototipo TRL 4.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-text">Hello Tomorrow Deep Tech Pioneer (Stage 2). Candidature NASA/JAXA/ESA.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEGOZIO -->
+<section id="negozio">
+  <p class="section-label">Colleziona l'Opera</p>
+  <h2 class="section-title">Negozio Online</h2>
+  <div class="divider"></div>
+  
+  <div class="shop-intro">
+    <p>
+      Ogni acquisto supporta direttamente la ricerca scientifica e la produzione artistica. 
+      Le stampe fine art sono realizzate su carta cotone 100% con inchiostri archival. 
+      Le edizioni limitate sono firmate e numerate dall'artista.
+    </p>
+  </div>
+
+  <div class="shop-grid">
+    <!-- Product 1 -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="imagine_images/Ornhz.jpg" alt="Stampa fine art - Autoritratti allo Specchio #042">
+        <div class="product-badge">Edizione Limitata</div>
+      </div>
+      <div class="product-info">
+        <h4 class="product-title">Autoritratti allo Specchio #042</h4>
+        <p class="product-meta">Stampa giclée • Carta cotone 310gsm • 40×50 cm</p>
+        <p class="product-desc">Stampa firmata e numerata (edizione di 25). Include certificato di autenticità.</p>
+        <div class="product-footer">
+          <div class="product-price">€185 <span>/ edizione</span></div>
+          <button class="btn-add" onclick="addToCart(0)">Aggiungi</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="imagine_images/p2c8o.jpg" alt="Riflesso Cosmico - Stampa">
+        <div class="product-badge">Edizione Limitata</div>
+      </div>
+      <div class="product-info">
+        <h4 class="product-title">Riflesso Cosmico</h4>
+        <p class="product-meta">Stampa fine art • 50×70 cm • Ed. 15</p>
+        <p class="product-desc">Dall'opera acrilica e grafite del 2024. Supporta il progetto ZGFS.</p>
+        <div class="product-footer">
+          <div class="product-price">€320 <span>/ edizione</span></div>
+          <button class="btn-add" onclick="addToCart(1)">Aggiungi</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="imagine_images/J526L.jpg" alt="Orbit Sculpture - Stampa">
+      </div>
+      <div class="product-info">
+        <h4 class="product-title">Orbit — Scultura</h4>
+        <p class="product-meta">Stampa fotografica • 30×45 cm</p>
+        <p class="product-desc">Documentazione dell'installazione scultorea. Ideale per collezionisti.</p>
+        <div class="product-footer">
+          <div class="product-price">€95</div>
+          <button class="btn-add" onclick="addToCart(2)">Aggiungi</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="imagine_images/zlHuV.jpg" alt="Hybrida Atmosphera - Poster">
+        <div class="product-badge">Open Edition</div>
+      </div>
+      <div class="product-info">
+        <h4 class="product-title">Hybrida Atmosphera Poster</h4>
+        <p class="product-meta">Poster artistico • 50×70 cm</p>
+        <p class="product-desc">Stampa su carta premium. Perfetta per studio o ufficio.</p>
+        <div class="product-footer">
+          <div class="product-price">€48</div>
+          <button class="btn-add" onclick="addToCart(3)">Aggiungi</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 5 - Merch -->
+    <div class="product-card">
+      <div class="product-image" style="background: linear-gradient(135deg, #1a1a2e, #111122); display:flex; align-items:center; justify-content:center;">
+        <svg width="90" height="90" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="20" stroke="#c8a84b" stroke-width="1.5"/>
+          <path d="M16 24 Q24 16 32 24" stroke="#cc1a1a" stroke-width="1.5"/>
+          <circle cx="24" cy="24" r="4" fill="#9d8fcc"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <h4 class="product-title">Tote Bag "Microgravità"</h4>
+        <p class="product-meta">Cotone organico • 38×42 cm</p>
+        <p class="product-desc">Borsa tote con stampa a mano del logo orbitale. Edizione speciale.</p>
+        <div class="product-footer">
+          <div class="product-price">€42</div>
+          <button class="btn-add" onclick="addToCart(4)">Aggiungi</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="product-card">
+      <div class="product-image" style="background: linear-gradient(135deg, #1a1a2e, #111122); display:flex; align-items:center; justify-content:center;">
+        <svg width="90" height="90" viewBox="0 0 48 48" fill="none">
+          <rect x="8" y="10" width="32" height="28" rx="2" stroke="#9d8fcc" stroke-width="1.5"/>
+          <circle cx="24" cy="24" r="6" stroke="#cc1a1a" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <h4 class="product-title">Taccuino da Studio</h4>
+        <p class="product-meta">Carta cotone • 120 pagine • A5</p>
+        <p class="product-desc">Taccuino premium con dettagli orbitali in copertina. Ideale per schizzi.</p>
+        <div class="product-footer">
+          <div class="product-price">€28</div>
+          <button class="btn-add" onclick="addToCart(5)">Aggiungi</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1031,8 +1604,8 @@
   <h2 class="section-title">Costruiamo qualcosa di nuovo</h2>
   <div class="divider"></div>
   <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.9rem;line-height:1.9;color:var(--muted);max-width:540px;margin:0 auto;">
-    Per collaborazioni artistiche, partnership scientifiche, 
-    opportunità spaziali o semplicemente una conversazione 
+    Per collaborazioni artistiche, partnership scientifiche,
+    opportunità spaziali o semplicemente una conversazione
     tra chi non teme il vuoto.
   </p>
   <div class="contact-links">
@@ -1046,12 +1619,43 @@
 <!-- FOOTER -->
 <footer>
   <div class="foot-logo">Pietro<span> ✦</span> Montis</div>
-  <p>Arte in Microgravità · Londra · © 2024</p>
+  <p>Arte in Microgravità · Londra · © 2024–2026</p>
   <p>Zero Gravity Fish Space Ltd · Co. 16720954</p>
 </footer>
 
+<!-- MODAL for Works & Gallery -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-body" id="modal-body">
+      <!-- Dynamic content injected by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-header">
+    <h3>Il tuo Carrello</h3>
+    <button class="cart-close" onclick="toggleCart()">&times;</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <!-- Populated by JS -->
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Totale</span>
+      <span id="cart-total">€0</span>
+    </div>
+    <button class="btn-checkout" onclick="checkout()">Procedi al Checkout</button>
+    <p style="font-size:0.7rem; color:var(--muted); text-align:center; margin-top:1rem; font-family:'Helvetica Neue',sans-serif;">
+      Pagamento sicuro • Spedizione in 5-10 giorni lavorativi
+    </p>
+  </div>
+</div>
+
 <script>
-// Starfield
+// ==================== STARFIELD ====================
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
 let stars = [];
@@ -1063,13 +1667,13 @@ function resize() {
 
 function initStars() {
   stars = [];
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 220; i++) {
     stars.push({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      r: Math.random() * 1.2,
-      o: Math.random() * 0.6 + 0.1,
-      s: Math.random() * 0.3 + 0.05
+      r: Math.random() * 1.3,
+      o: Math.random() * 0.7 + 0.15,
+      s: Math.random() * 0.35 + 0.06
     });
   }
 }
@@ -1082,7 +1686,10 @@ function drawStars() {
     ctx.fillStyle = `rgba(200,190,255,${s.o})`;
     ctx.fill();
     s.y += s.s;
-    if (s.y > canvas.height) { s.y = 0; s.x = Math.random() * canvas.width; }
+    if (s.y > canvas.height) { 
+      s.y = 0; 
+      s.x = Math.random() * canvas.width; 
+    }
   });
   requestAnimationFrame(drawStars);
 }
@@ -1092,19 +1699,597 @@ initStars();
 drawStars();
 window.addEventListener('resize', () => { resize(); initStars(); });
 
-// TRL bar animate on scroll
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      document.querySelectorAll('.trl-fill').forEach(el => {
-        el.style.width = el.style.width;
-      });
+// ==================== ACTIVE NAV ====================
+const navLinks = document.querySelectorAll('nav a');
+const sections = ['manifesto', 'opere', 'galleria', 'zebrafish', 'patenti', 'biografia', 'negozio', 'contatti'];
+
+function updateActiveNav() {
+  let current = '';
+  sections.forEach(id => {
+    const section = document.getElementById(id);
+    if (section) {
+      const sectionTop = section.getBoundingClientRect().top;
+      if (sectionTop <= 180) current = id;
     }
   });
-}, { threshold: 0.5 });
+  
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
+    }
+  });
+}
 
-const bioSection = document.getElementById('biografia');
-if (bioSection) observer.observe(bioSection);
+window.addEventListener('scroll', updateActiveNav);
+updateActiveNav();
+
+// ==================== WORKS DATA ====================
+const works = [
+  {
+    id: 0,
+    number: "001",
+    title: "Autoritratti allo Specchio",
+    year: "2020 — in corso",
+    medium: "Grafite e acrilico su carta",
+    size: "Variable (30×40 cm — 50×70 cm)",
+    desc: "Serie progressiva di autoritratti realizzati dal vivo davanti allo specchio. Ogni sessione è un esame ravvicinato della struttura facciale e dell'evoluzione dell'identità nel tempo. Tecnica mista con enfasi sulla texture e sulla luce.",
+    price: "Da €1.200 (originale) / €185 (stampa)",
+    edition: "Serie aperta — originali unici"
+  },
+  {
+    id: 1,
+    number: "002",
+    title: "Hybrida Atmosphera",
+    year: "2023 — 2024",
+    medium: "Video 4K + installazione",
+    size: "Durata 18'42\"",
+    desc: "Progetto video-scientifico che documenta il comportamento di Danio rerio in habitat a volume ridotto in condizioni di microgravità simulata. L'opera è anche un protocollo di ricerca candidato per la ISS.",
+    price: "€2.800 (edizione video) / €95 (stampa)",
+    edition: "Edizione di 7 + 2 AP"
+  },
+  {
+    id: 2,
+    number: "003",
+    title: "Figure in Campo Cromatico",
+    year: "2022 — 2024",
+    medium: "Acrilico su tela",
+    size: "80×100 cm / 100×120 cm",
+    desc: "Composizioni che esplorano il volto come campo cromatico. Verde strutturale, complementari bilanciati e texture dense. Influenze dichiarate: Bacon, Freud, Auerbach e Rouault.",
+    price: "Da €3.400",
+    edition: "Opere uniche"
+  },
+  {
+    id: 3,
+    number: "004",
+    title: "Orbit — Scultura Concettuale",
+    year: "2023",
+    medium: "Filo metallico, resina, LED",
+    size: "120×80×80 cm",
+    desc: "Installazione scultorea che evoca la traiettoria orbitale e l'assenza di peso. Il corpo umano diventa traiettoria luminosa sospesa nel vuoto. Dialogo tra materia e assenza.",
+    price: "€8.500 (edizione di 3)",
+    edition: "Edizione di 3 + 1 AP"
+  },
+  {
+    id: 4,
+    number: "005",
+    title: "Ritratti — Grafite su Carta",
+    year: "2019 — in corso",
+    medium: "Grafite su carta cotone",
+    size: "Variable",
+    desc: "Disegno osservativo dal vivo con specchio come strumento primario. Studio continuo della struttura ossea, espressione e luce. Radici profonde nella tradizione di Rembrandt e della ritrattistica classica.",
+    price: "Da €680",
+    edition: "Opere uniche"
+  },
+  {
+    id: 5,
+    number: "006",
+    title: "Zero Gravity Fish Space — Arte",
+    year: "1998 — 2026",
+    medium: "Concetto, brevetto, prototipo",
+    size: "—",
+    desc: "L'intera startup come opera d'arte totale. Invenzione, brevetto, prototipo e ricerca come pratica estetica radicale. Un progetto che unisce arte, scienza e imprenditorialità dal 1998.",
+    price: "Su richiesta",
+    edition: "Progetto unico"
+  }
+];
+
+// ==================== GALLERY DATA ====================
+const galleryItems = [
+  {
+    id: 0,
+    title: "Autoritratti allo Specchio #042",
+    year: "2023",
+    medium: "Grafite su carta cotone",
+    size: "42 × 56 cm",
+    desc: "Studio preparatorio per la serie degli autoritratti. Particolare enfasi sulla struttura orbitale del cranio e sulla tensione tra identità e spazio.",
+    image: "imagine_images/Ornhz.jpg"
+  },
+  {
+    id: 1,
+    title: "Riflesso Cosmico",
+    year: "2024",
+    medium: "Acrilico e grafite su tela",
+    size: "70 × 90 cm",
+    desc: "Opera centrale della serie 2024. Il volto emerge da un campo di forze cosmiche. Tecnica mista con interventi di luce acrilica.",
+    image: "imagine_images/p2c8o.jpg"
+  },
+  {
+    id: 2,
+    title: "Orbit — Scultura Concettuale",
+    year: "2023",
+    medium: "Filo metallico, resina trasparente, LED",
+    size: "120 × 80 × 80 cm",
+    desc: "Installazione site-specific. Il corpo umano come traiettoria orbitale. Il cuore rosso al centro rappresenta l'energia vitale in assenza di gravità.",
+    image: "imagine_images/J526L.jpg"
+  },
+  {
+    id: 3,
+    title: "Hybrida Atmosphera — Frame #07",
+    year: "2024",
+    medium: "Stampa fine art da video 4K",
+    size: "50 × 70 cm",
+    desc: "Frame estratto dal video documentario. Danio rerio in habitat brevettato durante test di microgravità simulata.",
+    image: "imagine_images/zlHuV.jpg"
+  },
+  {
+    id: 4,
+    title: "Figure in Campo Cromatico #19",
+    year: "2022",
+    medium: "Acrilico su tela",
+    size: "100 × 120 cm",
+    desc: "Composizione cromatica con forte struttura facciale. Verde ossidato e violetti profondi.",
+    image: null
+  },
+  {
+    id: 5,
+    title: "Specchio #058 — Studio",
+    year: "2024",
+    medium: "Grafite e acrilico su carta",
+    size: "38 × 48 cm",
+    desc: "Studio dal vivo. Momento di transizione nell'identità dell'artista.",
+    image: null
+  }
+];
+
+// ==================== SHOP PRODUCTS ====================
+const products = [
+  { id: 0, title: "Autoritratti allo Specchio #042", price: 185, type: "Stampa giclée 40×50 cm" },
+  { id: 1, title: "Riflesso Cosmico", price: 320, type: "Stampa fine art 50×70 cm" },
+  { id: 2, title: "Orbit — Scultura", price: 95, type: "Stampa fotografica 30×45 cm" },
+  { id: 3, title: "Hybrida Atmosphera Poster", price: 48, type: "Poster 50×70 cm" },
+  { id: 4, title: "Tote Bag Microgravità", price: 42, type: "Cotone organico" },
+  { id: 5, title: "Taccuino da Studio", price: 28, type: "A5 • 120 pagine" }
+];
+
+let cart = JSON.parse(localStorage.getItem('pm_cart')) || [];
+
+function saveCart() {
+  localStorage.setItem('pm_cart', JSON.stringify(cart));
+  updateCartCount();
+}
+
+function updateCartCount() {
+  const countEl = document.getElementById('cart-count');
+  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+  countEl.textContent = totalItems;
+}
+
+function addToCart(productId) {
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+
+  const existing = cart.find(item => item.id === productId);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+  
+  saveCart();
+  
+  // Visual feedback
+  const btns = document.querySelectorAll('.btn-add');
+  btns.forEach(btn => {
+    if (btn.onclick.toString().includes(productId)) {
+      const originalText = btn.textContent;
+      btn.textContent = '✓ Aggiunto';
+      btn.style.background = '#2a5c2a';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+      }, 1400);
+    }
+  });
+  
+  // Open cart automatically on first add
+  if (cart.length === 1) {
+    setTimeout(() => {
+      document.getElementById('cart-drawer').classList.add('open');
+      renderCart();
+    }, 600);
+  }
+}
+
+function removeFromCart(productId) {
+  cart = cart.filter(item => item.id !== productId);
+  saveCart();
+  renderCart();
+}
+
+function changeQty(productId, newQty) {
+  const item = cart.find(i => i.id === productId);
+  if (!item) return;
+  
+  if (newQty < 1) {
+    removeFromCart(productId);
+  } else {
+    item.qty = newQty;
+    saveCart();
+    renderCart();
+  }
+}
+
+function renderCart() {
+  const container = document.getElementById('cart-items');
+  const totalEl = document.getElementById('cart-total');
+  
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <div class="empty-cart">
+        <p>Il carrello è vuoto.</p>
+        <p style="margin-top:0.8rem; font-size:0.8rem;">Scopri le opere nella sezione Negozio.</p>
+      </div>
+    `;
+    totalEl.textContent = '€0';
+    return;
+  }
+  
+  let html = '';
+  let total = 0;
+  
+  cart.forEach(item => {
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+    
+    html += `
+      <div class="cart-item">
+        <div class="cart-item-info">
+          <div class="cart-item-title">${item.title}</div>
+          <div class="cart-item-price">€${item.price} × ${item.qty}</div>
+          <div style="font-size:0.75rem; color:var(--muted); margin-top:0.2rem;">${item.type}</div>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:0.4rem;">
+          <button class="cart-item-remove" onclick="removeFromCart(${item.id})">×</button>
+          <div style="display:flex; align-items:center; gap:0.4rem; font-family:'Helvetica Neue',sans-serif; font-size:0.85rem;">
+            <button onclick="changeQty(${item.id}, ${item.qty - 1})" style="background:none;border:1px solid var(--border);color:var(--muted);width:22px;height:22px;cursor:pointer;">−</button>
+            <span style="min-width:18px; text-align:center;">${item.qty}</span>
+            <button onclick="changeQty(${item.id}, ${item.qty + 1})" style="background:none;border:1px solid var(--border);color:var(--muted);width:22px;height:22px;cursor:pointer;">+</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+  
+  container.innerHTML = html;
+  totalEl.textContent = `€${total}`;
+}
+
+function toggleCart() {
+  const drawer = document.getElementById('cart-drawer');
+  drawer.classList.toggle('open');
+  if (drawer.classList.contains('open')) {
+    renderCart();
+  }
+}
+
+function checkout() {
+  const drawer = document.getElementById('cart-drawer');
+  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  
+  drawer.classList.remove('open');
+  
+  setTimeout(() => {
+    const modal = document.getElementById('modal');
+    const body = document.getElementById('modal-body');
+    
+    body.innerHTML = `
+      <h2 style="margin-bottom:0.6rem;">Checkout</h2>
+      <p style="color:var(--muted); font-family:'Helvetica Neue',sans-serif; font-size:0.9rem; margin-bottom:2rem;">
+        Totale ordine: <strong style="color:var(--gold);">€${total}</strong>
+      </p>
+      
+      <div style="margin-bottom:2rem;">
+        <label style="font-family:'Helvetica Neue',sans-serif; font-size:0.8rem; color:var(--muted); display:block; margin-bottom:0.4rem;">Nome completo</label>
+        <input type="text" value="Maria Rossi" style="width:100%; padding:0.7rem; background:#0a0a12; border:1px solid var(--border); color:var(--white); font-family:'Helvetica Neue',sans-serif;">
+        
+        <label style="font-family:'Helvetica Neue',sans-serif; font-size:0.8rem; color:var(--muted); display:block; margin:1rem 0 0.4rem;">Indirizzo di spedizione</label>
+        <input type="text" value="Via delle Stelle 42, 20121 Milano" style="width:100%; padding:0.7rem; background:#0a0a12; border:1px solid var(--border); color:var(--white); font-family:'Helvetica Neue',sans-serif;">
+        
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
+          <div>
+            <label style="font-family:'Helvetica Neue',sans-serif; font-size:0.8rem; color:var(--muted); display:block; margin-bottom:0.4rem;">Email</label>
+            <input type="email" value="maria.rossi@email.com" style="width:100%; padding:0.7rem; background:#0a0a12; border:1px solid var(--border); color:var(--white); font-family:'Helvetica Neue',sans-serif;">
+          </div>
+          <div>
+            <label style="font-family:'Helvetica Neue',sans-serif; font-size:0.8rem; color:var(--muted); display:block; margin-bottom:0.4rem;">Telefono</label>
+            <input type="tel" value="+39 333 1234567" style="width:100%; padding:0.7rem; background:#0a0a12; border:1px solid var(--border); color:var(--white); font-family:'Helvetica Neue',sans-serif;">
+          </div>
+        </div>
+      </div>
+      
+      <div style="background:#0a0a12; padding:1.2rem; border:1px solid var(--border); margin-bottom:2rem;">
+        <p style="font-family:'Helvetica Neue',sans-serif; font-size:0.85rem; color:var(--muted); margin-bottom:0.8rem;">
+          <strong>Metodo di pagamento</strong>
+        </p>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <div style="flex:1; padding:0.8rem; border:1px solid var(--gold); background:rgba(200,168,75,0.08); text-align:center; font-size:0.8rem; cursor:pointer;" onclick="completePurchase()">
+            💳 Carta di credito
+          </div>
+          <div style="flex:1; padding:0.8rem; border:1px solid var(--border); text-align:center; font-size:0.8rem; cursor:pointer;" onclick="completePurchase()">
+            PayPal
+          </div>
+        </div>
+      </div>
+      
+      <button onclick="completePurchase()" class="btn-primary" style="width:100%; padding:1rem; font-size:0.9rem;">
+        CONFERMA ORDINE • €${total}
+      </button>
+      
+      <p style="text-align:center; font-size:0.7rem; color:var(--muted); margin-top:1.5rem; font-family:'Helvetica Neue',sans-serif;">
+        In un sito reale qui si integrerebbe Stripe / Shopify Payments
+      </p>
+    `;
+    
+    modal.classList.add('open');
+  }, 400);
+}
+
+function completePurchase() {
+  const modal = document.getElementById('modal');
+  const body = document.getElementById('modal-body');
+  
+  body.innerHTML = `
+    <div style="text-align:center; padding:2rem 1rem;">
+      <div style="font-size:3.5rem; margin-bottom:1rem;">✦</div>
+      <h2 style="margin-bottom:1rem;">Grazie per il tuo acquisto</h2>
+      <p style="color:var(--muted); font-family:'Helvetica Neue',sans-serif; max-width:420px; margin:0 auto 2rem;">
+        Il tuo ordine è stato ricevuto. Riceverai una email di conferma con i dettagli della spedizione entro 24 ore.
+      </p>
+      <p style="font-family:'Helvetica Neue',sans-serif; font-size:0.85rem; color:var(--gold);">
+        Il tuo supporto aiuta a portare avanti la ricerca in microgravità.
+      </p>
+      <button onclick="finishPurchase()" class="btn-primary" style="margin-top:2rem; padding:0.9rem 3rem;">
+        CHIUDI
+      </button>
+    </div>
+  `;
+}
+
+function finishPurchase() {
+  cart = [];
+  saveCart();
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('cart-drawer').classList.remove('open');
+  
+  // Show thank you toast
+  const toast = document.createElement('div');
+  toast.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#111122;border:1px solid var(--gold);padding:1rem 2.5rem;color:var(--gold);font-family:Helvetica Neue,sans-serif;font-size:0.85rem;letter-spacing:0.1em;z-index:500;';
+  toast.textContent = 'ORDINE CONFERMATO — GRAZIE!';
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.style.transition = 'all 0.4s';
+    toast.style.opacity = '0';
+    setTimeout(() => toast.remove(), 400);
+  }, 2800);
+}
+
+// ==================== MODAL FUNCTIONS ====================
+let currentModalType = null;
+
+function openWorkModal(workIndex) {
+  const work = works[workIndex];
+  const modal = document.getElementById('modal');
+  const body = document.getElementById('modal-body');
+  
+  currentModalType = 'work';
+  
+  body.innerHTML = `
+    <div style="display:flex; gap:2.5rem; align-items:flex-start; flex-wrap:wrap;">
+      <div style="flex:1; min-width:280px;">
+        <div style="background:#0a0a12; padding:2.5rem; border:1px solid var(--border);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
+            <div>
+              <div style="font-family:'Helvetica Neue',sans-serif; font-size:0.7rem; letter-spacing:0.3em; color:var(--red);">${work.number}</div>
+              <div style="font-size:1.6rem; font-weight:300; line-height:1.1; margin-top:0.4rem;">${work.title}</div>
+            </div>
+          </div>
+          
+          <div style="margin:2rem 0; padding:1.5rem 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; font-size:0.85rem;">
+              <div><span style="color:var(--muted);">Anno</span><br><strong>${work.year}</strong></div>
+              <div><span style="color:var(--muted);">Tecnica</span><br><strong>${work.medium}</strong></div>
+              <div><span style="color:var(--muted);">Dimensioni</span><br><strong>${work.size}</strong></div>
+              <div><span style="color:var(--muted);">Edizione</span><br><strong>${work.edition}</strong></div>
+            </div>
+          </div>
+          
+          <div style="margin-top:1.5rem;">
+            <div style="font-family:'Helvetica Neue',sans-serif; font-size:0.75rem; color:var(--muted); margin-bottom:0.4rem;">PREZZO</div>
+            <div style="font-size:1.4rem; color:var(--gold);">${work.price}</div>
+          </div>
+        </div>
+      </div>
+      
+      <div style="flex:1.3; min-width:300px;">
+        <p style="font-family:'Helvetica Neue',sans-serif; font-size:0.95rem; line-height:1.85; color:var(--muted);">
+          ${work.desc}
+        </p>
+        
+        <div style="margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+          <button onclick="addWorkToCart(${workIndex}); closeModal();" class="btn-primary" style="flex:1; min-width:180px;">
+            AGGIUNGI AL CARRELLO
+          </button>
+          <button onclick="contactForOriginal(${workIndex}); closeModal();" class="btn-ghost" style="flex:1; min-width:180px;">
+            INFO OPERA ORIGINALE
+          </button>
+        </div>
+        
+        <p style="font-size:0.7rem; color:var(--muted); margin-top:1.5rem; font-family:'Helvetica Neue',sans-serif;">
+          Le stampe sono prodotte su carta cotone archival con certificazione di autenticità firmata dall'artista.
+        </p>
+      </div>
+    </div>
+  `;
+  
+  modal.classList.add('open');
+}
+
+function openGalleryModal(galleryIndex) {
+  const item = galleryItems[galleryIndex];
+  const modal = document.getElementById('modal');
+  const body = document.getElementById('modal-body');
+  
+  currentModalType = 'gallery';
+  
+  let imageHTML = '';
+  if (item.image) {
+    imageHTML = `<img src="${item.image}" alt="${item.title}" class="modal-image">`;
+  } else {
+    imageHTML = `
+      <div style="height:320px; background:linear-gradient(145deg,#1a1a2e,#0d0d1a); display:flex; align-items:center; justify-content:center; border-bottom:1px solid var(--border);">
+        <svg width="140" height="140" viewBox="0 0 48 48" fill="none" style="opacity:0.5">
+          <circle cx="24" cy="24" r="18" stroke="#9d8fcc" stroke-width="1"/>
+          <circle cx="24" cy="24" r="8" stroke="#cc1a1a" stroke-width="1"/>
+        </svg>
+      </div>
+    `;
+  }
+  
+  body.innerHTML = `
+    ${imageHTML}
+    <div style="padding:2.5rem 3rem 3rem;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:2rem; flex-wrap:wrap;">
+        <div style="flex:1; min-width:260px;">
+          <h2>${item.title}</h2>
+          <div class="modal-meta">${item.year} • ${item.medium} • ${item.size}</div>
+          
+          <p style="font-family:'Helvetica Neue',sans-serif; font-size:0.95rem; line-height:1.85; color:var(--muted);">
+            ${item.desc}
+          </p>
+        </div>
+        
+        <div style="min-width:220px;">
+          <div style="background:#0a0a12; padding:1.5rem; border:1px solid var(--border);">
+            <div style="font-family:'Helvetica Neue',sans-serif; font-size:0.75rem; color:var(--muted); margin-bottom:0.6rem;">DISPONIBILE COME</div>
+            <div style="margin-bottom:1.2rem;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+                <span>Stampa fine art</span>
+                <span style="color:var(--gold);">€185</span>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <span>Originale</span>
+                <span style="color:var(--gold);">Su richiesta</span>
+              </div>
+            </div>
+            <button onclick="addGalleryToCart(${galleryIndex}); closeModal();" class="btn-primary" style="width:100%; padding:0.85rem;">
+              AGGIUNGI AL CARRELLO
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  modal.classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+}
+
+function addWorkToCart(workIndex) {
+  // Map work to product (simplified)
+  const productMap = {0: 0, 1: 3, 2: 1, 3: 2, 4: 0, 5: 4};
+  const productId = productMap[workIndex] ?? 0;
+  addToCart(productId);
+  closeModal();
+}
+
+function addGalleryToCart(galleryIndex) {
+  const productMap = {0: 0, 1: 1, 2: 2, 3: 3, 4: 0, 5: 0};
+  const productId = productMap[galleryIndex] ?? 0;
+  addToCart(productId);
+  closeModal();
+}
+
+function contactForOriginal(workIndex) {
+  closeModal();
+  setTimeout(() => {
+    const contactSection = document.getElementById('contatti');
+    contactSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    setTimeout(() => {
+      const toast = document.createElement('div');
+      toast.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#111122;border:1px solid var(--accent);padding:0.9rem 2rem;color:var(--accent);font-family:Helvetica Neue,sans-serif;font-size:0.8rem;z-index:500;';
+      toast.innerHTML = 'Scrivi a <strong>info@pietromontis.com</strong> per informazioni sull\'opera originale.';
+      document.body.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.transition = 'all 0.4s';
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 4200);
+    }, 900);
+  }, 600);
+}
+
+// ==================== INITIALIZE ====================
+function init() {
+  updateCartCount();
+  renderCart();
+  
+  // Close modal on outside click
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target.id === 'modal') {
+      closeModal();
+    }
+  });
+  
+  // Keyboard escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const modal = document.getElementById('modal');
+      const drawer = document.getElementById('cart-drawer');
+      
+      if (modal.classList.contains('open')) {
+        modal.classList.remove('open');
+      } else if (drawer.classList.contains('open')) {
+        drawer.classList.remove('open');
+      }
+    }
+  });
+  
+  // TRL bar animation on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = document.querySelector('.trl-fill');
+        if (fill) fill.style.width = '55%';
+      }
+    });
+  }, { threshold: 0.6 });
+  
+  const bio = document.getElementById('biografia');
+  if (bio) observer.observe(bio);
+  
+  // Welcome message in console for developers
+  console.log('%c[Pietro Montis] Sito portfolio personalizzabile caricato. Per modificare contenuti, prodotti o immagini: modifica direttamente l\'HTML o l\'array products/works nel <script>.', 'color:#666');
+}
+
+// Boot
+init();
 </script>
 </body>
 </html>
