@@ -178,6 +178,12 @@
     font-style: italic;
     color: var(--accent);
   }
+  <section id="upload-section" style="padding: 40px; text-align:center;">
+  <h2>Carica una nuova immagine</h2>
+  <input type="file" id="fileInput">
+  <button onclick="uploadImage()">Carica</button>
+</section>
+
   .hero-subtitle {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 0.8rem;
@@ -1091,6 +1097,31 @@
     </button>
   </div>
 </nav>
+
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+
+  const firebaseConfig = {
+    apiKey: "TUO_API_KEY",
+    authDomain: "TUO_DOMINIO.firebaseapp.com",
+    projectId: "TUO_PROJECT_ID",
+    storageBucket: "TUO_BUCKET.appspot.com",
+    messagingSenderId: "ID",
+    appId: "APP_ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const storage = getStorage(app);
+
+  async function uploadImage() {
+    const file = document.getElementById("fileInput").files[0];
+    const storageRef = ref(storage, "uploads/" + file.name);
+    await uploadBytes(storageRef, file);
+    const url = await getDownloadURL(storageRef);
+    alert("Immagine caricata: " + url);
+  }
+</script>
 
 <!-- HERO -->
 <section id="hero">
