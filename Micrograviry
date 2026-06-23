@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pietro Montis — Arte che Respira</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", sans-serif;
+        background-color: #F7F5F2;
+        color: #222;
+        line-height: 1.6;
+    }
+
+    header {
+        padding: 80px 20px;
+        text-align: center;
+        background: linear-gradient(to bottom, #ffffff, #f0ede8);
+        border-bottom: 1px solid #ddd;
+    }
+
+    h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3rem;
+        margin-bottom: 10px;
+        color: #0A1A2F;
+    }
+
+    h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2rem;
+        margin-top: 60px;
+        text-align: center;
+        color: #0A1A2F;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+        color: #444;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .section {
+        padding: 60px 20px;
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .work {
+        background: #ffffff;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    .work img {
+        width: 100%;
+        border-radius: 6px;
+    }
+
+    .work-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.3rem;
+        margin-top: 10px;
+        color: #0A1A2F;
+    }
+
+    .bio {
+        max-width: 700px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    footer {
+        text-align: center;
+        padding: 40px;
+        font-size: 0.9rem;
+        color: #666;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>PIETRO MONTIS — Arte che Respira</h1>
+    <p class="subtitle">
+        Tra biologia, materia e spazio. Opere e prototipi che esplorano la vita oltre la gravità.
+    </p>
+</header>
+
+<section class="section">
+    <h2>Opere</h2>
+    <div class="grid">
+
+        <div class="work">
+            <img src="opera1.jpg" alt="Opera 1">
+            <div class="work-title">Spirale Respirante (2024)</div>
+            <p>Grafite e densità variabile: tensione tra forma e respiro.</p>
+        </div>
+
+        <div class="work">
+            <img src="opera2.jpg" alt="Opera 2">
+            <div class="work-title">Materia Acquatica (2023)</div>
+            <p>Studio sulla fluidità biologica in condizioni estreme.</p>
+        </div>
+
+        <div class="work">
+            <img src="opera3.jpg" alt="Opera 3">
+            <div class="work-title">Equilibrio Instabile (2024)</div>
+            <p>Segno, peso e micro‑movimenti in sospensione.</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+    <h2>Arte & Space‑Biology</h2>
+    <div class="bio">
+        <p>
+            Unisco arte, biologia e ingegneria spaziale per immaginare organismi che respirano oltre la Terra.
+            Il mio lavoro integra prototipi, studi tecnici e osservazione della materia viva in condizioni estreme.
+        </p>
+        <img src="prototipo.jpg" alt="Prototipo" style="width:100%; max-width:600px; margin-top:30px; border-radius:8px;">
+    </div>
+</section>
+
+<section class="section">
+    <h2>Chi sono</h2>
+    <div class="bio">
+        <p>
+            Artista e ricercatore indipendente, esploro la relazione tra vita, materia e gravità.
+            Il mio lavoro nasce dall’incontro tra disegno, biologia acquatica e ingegneria spaziale.
+            Attraverso opere, prototipi e studi tecnici, indago come organismi e materiali possano respirare,
+            crescere e trasformarsi in ambienti estremi.
+        </p>
+    </div>
+</section>
+
+<footer>
+    © 2026 Pietro Montis — Arte che Respira
+</footer>
+
+</body>
+</html>
