@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  https://github.com/Montispietro/Arteche-respira/tree/main/media
+  <section id="video">
+  <video src="media/video.mp4" autoplay loop muted playsinline style="width:100%; border-radius:12px;"></video>
+  <h3>Hybrida Atmosphera — Habitat in Microgravità</h3>
+  <p>Opera video · 6 secondi · 4K</p>
+</section>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pietro Montis — Arte in Microgravità</title>
+<style>
+  :root {
+    --black: #0a0a0f;
+    --deep: #0d0d1a;
+    --panel: #111122;
+    --surface: #0a0a12;
+    --border: rgba(180,160,255,0.15);
+    --bh: rgba(180,160,255,0.32);
+    --red: #cc1a1a;
+    --red-dim: rgba(204,26,26,0.15);
+    --red-glow: rgba(204,26,26,0.08);
+    --gold: #c8a84b;
+    --gold-dim: rgba(200,168,75,0.12);
+    --violet: #7b62e8;
+    --violet-dim: rgba(123,98,232,0.12);
+    --white: #f0ede8;
+    --muted: #888490;
+    --muted2: #45425c;
+    --accent: #9d8fcc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Georgia', serif;
+    overflow-x: hidden;
+  }
+  #starfield { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Georgia', serif; font-size: 1rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); transition: color 0.3s; }
+  .logo span { color: var(--red); }
+  nav ul { list-style: none; display: flex; gap: 1.9rem; flex-wrap: wrap; }
+  nav a {
+    text-decoration: none; color: var(--muted); font-family: 'Helvetica Neue', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    transition: color 0.3s; position: relative; cursor: pointer;
+  }
+  nav a:hover { color: var(--white); }
+  nav a.active { color: var(--white); }
+  nav a.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 1px; background: var(--red); }
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+  .cart-btn, .admin-btn {
+    background: none; border: 1px solid var(--border); color: var(--muted);
+    padding: 0.5rem 1rem; font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem;
+    letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: all 0.3s;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .cart-btn:hover { border-color: var(--accent); color: var(--white); }
+  .admin-btn { border-color: rgba(200,168,75,.3); color: var(--gold); }
+  .admin-btn:hover { border-color: var(--gold); color: #e8c56a; }
+  .cart-count { background: var(--red); color: white; font-size: 0.65rem; padding: 0.1rem 0.45rem; border-radius: 10px; min-width: 18px; text-align: center; }
+
+  #hero {
+    position: relative; z-index: 1; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    padding: 0 10vw; overflow: hidden;
+  }
+  .orbit-ring {
+    position: absolute; right: 8vw; top: 50%; transform: translateY(-50%);
+    width: 520px; height: 520px; border: 1px solid rgba(123,98,232,0.18); border-radius: 50%;
+    animation: slowspin 40s linear infinite;
+  }
+  .orbit-ring::before { content: ''; position: absolute; width: 320px; height: 320px; border: 1px solid rgba(200,168,75,0.12); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .orbit-ring::after { content: ''; position: absolute; width: 14px; height: 14px; background: var(--red); border-radius: 50%; top: -7px; left: 50%; transform: translateX(-50%); box-shadow: 0 0 20px var(--red); }
+  @keyframes slowspin { to { transform: translateY(-50%) rotate(360deg); } }
+  .hero-eyebrow { font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--red); margin-bottom: 1.8rem; }
+  .hero-title { font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.02em; max-width: 700px; margin-bottom: 0.4rem; }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-subtitle { font-family: 'Helvetica Neue', sans-serif; font-size: 0.8rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 2.5rem; margin-top: 0.6rem; }
+  .hero-text { font-family: 'Helvetica Neue', sans-serif; font-size: 0.92rem; line-height: 1.8; color: var(--muted); max-width: 480px; margin-bottom: 3rem; }
+  .cta-group { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block; padding: 0.8rem 2.2rem; background: var(--red); color: #fff;
+    text-decoration: none; font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.25em; text-transform: uppercase; transition: background 0.3s, transform 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: #a81515; transform: translateY(-2px); }
+  .btn-ghost {
+    display: inline-block; padding: 0.8rem 2.2rem; border: 1px solid var(--border); color: var(--accent);
+    text-decoration: none; font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.25em; text-transform: uppercase; transition: border-color 0.3s, color 0.3s;
+    background: none; cursor: pointer;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--white); }
+  .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0.4; }
+  .scroll-hint span { font-family: 'Helvetica Neue', sans-serif; font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollpulse 1.8s ease-in-out infinite; }
+  @keyframes scrollpulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+  section { position: relative; z-index: 1; padding: 7rem 10vw; }
+  .section-label { font-family: 'Helvetica Neue', sans-serif; font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem; }
+  .section-title { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 300; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 2.5rem; max-width: 600px; }
+  .divider { width: 48px; height: 1px; background: var(--red); margin-bottom: 2.5rem; }
+
+  #manifesto { background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .manifesto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .manifesto-quote { font-size: clamp(1.4rem, 2.2vw, 2rem); font-weight: 300; font-style: italic; line-height: 1.5; color: var(--accent); border-left: 2px solid var(--red); padding-left: 2rem; }
+  .manifesto-quote cite { display: block; margin-top: 1rem; font-size: 0.75rem; font-style: normal; font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+  .manifesto-body p { font-family: 'Helvetica Neue', sans-serif; font-size: 0.9rem; line-height: 1.9; color: var(--muted); margin-bottom: 1.2rem; }
+  .manifesto-body p strong { color: var(--white); font-weight: 500; }
+
+  #opere .works-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; margin-top: 3rem; }
+  .work-card { position: relative; background: var(--panel); border: 1px solid var(--border); padding: 2.5rem 2rem; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); overflow: hidden; cursor: pointer; }
+  .work-card::before { content: ''; position: absolute; inset: 0; background: var(--red-glow); opacity: 0; transition: opacity 0.4s; }
+  .work-card:hover { border-color: rgba(204,26,26,0.4); transform: translateY(-4px); }
+  .work-card:hover::before { opacity: 1; }
+  .work-number { font-family: 'Helvetica Neue', sans-serif; font-size: 0.62rem; letter-spacing: 0.3em; color: var(--red); margin-bottom: 1.5rem; }
+  .work-icon { width: 48px; height: 48px; margin-bottom: 1.5rem; }
+  .work-title { font-size: 1.1rem; font-weight: 300; margin-bottom: 0.8rem; letter-spacing: 0.02em; }
+  .work-desc { font-family: 'Helvetica Neue', sans-serif; font-size: 0.82rem; line-height: 1.75; color: var(--muted); }
+  .work-card .btn-small { margin-top: 1.2rem; font-size: 0.65rem; padding: 0.5rem 1.2rem; border: 1px solid var(--border); color: var(--accent); background: transparent; cursor: pointer; transition: all 0.3s; }
+  .work-card .btn-small:hover { background: var(--red); color: white; border-color: var(--red); }
+
+  #galleria { background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5px; margin-top: 3rem; }
+  .gallery-item { position: relative; background: var(--panel); border: 1px solid var(--border); overflow: hidden; cursor: pointer; aspect-ratio: 4/3; transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s; }
+  .gallery-item:hover { transform: scale(1.01); border-color: var(--accent); }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+  .gallery-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gallery-item:hover img { transform: scale(1.08); }
+  .gallery-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(145deg, #1a1a2e, #0d0d1a); font-size: 2.5rem; color: var(--muted2); }
+  .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, rgba(10,10,15,0.85) 70%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; opacity: 0.9; transition: opacity 0.3s; }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay h4 { font-size: 1rem; font-weight: 400; margin-bottom: 0.3rem; letter-spacing: 0.02em; }
+  .gallery-overlay p { font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  #esibizioni { background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .exhibitions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5px; margin-top: 3rem; }
+  .exhibition-card { background: var(--panel); border: 1px solid var(--border); padding: 2rem 2.2rem; transition: all 0.3s; }
+  .exhibition-card:hover { border-color: var(--gold); }
+  .exhibition-year { font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 0.6rem; }
+  .exhibition-title { font-size: 1.15rem; font-weight: 300; margin-bottom: 0.8rem; line-height: 1.3; }
+  .exhibition-venue { font-family: 'Helvetica Neue', sans-serif; font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; }
+  .exhibition-desc { font-family: 'Helvetica Neue', sans-serif; font-size: 0.85rem; line-height: 1.7; color: var(--muted); }
+
+  #zebrafish { background: var(--deep); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .zf-split { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .zf-canvas { position: relative; height: 360px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; background: #0a0a12; }
+  .zf-canvas img, .zf-canvas video { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
+  .zf-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.5rem; }
+  .stat-card { background: var(--panel); border: 1px solid var(--border); padding: 1.5rem; }
+  .stat-number { font-size: 2rem; font-weight: 300; color: var(--white); letter-spacing: -0.02em; }
+  .stat-number span { color: var(--red); }
+  .stat-label { font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-top: 0.3rem; }
+
+  .patent-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1px; }
+  .patent-item { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2rem; padding: 1.6rem 1.8rem; background: var(--panel); border: 1px solid var(--border); transition: border-color 0.3s; }
+  .patent-item:hover { border-color: rgba(200,168,75,0.3); }
+  .patent-year { font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); min-width: 40px; }
+  .patent-name { font-size: 0.95rem; font-weight: 300; }
+  .patent-name small { display: block; font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; letter-spacing: 0.05em; }
+  .patent-badge { font-family: 'Helvetica Neue', sans-serif; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.3rem 0.8rem; border: 1px solid currentColor; }
+  .badge-granted { color: var(--gold); }
+  .badge-pending { color: var(--accent); }
+  .agency-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 3rem; }
+  .agency-card { background: var(--panel); border: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; transition: background 0.3s; }
+  .agency-card:hover { background: var(--deep); }
+  .agency-abbr { font-size: 1.5rem; font-weight: 300; letter-spacing: 0.1em; color: var(--white); margin-bottom: 0.5rem; }
+  .agency-full { font-family: 'Helvetica Neue', sans-serif; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--muted); line-height: 1.5; }
+  .agency-status { display: inline-block; margin-top: 1rem; font-family: 'Helvetica Neue', sans-serif; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); }
+
+  #biografia { background: var(--deep); border-top: 1px solid var(--border); }
+  .bio-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: start; }
+  .bio-portrait { position: relative; height: 520px; background: var(--panel); border: 1px solid var(--border); overflow: hidden; }
+  .bio-portrait img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.9) contrast(1.05); }
+  .bio-text p { font-family: 'Helvetica Neue', sans-serif; font-size: 0.9rem; line-height: 1.9; color: var(--muted); margin-bottom: 1.2rem; }
+  .bio-text p strong { color: var(--white); font-weight: 500; }
+  .trl-bar { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+  .trl-label { font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+  .trl-track { height: 3px; background: rgba(255,255,255,0.06); position: relative; }
+  .trl-fill { height: 100%; background: var(--red); transition: width 1.5s cubic-bezier(0.16,1,0.3,1); }
+  .timeline { margin-top: 2.5rem; border-left: 1px solid var(--border); padding-left: 1.8rem; }
+  .timeline-item { position: relative; margin-bottom: 1.8rem; }
+  .timeline-item::before { content: ''; position: absolute; left: -1.85rem; top: 0.35rem; width: 9px; height: 9px; background: var(--red); border-radius: 50%; }
+  .timeline-year { font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem; color: var(--gold); letter-spacing: 0.15em; }
+  .timeline-text { font-family: 'Helvetica Neue', sans-serif; font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-top: 0.3rem; }
+
+  #negozio { border-top: 1px solid var(--border); }
+  .shop-intro { max-width: 620px; margin-bottom: 3rem; }
+  .shop-intro p { font-family: 'Helvetica Neue', sans-serif; font-size: 0.95rem; line-height: 1.8; color: var(--muted); }
+  .shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5px; margin-top: 1rem; }
+  .product-card { background: var(--panel); border: 1px solid var(--border); padding: 0; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); overflow: hidden; display: flex; flex-direction: column; }
+  .product-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .product-image { height: 220px; background: #0a0a12; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .product-card:hover .product-image img { transform: scale(1.06); }
+  .product-badge { position: absolute; top: 1rem; right: 1rem; font-family: 'Helvetica Neue', sans-serif; font-size: 0.6rem; letter-spacing: 0.15em; padding: 0.25rem 0.7rem; background: rgba(10,10,15,0.7); border: 1px solid var(--gold); color: var(--gold); text-transform: uppercase; }
+  .product-info { padding: 1.6rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .product-title { font-size: 1.05rem; font-weight: 400; margin-bottom: 0.4rem; letter-spacing: 0.01em; }
+  .product-meta { font-family: 'Helvetica Neue', sans-serif; font-size: 0.75rem; color: var(--muted); margin-bottom: 0.9rem; }
+  .product-desc { font-family: 'Helvetica Neue', sans-serif; font-size: 0.82rem; line-height: 1.7; color: var(--muted); flex: 1; margin-bottom: 1.2rem; }
+  .product-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border); }
+  .product-price { font-size: 1.15rem; font-weight: 300; color: var(--white); }
+  .product-price span { font-size: 0.7rem; color: var(--muted); }
+  .btn-add { background: var(--red); color: white; border: none; padding: 0.6rem 1.4rem; font-family: 'Helvetica Neue', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: background 0.3s; }
+  .btn-add:hover { background: #a81515; }
+
+  .cart-drawer { position: fixed; top: 0; right: -420px; width: 380px; height: 100vh; background: var(--deep); border-left: 1px solid var(--border); z-index: 300; transition: right 0.45s cubic-bezier(0.23, 1, 0.32, 1); display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.4); }
+  .cart-drawer.open { right: 0; }
+  .cart-header { padding: 1.8rem 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .cart-header h3 { font-size: 1.1rem; font-weight: 300; letter-spacing: 0.05em; }
+  .cart-close { background: none; border: none; color: var(--muted); font-size: 1.6rem; cursor: pointer; line-height: 1; }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1.5rem 2rem; }
+  .cart-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .cart-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .cart-item-info { flex: 1; }
+  .cart-item-title { font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .cart-item-price { font-family: 'Helvetica Neue', sans-serif; font-size: 0.85rem; color: var(--gold); }
+  .cart-item-remove { background: none; border: none; color: var(--muted); font-size: 1.1rem; cursor: pointer; align-self: flex-start; }
+  .cart-footer { padding: 1.8rem 2rem; border-top: 1px solid var(--border); background: var(--panel); }
+  .cart-total { display: flex; justify-content: space-between; font-size: 1.1rem; margin-bottom: 1.5rem; }
+  .cart-total span:last-child { color: var(--gold); font-weight: 300; }
+  .btn-checkout { width: 100%; padding: 1rem; background: var(--gold); color: var(--black); border: none; font-family: 'Helvetica Neue', sans-serif; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+  .btn-checkout:hover { background: #e8c56a; }
+  .empty-cart { text-align: center; color: var(--muted); padding: 3rem 1rem; font-family: 'Helvetica Neue', sans-serif; font-size: 0.9rem; }
+
+  .modal { position: fixed; inset: 0; background: rgba(10,10,15,0.92); z-index: 400; display: none; align-items: center; justify-content: center; padding: 2rem; }
+  .modal.open { display: flex; }
+  .modal-content { background: var(--panel); border: 1px solid var(--border); max-width: 820px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
+  .modal-close { position: absolute; top: 1.2rem; right: 1.5rem; background: none; border: none; color: var(--muted); font-size: 2rem; cursor: pointer; z-index: 10; }
+  .modal-body { padding: 3rem 3.5rem; }
+  .modal-image { width: 100%; max-height: 420px; object-fit: cover; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+  .modal h2 { font-size: 1.8rem; font-weight: 300; margin-bottom: 0.8rem; }
+  .modal-meta { font-family: 'Helvetica Neue', sans-serif; font-size: 0.8rem; color: var(--gold); letter-spacing: 0.15em; margin-bottom: 1.5rem; }
+  .modal-desc { font-family: 'Helvetica Neue', sans-serif; font-size: 0.95rem; line-height: 1.85; color: var(--muted); margin-bottom: 2rem; }
+
+  #contatti { border-top: 1px solid var(--border); text-align: center; }
+  #contatti .section-title { margin: 0 auto 1rem; }
+  #contatti .divider { margin: 0 auto 2.5rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2.5rem; }
+  .contact-link { display: inline-block; padding: 0.75rem 1.8rem; border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; transition: all 0.3s; }
+  .contact-link:hover { border-color: var(--accent); color: var(--white); }
+  .contact-link.primary { border-color: var(--red); color: var(--red); }
+  .contact-link.primary:hover { background: var(--red); color: #fff; }
+
+  footer { position: relative; z-index: 1; padding: 2rem 10vw; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  footer p { font-family: 'Helvetica Neue', sans-serif; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--muted); }
+  footer .foot-logo { font-size: 0.85rem; letter-spacing: 0.3em; color: var(--accent); }
+  footer .foot-logo span { color: var(--red); }
+
+  /* ═══ ADMIN PANEL ═══ */
+  #adm { display: none; position: fixed; inset: 0; z-index: 600; background: rgba(4,4,10,.98); overflow-y: auto; }
+  #adm.open { display: block; }
+  .admw { max-width: 980px; margin: 0 auto; padding: 3rem 2rem; }
+  .admhd { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.2rem; border-bottom: 1px solid var(--border); padding-bottom: 1.3rem; }
+  .admttl { font-size: 1.3rem; font-weight: 300; }
+  .admttl span { color: var(--red); }
+  .admx { background: none; border: 1px solid var(--border); color: var(--muted); padding: .5rem 1.1rem; font-family: 'Helvetica Neue',sans-serif; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; cursor: pointer; }
+  .admtabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 2rem; flex-wrap: wrap; }
+  .at { padding: .7rem 1.4rem; background: none; border: none; border-bottom: 2px solid transparent; color: var(--muted); font-family: 'Helvetica Neue',sans-serif; font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; margin-bottom: -1px; }
+  .at.active { border-bottom-color: var(--red); color: var(--white); }
+  .as { display: none; }
+  .as.active { display: block; }
+  .statsrow { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-bottom: 2.3rem; }
+  .sb { background: var(--surface); border: 1px solid var(--border); padding: 1.3rem; }
+  .sbn { font-size: 1.7rem; font-weight: 300; }
+  .sbn span { color: var(--red); }
+  .sbl { font-family: 'Helvetica Neue',sans-serif; font-size: .63rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-top: .3rem; }
+  .fg { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; margin-bottom: .9rem; }
+  .fg.full { grid-template-columns: 1fr; }
+  .fl { font-family: 'Helvetica Neue',sans-serif; font-size: .63rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: .4rem; display: block; }
+  .fi, .fs, .ft { background: var(--surface); border: 1px solid var(--border); color: var(--white); padding: .65rem .85rem; font-family: 'Helvetica Neue',sans-serif; font-size: .82rem; outline: none; transition: border-color .2s; width: 100%; }
+  .fi:focus, .fs:focus, .ft:focus { border-color: var(--accent); }
+  .ft { min-height: 85px; resize: vertical; }
+  .fs option { background: var(--panel); }
+  .uzone { border: 1px dashed var(--border); padding: 1.8rem; text-align: center; cursor: pointer; transition: border-color .2s; position: relative; background: var(--surface); }
+  .uzone:hover { border-color: var(--accent); }
+  .uzone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+  .uzone-t { font-family: 'Helvetica Neue',sans-serif; font-size: .82rem; color: var(--muted); }
+  .uzone-s { font-family: 'Helvetica Neue',sans-serif; font-size: .68rem; color: var(--muted2); margin-top: .3rem; }
+  .prevwrap { margin-top: .9rem; display: none; }
+  .prevwrap img, .prevwrap video { max-height: 150px; max-width: 100%; border: 1px solid var(--border); }
+  .prevname { font-family: 'Helvetica Neue',sans-serif; font-size: .7rem; color: var(--muted); margin-top: .4rem; }
+  .path-hint { background: var(--panel); border: 1px solid rgba(184,149,42,.25); padding: .9rem 1.1rem; margin-bottom: 1.1rem; }
+  .path-hint p { font-family: 'Helvetica Neue',sans-serif; font-size: .76rem; line-height: 1.65; color: var(--muted); }
+  .path-hint code { background: var(--surface); padding: .12rem .35rem; color: #e8c56a; font-size: .76rem; border: 1px solid var(--border); }
+  .fsbtn { padding: .7rem 2rem; background: var(--red); color: #fff; border: none; font-family: 'Helvetica Neue',sans-serif; font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; }
+  .fcbtn { padding: .7rem 1.6rem; background: none; border: 1px solid var(--border); color: var(--muted); font-family: 'Helvetica Neue',sans-serif; font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; }
+  .wrow { display: grid; grid-template-columns: 50px 1fr auto auto auto; gap: .8rem; align-items: center; padding: .8rem 1rem; background: var(--surface); border: 1px solid var(--border); margin-bottom: 1px; }
+  .wrow:hover { border-color: var(--bh); }
+  .wth { width: 50px; height: 36px; object-fit: cover; background: var(--panel); }
+  .wthph { width: 50px; height: 36px; background: var(--panel); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--muted2); }
+  .wt { font-size: .86rem; font-weight: 300; }
+  .wp { font-family: 'Helvetica Neue',sans-serif; font-size: .8rem; color: var(--gold); }
+  .be { padding: .3rem .7rem; background: none; border: 1px solid var(--border); color: var(--accent); font-family: 'Helvetica Neue',sans-serif; font-size: .6rem; cursor: pointer; }
+  .bd { padding: .3rem .7rem; background: none; border: 1px solid var(--border); color: #e03030; font-family: 'Helvetica Neue',sans-serif; font-size: .6rem; cursor: pointer; }
+  #toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px); z-index: 900; background: var(--panel); border: 1px solid var(--border); padding: .8rem 1.8rem; font-family: 'Helvetica Neue',sans-serif; font-size: .8rem; transition: transform .3s; white-space: nowrap; }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+  #toast.ok { border-color: #3a8a4a; color: #3a8a4a; }
+  #toast.err { border-color: #e03030; color: #e03030; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    section { padding: 5rem 6vw; }
+    .manifesto-grid, .zf-split, .bio-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .works-grid, .shop-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .agency-grid { grid-template-columns: 1fr 1fr; }
+    .orbit-ring { display: none; }
+    .cart-drawer { width: 100%; right: -100%; }
+    .statsrow { grid-template-columns: 1fr 1fr; }
+    .fg { grid-template-columns: 1fr; }
+    .wrow { grid-template-columns: 50px 1fr auto; }
+  }
+  @media (max-width: 600px) {
+    .works-grid, .shop-grid, .gallery-grid { grid-template-columns: 1fr !important; }
+    .agency-grid { grid-template-columns: 1fr 1fr; }
+    .zf-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<canvas id="starfield"></canvas>
+
+<nav>
+  <div class="logo">Pietro<span> ✦</span> Montis</div>
+  <ul>
+    <li><a onclick="go('manifesto')">Manifesto</a></li>
+    <li><a onclick="go('opere')">Opere</a></li>
+    <li><a onclick="go('galleria')">Galleria</a></li>
+    <li><a onclick="go('esibizioni')">Mostre</a></li>
+    <li><a onclick="go('zebrafish')">Ricerca</a></li>
+    <li><a onclick="go('patenti')">Patenti</a></li>
+    <li><a onclick="go('biografia')">Biografia</a></li>
+    <li><a onclick="go('negozio')">Negozio</a></li>
+    <li><a onclick="go('contatti')">Contatti</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" onclick="toggleCart()"><span>Carrello</span><span class="cart-count" id="cart-count">0</span></button>
+    <button class="admin-btn" onclick="openAdmin()">⚙ Admin</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="orbit-ring"></div>
+  <p class="hero-eyebrow">Arte · Scienza · Microgravità</p>
+  <h1 class="hero-title">Pietro<br><em>Montis</em></h1>
+  <p class="hero-subtitle">Arte in Microgravità · Londra · TRL 4–5</p>
+  <p class="hero-text">Artista visivo e inventore. La mia pratica esplora il confine tra corpo umano, organismi acquatici e le forze invisibili che governano la materia sospesa nel vuoto cosmico.</p>
+  <div class="cta-group">
+    <a onclick="go('opere')" class="btn-primary">Esplora le Opere</a>
+    <a onclick="go('negozio')" class="btn-ghost">Acquista Opere</a>
+  </div>
+  <div class="scroll-hint"><span>Scorri</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- MANIFESTO -->
+<section id="manifesto">
+  <div class="manifesto-grid">
+    <blockquote class="manifesto-quote">
+      "Tutto si distrugge,<br>tutto si ricostruisce —<br>anche nell'assenza<br>di gravità."
+      <cite>Pietro Montis</cite>
+    </blockquote>
+    <div class="manifesto-body">
+      <p class="section-label">Manifesto</p>
+      <p>La mia opera nasce all'intersezione tra la pratica pittorica figurativa e la ricerca scientifica sui sistemi acquatici in <strong>microgravità</strong>. Il ritratto — specchio dell'identità — si decompone e si riformula nelle stesse leggi fisiche che governano la materia nello spazio.</p>
+      <p>Con grafite, acrilico e luce, esploro l'anatomia del volto come habitat: fragilissimo, adattabile, capace di sopravvivere in condizioni estreme. La serie di autoritratti allo specchio dialoga con gli esperimenti su <strong>Danio rerio</strong> — il pesce zebra — in habitat a volume d'acqua ridotto al 10%.</p>
+      <p>Arte e scienza come due facce dello stesso specchio: entrambe chiedono cosa rimane di noi quando le coordinate familiari vengono tolte.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OPERE (dynamic) -->
+<section id="opere">
+  <p class="section-label">Pratica Artistica</p>
+  <h2 class="section-title">Opere & Serie</h2>
+  <div class="divider"></div>
+  <div class="works-grid" id="works-grid"></div>
+</section>
+
+<!-- GALLERIA (dynamic) -->
+<section id="galleria">
+  <p class="section-label">Archivio Visivo</p>
+  <h2 class="section-title">Galleria delle Opere</h2>
+  <div class="divider"></div>
+  <p style="max-width:620px; font-family:'Helvetica Neue',sans-serif; font-size:0.95rem; color:var(--muted); margin-bottom:2.5rem;">
+    Una selezione di opere originali, studi preparatori e installazioni. Ogni immagine è disponibile come stampa fine art su richiesta.
+  </p>
+  <div class="gallery-grid" id="gallery-grid"></div>
+</section>
+
+<!-- ESIBIZIONI -->
+<section id="esibizioni">
+  <p class="section-label">Mostre & Esposizioni</p>
+  <h2 class="section-title">Esibizioni Selezionate</h2>
+  <div class="divider"></div>
+  <div class="exhibitions-grid">
+    <div class="exhibition-card">
+      <div class="exhibition-year">2025</div>
+      <h3 class="exhibition-title">Microgravità — Solo Show</h3>
+      <p class="exhibition-venue">Galerie Raum mit Licht, Berlino</p>
+      <p class="exhibition-desc">Mostra personale dedicata alla serie degli autoritratti in microgravità e alle nuove installazioni orbitali.</p>
+    </div>
+    <div class="exhibition-card">
+      <div class="exhibition-year">2024</div>
+      <h3 class="exhibition-title">Hello Tomorrow Global Summit</h3>
+      <p class="exhibition-venue">Grand Palais, Parigi</p>
+      <p class="exhibition-desc">Esposizione del prototipo ZGFS e delle opere "Hybrida Atmosphera" all'interno del programma Deep Tech Pioneer.</p>
+    </div>
+    <div class="exhibition-card">
+      <div class="exhibition-year">2023</div>
+      <h3 class="exhibition-title">Weightless — Group Exhibition</h3>
+      <p class="exhibition-venue">The Crypt Gallery, Londra</p>
+      <p class="exhibition-desc">Collettiva internazionale sul tema della gravità e dell'assenza di peso. Opere: Orbit e Suspended Identity.</p>
+    </div>
+    <div class="exhibition-card">
+      <div class="exhibition-year">2022</div>
+      <h3 class="exhibition-title">Figure in Campo Cromatico</h3>
+      <p class="exhibition-venue">Studio Montis, Londra</p>
+      <p class="exhibition-desc">Prima mostra personale a Londra. Serie completa degli autoritratti e delle composizioni cromatiche.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ZEBRAFISH -->
+<section id="zebrafish">
+  <div class="zf-split">
+    <div>
+      <p class="section-label">Ricerca Scientifica</p>
+      <h2 class="section-title">Zero Gravity Fish Space</h2>
+      <div class="divider"></div>
+      <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.9rem;line-height:1.9;color:var(--muted);margin-bottom:1.2rem;">
+        Un habitat acquatico brevettato che permette a <strong style="color:var(--white)">Danio rerio</strong> (pesce zebra) di sopravvivere usando solo il <strong style="color:var(--red)">10% del volume d'acqua</strong> convenzionale — candidato per esperimenti a bordo dell'ISS, modulo Kibo (JAXA) e Columbus (ESA).
+      </p>
+      <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.9rem;line-height:1.9;color:var(--muted);margin-bottom:2rem;">
+        Applicazioni terrestri nell'acquacoltura e nella logistica dei molluschi. <strong style="color:var(--white)">Hello Tomorrow Deep Tech Pioneer 2024</strong>, Stage 2.
+      </p>
+      <div class="zf-stats">
+        <div class="stat-card"><div class="stat-number">10<span>%</span></div><div class="stat-label">Volume d'acqua</div></div>
+        <div class="stat-card"><div class="stat-number">TRL<span> 4–5</span></div><div class="stat-label">Livello tecnologico</div></div>
+        <div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Brevetti UK</div></div>
+        <div class="stat-card"><div class="stat-number">1998</div><div class="stat-label">Patent originale</div></div>
+      </div>
+    </div>
+    <div class="zf-canvas" id="zf-canvas">
+      <div class="gallery-ph">🐟</div>
+    </div>
+  </div>
+</section>
+
+<!-- PATENTI -->
+<section id="patenti">
+  <p class="section-label">Proprietà Intellettuale</p>
+  <h2 class="section-title">Brevetti & Riconoscimenti</h2>
+  <div class="divider"></div>
+  <div class="patent-list">
+    <div class="patent-item"><span class="patent-year">1998</span><div class="patent-name">GB2325385B — Sistema ad alta pressione per organismi acquatici<small>Patent fondativo · Zero Gravity Fish Space Ltd</small></div><span class="patent-badge badge-granted">Concesso</span></div>
+    <div class="patent-item"><span class="patent-year">2023</span><div class="patent-name">UK Patent II — Habitat a galleggiamento stabilizzato<small>Applicazione microgravità · Volume ridotto al 10%</small></div><span class="patent-badge badge-granted">Concesso</span></div>
+    <div class="patent-item"><span class="patent-year">2024</span><div class="patent-name">UK Patent III — Sistema dual-use acquacoltura/spazio<small>In esame · Innovate UK Business Connect</small></div><span class="patent-badge badge-pending">In Esame</span></div>
+    <div class="patent-item"><span class="patent-year">2024</span><div class="patent-name">Hello Tomorrow Deep Tech Pioneer — Stage 2<small>Riconoscimento internazionale deep tech</small></div><span class="patent-badge badge-granted">Selezionato</span></div>
+  </div>
+  <p class="section-label" style="margin-top:4rem;">Agenzie Spaziali</p>
+  <div class="agency-grid">
+    <div class="agency-card"><div class="agency-abbr">NASA</div><div class="agency-full">Space Biology<br>Notice of Intent</div><span class="agency-status">Sottomesso</span></div>
+    <div class="agency-card"><div class="agency-abbr">JAXA</div><div class="agency-full">Modulo Kibo<br>ISS Inquiry</div><span class="agency-status">In Preparazione</span></div>
+    <div class="agency-card"><div class="agency-abbr">ESA</div><div class="agency-full">Columbus Module<br>Research Announcement</div><span class="agency-status">In Preparazione</span></div>
+    <div class="agency-card"><div class="agency-abbr">UKRI</div><div class="agency-full">BBSRC-STFC DTC Bio<br>Expression of Interest</div><span class="agency-status">In Valutazione</span></div>
+  </div>
+</section>
+
+<!-- BIOGRAFIA -->
+<section id="biografia">
+  <div class="bio-grid">
+    <div><div class="bio-portrait" id="bio-portrait"><div class="gallery-ph">🎨</div></div></div>
+    <div class="bio-text">
+      <p class="section-label">Biografia</p>
+      <h2 class="section-title">Pietro Montis</h2>
+      <div class="divider"></div>
+      <p>Artista figurativo e inventore, con sede a <strong>Londra</strong>. La pratica artistica si sviluppa principalmente in grafite e acrilico, con una serie intensiva e continua di <strong>autoritratti dal vivo davanti allo specchio</strong> — registrazione sistematica dei cambiamenti dell'identità nel tempo.</p>
+      <p>Fondatore e CEO di <strong>Zero Gravity Fish Space Ltd</strong> (Company No. 16720954), deep tech startup britannica che sviluppa tecnologie di habitat acquatico per la sopravvivenza di organismi marini in microgravità con minimo consumo d'acqua.</p>
+      <p>Le radici del progetto risalgono al <strong>1998</strong>, quando il brevetto fondativo UK GB2325385B stabilisce il principio della flottazione stabilizzata.</p>
+      <div class="trl-bar">
+        <p class="trl-label">Livello di Maturità Tecnologica (TRL)</p>
+        <div class="trl-track"><div class="trl-fill" style="width:55%"></div></div>
+        <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.7rem;color:var(--muted);display:flex;justify-content:space-between;"><span>TRL 1</span><span style="color:var(--red)">TRL 4–5 ▲</span><span>TRL 9</span></p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-year">1998</div><div class="timeline-text">Brevetto fondativo GB2325385B — nasce il concetto di habitat acquatico in microgravità.</div></div>
+        <div class="timeline-item"><div class="timeline-year">2018</div><div class="timeline-text">Trasferimento a Londra. Inizio della serie intensiva di autoritratti allo specchio.</div></div>
+        <div class="timeline-item"><div class="timeline-year">2023</div><div class="timeline-text">Fondazione di Zero Gravity Fish Space Ltd. Sviluppo del prototipo TRL 4.</div></div>
+        <div class="timeline-item"><div class="timeline-year">2024</div><div class="timeline-text">Hello Tomorrow Deep Tech Pioneer (Stage 2). Candidature NASA/JAXA/ESA.</div></div>
+        <div class="timeline-item"><div class="timeline-year">2025</div><div class="timeline-text">Prima mostra personale a Berlino e lancio della serie Microgravità #07.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEGOZIO (dynamic) -->
+<section id="negozio">
+  <p class="section-label">Colleziona l'Opera</p>
+  <h2 class="section-title">Negozio Online</h2>
+  <div class="divider"></div>
+  <div class="shop-intro"><p>Ogni acquisto supporta direttamente la ricerca scientifica e la produzione artistica. Le stampe fine art sono realizzate su carta cotone 100% con inchiostri archival.</p></div>
+  <div class="shop-grid" id="shop-grid"></div>
+</section>
+
+<!-- CONTATTI -->
+<section id="contatti">
+  <p class="section-label">Collaborazioni & Contatti</p>
+  <h2 class="section-title">Costruiamo qualcosa di nuovo</h2>
+  <div class="divider"></div>
+  <p style="font-family:'Helvetica Neue',sans-serif;font-size:0.9rem;line-height:1.9;color:var(--muted);max-width:540px;margin:0 auto;">
+    Per collaborazioni artistiche, partnership scientifiche, opportunità spaziali o semplicemente una conversazione tra chi non teme il vuoto.
+  </p>
+  <div class="contact-links">
+    <a href="https://www.zerogravityfishspace.com" class="contact-link primary" target="_blank">Zero Gravity Fish Space</a>
+    <a href="mailto:info@pietromontis.com" class="contact-link">Email</a>
+    <a href="https://linkedin.com" class="contact-link">LinkedIn</a>
+    <a href="https://github.com" class="contact-link">GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">Pietro<span> ✦</span> Montis</div>
+  <p>Arte in Microgravità · Londra · © 2024–2026</p>
+  <p>Zero Gravity Fish Space Ltd · Co. 16720954</p>
+</footer>
+
+<!-- MODAL (opera detail) -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-header"><h3>Il tuo Carrello</h3><button class="cart-close" onclick="toggleCart()">&times;</button></div>
+  <div class="cart-items" id="cart-items"></div>
+  <div class="cart-footer">
+    <div class="cart-total"><span>Totale</span><span id="cart-total">€0</span></div>
+    <button class="btn-checkout" onclick="checkout()">Procedi al Checkout</button>
+    <p style="font-size:0.7rem; color:var(--muted); text-align:center; margin-top:1rem; font-family:'Helvetica Neue',sans-serif;">Pagamento sicuro · Spedizione in 5-10 giorni lavorativi</p>
+  </div>
+</div>
+
+<!-- ═══ ADMIN PANEL ═══ -->
+<div id="adm">
+<div class="admw">
+  <div class="admhd">
+    <h1 class="admttl">Admin <span>✦</span> Pietro Montis</h1>
+    <button class="admx" onclick="closeAdmin()">✕ Chiudi</button>
+  </div>
+  <div class="statsrow" id="admstats"></div>
+  <div class="admtabs">
+    <button class="at active" onclick="switchTab('opere',this)">📋 Opere</button>
+    <button class="at" onclick="switchTab('aggiungi',this)">＋ Aggiungi</button>
+    <button class="at" onclick="switchTab('guida',this)">📁 Guida File</button>
+    <button class="at" onclick="switchTab('ordini',this)">🛒 Ordini</button>
+  </div>
+
+  <div class="as active" id="tab-opere">
+    <p style="font-family:'Helvetica Neue',sans-serif;font-size:.8rem;color:var(--muted);margin-bottom:1.1rem;" id="wcount">Nessuna opera</p>
+    <div id="wlist"></div>
+  </div>
+
+  <div class="as" id="tab-aggiungi">
+    <div class="path-hint">
+      <p><strong>Come aggiungere un'opera con file da GitHub:</strong><br>
+      1. Carica il file nella cartella <code>images/</code> del tuo repo<br>
+      2. Nel campo "Percorso file" scrivi <code>images/nomefile.jpg</code><br>
+      3. Formati: <code>.jpg .png .gif .webp .mp4 .mov .pdf</code></p>
+    </div>
+    <form id="wform" onsubmit="saveWork(event)">
+      <input type="hidden" id="eid">
+      <div class="fg">
+        <div><label class="fl">Titolo *</label><input class="fi" id="ft" placeholder="es. Autoritratto #9941" required></div>
+        <div><label class="fl">Anno *</label><input class="fi" id="fy" placeholder="2026" required></div>
+        <div><label class="fl">Tecnica</label><input class="fi" id="fte" placeholder="es. Acrilico su carta"></div>
+        <div><label class="fl">Dimensioni</label><input class="fi" id="fs" placeholder="es. 50×70 cm"></div>
+        <div><label class="fl">Sezione *</label>
+          <select class="fs" id="fsec">
+            <option value="opere">Opere & Serie</option>
+            <option value="galleria">Galleria</option>
+            <option value="negozio">Negozio (prodotto)</option>
+          </select>
+        </div>
+        <div><label class="fl">Stato</label>
+          <select class="fs" id="fst">
+            <option value="disponibile">Disponibile</option>
+            <option value="venduto">Venduto</option>
+            <option value="riservato">Riservato</option>
+          </select>
+        </div>
+        <div><label class="fl">Prezzo (es. €220 o "Su richiesta")</label><input class="fi" id="fp" placeholder="€220"></div>
+        <div><label class="fl">Edizione / Note</label><input class="fi" id="fse" placeholder="es. Edizione di 25"></div>
+      </div>
+      <div class="fg full"><label class="fl">Descrizione</label><textarea class="ft" id="fd" placeholder="Descrizione dell'opera..."></textarea></div>
+      <div class="fg full"><div>
+        <label class="fl">📁 Percorso file (GitHub, dopo upload in images/)</label>
+        <input class="fi" id="fpath" placeholder="images/mia-opera.jpg  oppure  images/video.mp4">
+      </div></div>
+      <div class="fg full"><div>
+        <label class="fl">🔗 Oppure URL esterno</label>
+        <input class="fi" id="furl" placeholder="https://...">
+      </div></div>
+      <div class="fg full"><div>
+        <label class="fl">🖥 Oppure carica dal computer (salvato solo nel browser)</label>
+        <div class="uzone" id="uzone" ondragover="event.preventDefault()" ondrop="handleDrop(event)">
+          <input type="file" id="ffile" accept="image/*,video/*,.pdf,.gif,.webp" onchange="handleFile(event)">
+          <p class="uzone-t">Trascina qui o clicca per selezionare</p>
+          <p class="uzone-s">Immagini · Video · PDF · fino a 20MB · salvato solo localmente</p>
+        </div>
+        <div class="prevwrap" id="pw"><div id="previnner"></div><p class="prevname" id="prevname"></p></div>
+      </div></div>
+      <div style="display:flex;gap:1rem;margin-top:1.4rem;">
+        <button type="submit" class="fsbtn" id="fsbtn">Salva Opera</button>
+        <button type="button" class="fcbtn" onclick="resetForm()">Annulla</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="as" id="tab-guida">
+    <div class="path-hint" style="margin-bottom:0;">
+      <p style="font-size:.82rem;line-height:1.9;">
+        <strong style="color:var(--white);">📁 Come caricare file su GitHub:</strong><br><br>
+        1. Vai su <strong>github.com/Montispietro/Arteche-respira</strong><br>
+        2. Clicca <strong>Add file → Upload files</strong><br>
+        3. Crea/usa la cartella <code>images/</code><br>
+        4. Trascina il file e clicca <strong>Commit changes</strong><br>
+        5. Torna qui in Admin → Aggiungi Opera → scrivi <code>images/nomefile.jpg</code> nel campo Percorso<br><br>
+        <strong style="color:var(--white);">Formati supportati:</strong><br>
+        🖼 <code>.jpg .png .gif .webp .svg</code> · 🎬 <code>.mp4 .mov .webm</code> · 📄 <code>.pdf</code><br><br>
+        <strong style="color:var(--white);">Nota:</strong> i file caricati "dal computer" nell'Admin sono salvati solo nel tuo browser (localStorage) — utile per test rapidi, ma per il sito pubblico su GitHub Pages usa sempre il percorso <code>images/</code>.
+      </p>
+    </div>
+  </div>
+
+  <div class="as" id="tab-ordini">
+    <div id="ordlist"></div>
+  </div>
+</div>
+</div>
+
+<div id="toast"></div>
+<script>
+/* ════════ STARFIELD ════════ */
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+function initStars() {
+  stars = [];
+  for (let i = 0; i < 200; i++) {
+    stars.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*1.2, o: Math.random()*0.6+0.12, s: Math.random()*0.3+0.05 });
+  }
+}
+function drawStars() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s => {
+    ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    ctx.fillStyle = `rgba(200,190,255,${s.o})`; ctx.fill();
+    s.y += s.s; if (s.y > canvas.height) { s.y = 0; s.x = Math.random()*canvas.width; }
+  });
+  requestAnimationFrame(drawStars);
+}
+resize(); initStars(); drawStars();
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+function go(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+/* ════════ NAV ACTIVE ════════ */
+const navLinks = document.querySelectorAll('nav a');
+const sectionIds = ['manifesto','opere','galleria','esibizioni','zebrafish','patenti','biografia','negozio','contatti'];
+function updateActiveNav() {
+  let current = '';
+  sectionIds.forEach(id => {
+    const sec = document.getElementById(id);
+    if (sec && sec.getBoundingClientRect().top <= 180) current = id;
+  });
+  navLinks.forEach(l => l.classList.toggle('active', l.textContent.trim() === ({manifesto:'Manifesto',opere:'Opere',galleria:'Galleria',esibizioni:'Mostre',zebrafish:'Ricerca',patenti:'Patenti',biografia:'Biografia',negozio:'Negozio',contatti:'Contatti'})[current]));
+}
+window.addEventListener('scroll', updateActiveNav);
+
+/* ════════ DEFAULT SEED DATA (used only if no saved data exists) ════════ */
+const DEFAULT_WORKS = [
+  {id:'op1', section:'opere', number:'001', title:'Autoritratti allo Specchio', year:'2020 — in corso', technique:'Grafite e acrilico su carta', size:'Variabile', price:'Da €1.400 (originale) / €220 (stampa)', series:'Serie aperta — originali unici', desc:'Serie progressiva di autoritratti realizzati dal vivo davanti allo specchio. Ogni sessione è un esame ravvicinato della struttura facciale e dell\'evoluzione dell\'identità nel tempo.', status:'disponibile', path:'', url:'', base64:''},
+  {id:'op2', section:'opere', number:'002', title:'Hybrida Atmosphera', year:'2023 — 2024', technique:'Video 4K + installazione', size:'Durata 18\'42"', price:'€3.200 (edizione video) / €110 (stampa)', series:'Edizione di 7 + 2 AP', desc:'Progetto video-scientifico che documenta il comportamento di Danio rerio in habitat a volume ridotto in condizioni di microgravità simulata.', status:'disponibile', path:'', url:'', base64:''},
+  {id:'op3', section:'opere', number:'003', title:'Figure in Campo Cromatico', year:'2022 — 2024', technique:'Acrilico su tela', size:'80×100 cm / 100×120 cm', price:'Da €3.800', series:'Opere uniche', desc:'Composizioni che esplorano il volto come campo cromatico. Verde strutturale, complementari bilanciati. Influenze: Bacon, Freud, Auerbach, Rouault.', status:'disponibile', path:'', url:'', base64:''},
+  {id:'op4', section:'opere', number:'004', title:'Orbit — Scultura Concettuale', year:'2023', technique:'Filo metallico, resina, LED', size:'120×80×80 cm', price:'€9.500 (edizione di 3)', series:'Edizione di 3 + 1 AP', desc:'Installazione scultorea che evoca la traiettoria orbitale e l\'assenza di peso.', status:'disponibile', path:'', url:'', base64:''},
+  {id:'op5', section:'opere', number:'005', title:'Ritratti — Grafite su Carta', year:'2019 — in corso', technique:'Grafite su carta cotone', size:'Variabile', price:'Da €780', series:'Opere uniche', desc:'Disegno osservativo dal vivo con specchio come strumento. Radici nella tradizione di Rembrandt.', status:'disponibile', path:'', url:'', base64:''},
+  {id:'op6', section:'opere', number:'006', title:'Zero Gravity Fish Space — Arte', year:'1998 — 2026', technique:'Concetto, brevetto, prototipo', size:'—', price:'Su richiesta', series:'Progetto unico', desc:'La startup come opera d\'arte totale: invenzione, brevetto, prototipo e ricerca come pratica estetica radicale.', status:'disponibile', path:'', url:'', base64:''},
+  {id:'op7', section:'opere', number:'007', title:'Microgravità #07', year:'2025', technique:'Tecnica mista su carta + UV', size:'50 × 65 cm', price:'€2.800 (originale) / €260 (stampa)', series:'Edizione di 12 + 2 AP', desc:'Autoritratto in condizioni di microgravità simulata. Il volto si dissolve in orbite concentriche.', status:'disponibile', path:'', url:'', base64:''},
+  {id:'op8', section:'opere', number:'008', title:'Danio in Orbita', year:'2025', technique:'Resina, pesci conservati, metallo', size:'180×120×80 cm', price:'€6.500', series:'Edizione di 5', desc:'Installazione ibrida: pesci zebra in resina sospesi in traiettorie orbitali.', status:'disponibile', path:'', url:'', base64:''},
+  {id:'op9', section:'opere', number:'009', title:'Suspended Identity', year:'2024 — 2025', technique:'Performance documentata + foto', size:'Variabile', price:'Da €1.900', series:'Opere uniche + edizioni limitate', desc:'Performance in studio: il corpo sospeso con carrucole. Esplorazione del peso dell\'identità in assenza di gravità.', status:'disponibile', path:'', url:'', base64:''},
+  {id:'gal1', section:'galleria', title:'Autoritratti allo Specchio #042', year:'2023', technique:'Grafite su carta cotone', size:'42 × 56 cm', desc:'Studio preparatorio per la serie degli autoritratti.', status:'disponibile', path:'images/autoritratti-042.jpg', url:'', base64:'', price:''},
+  {id:'gal2', section:'galleria', title:'Riflesso Cosmico', year:'2024', technique:'Acrilico e grafite su tela', size:'70 × 90 cm', desc:'Opera centrale della serie 2024.', status:'disponibile', path:'images/riflesso-cosmico.jpg', url:'', base64:'', price:''},
+  {id:'gal3', section:'galleria', title:'Orbit — Scultura Concettuale', year:'2023', technique:'Filo metallico, resina, LED', size:'120×80×80 cm', desc:'Installazione site-specific.', status:'disponibile', path:'images/orbit-scultura.jpg', url:'', base64:'', price:''},
+  {id:'gal4', section:'galleria', title:'Hybrida Atmosphera — Frame #07', year:'2024', technique:'Stampa fine art da video', size:'50 × 70 cm', desc:'Frame estratto dal video documentario.', status:'disponibile', path:'images/hybrida-frame07.jpg', url:'', base64:'', price:''},
+  {id:'prod1', section:'negozio', title:'Autoritratti allo Specchio #042', year:'', technique:'Stampa giclée · Carta cotone 310gsm', size:'40×50 cm', desc:'Stampa firmata e numerata (edizione di 25). Include certificato di autenticità.', status:'disponibile', path:'images/autoritratti-042.jpg', url:'', base64:'', price:'€220'},
+  {id:'prod2', section:'negozio', title:'Riflesso Cosmico', year:'', technique:'Stampa fine art', size:'50×70 cm · Ed. 15', desc:'Dall\'opera acrilica e grafite del 2024. Supporta il progetto ZGFS.', status:'disponibile', path:'images/riflesso-cosmico.jpg', url:'', base64:'', price:'€380'},
+  {id:'prod3', section:'negozio', title:'Orbit — Scultura', year:'', technique:'Stampa fotografica', size:'30×45 cm', desc:'Documentazione dell\'installazione scultorea.', status:'disponibile', path:'images/orbit-scultura.jpg', url:'', base64:'', price:'€110'},
+  {id:'prod4', section:'negozio', title:'Hybrida Atmosphera Poster', year:'', technique:'Poster artistico', size:'50×70 cm', desc:'Stampa su carta premium.', status:'disponibile', path:'images/hybrida-frame07.jpg', url:'', base64:'', price:'€55'},
+];
+
+/* ════════ STATE ════════ */
+let works = JSON.parse(localStorage.getItem('pm_works_v2') || 'null') || DEFAULT_WORKS.slice();
+let cart = JSON.parse(localStorage.getItem('pm_cart_v2') || '[]');
+let orders = JSON.parse(localStorage.getItem('pm_orders_v2') || '[]');
+let editId = null;
+let pendingBase64 = null;
+
+function persist() {
+  localStorage.setItem('pm_works_v2', JSON.stringify(works));
+  localStorage.setItem('pm_cart_v2', JSON.stringify(cart));
+  localStorage.setItem('pm_orders_v2', JSON.stringify(orders));
+}
+
+function getSrc(w) { return w.base64 || w.path || w.url || ''; }
+function isVideo(src) { return /\.(mp4|mov|webm)(\?|$)/i.test(src); }
+function isPdf(src) { return /\.pdf(\?|$)/i.test(src); }
+
+function toast(msg, type='ok') {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.className = 'show ' + type;
+  setTimeout(() => el.className = '', 2600);
+}
+
+/* ════════ RENDER: OPERE (work-card grid, matches original design) ════════ */
+const ICONS_SVG = `<svg class="work-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="#9d8fcc" stroke-width="0.8"/><circle cx="24" cy="24" r="8" stroke="#cc1a1a" stroke-width="0.8"/><line x1="24" y1="6" x2="24" y2="42" stroke="#888490" stroke-width="0.5"/><line x1="6" y1="24" x2="42" y2="24" stroke="#888490" stroke-width="0.5"/></svg>`;
+
+function renderOpere() {
+  const grid = document.getElementById('works-grid');
+  const list = works.filter(w => w.section === 'opere');
+  if (!list.length) { grid.innerHTML = `<p style="font-family:'Helvetica Neue',sans-serif;color:var(--muted);grid-column:1/-1;">Nessuna opera. Aggiungile da Admin ⚙.</p>`; return; }
+  grid.innerHTML = list.map((w,i) => `
+    <div class="work-card" onclick="openWorkModal('${w.id}')">
+      <p class="work-number">${w.number || String(i+1).padStart(3,'0')}</p>
+      ${ICONS_SVG}
+      <h3 class="work-title">${w.title}</h3>
+      <p class="work-desc">${(w.desc||'').slice(0,140)}${(w.desc||'').length>140?'…':''}</p>
+      <button class="btn-small">Dettagli ${w.status==='venduto'?'(Venduto)':'& Acquista'}</button>
+    </div>`).join('');
+}
+
+/* ════════ RENDER: GALLERIA ════════ */
+function renderGalleria() {
+  const grid = document.getElementById('gallery-grid');
+  const list = works.filter(w => w.section === 'galleria');
+  if (!list.length) { grid.innerHTML = `<p style="font-family:'Helvetica Neue',sans-serif;color:var(--muted);">Nessuna immagine in galleria. Aggiungile da Admin ⚙.</p>`; return; }
+  grid.innerHTML = list.map(w => {
+    const src = getSrc(w);
+    let media;
+    if (src && isVideo(src)) media = `<video src="${src}" muted preload="metadata"></video>`;
+    else if (src && !isPdf(src)) media = `<img src="${src}" alt="${w.title}" loading="lazy" onerror="this.parentNode.querySelector('img').style.display='none';this.parentNode.insertAdjacentHTML('afterbegin','<div class=gallery-ph>🎨</div>')">`;
+    else media = `<div class="gallery-ph">${isPdf(src)?'📄':'🎨'}</div>`;
+    return `<div class="gallery-item" onclick="openWorkModal('${w.id}')">
+      ${media}
+      <div class="gallery-overlay"><h4>${w.title}</h4><p>${[w.technique,w.year].filter(Boolean).join(' • ')}</p></div>
+    </div>`;
+  }).join('');
+}
+
+/* ════════ RENDER: NEGOZIO ════════ */
+function renderNegozio() {
+  const grid = document.getElementById('shop-grid');
+  const list = works.filter(w => w.section === 'negozio');
+  if (!list.length) { grid.innerHTML = `<p style="font-family:'Helvetica Neue',sans-serif;color:var(--muted);">Nessun prodotto nel negozio. Aggiungili da Admin ⚙.</p>`; return; }
+  grid.innerHTML = list.map(w => {
+    const src = getSrc(w);
+    const img = src && !isVideo(src) && !isPdf(src) ? `<img src="${src}" alt="${w.title}">` : `<div class="gallery-ph" style="height:100%;">🎨</div>`;
+    const sold = w.status === 'venduto';
+    return `<div class="product-card">
+      <div class="product-image">${img}${sold?'<div class="product-badge">Venduto</div>':''}</div>
+      <div class="product-info">
+        <h4 class="product-title">${w.title}</h4>
+        <p class="product-meta">${[w.technique,w.size].filter(Boolean).join(' • ')}</p>
+        <p class="product-desc">${w.desc||''}</p>
+        <div class="product-footer">
+          <div class="product-price">${w.price||'Su richiesta'}</div>
+          <button class="btn-add" ${sold?'disabled style="opacity:.4;cursor:not-allowed;"':''} onclick="addToCart('${w.id}')">${sold?'Venduto':'Aggiungi'}</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ════════ RENDER: hero supporting images (zebrafish canvas + bio portrait, use first matching work if present) ════════ */
+function renderAuxImages() {
+  const zf = document.getElementById('zf-canvas');
+  const zfWork = works.find(w => w.section==='galleria' && /danio|zebra|hybrida/i.test(w.title));
+  if (zfWork) {
+    const src = getSrc(zfWork);
+    if (src && !isPdf(src)) zf.innerHTML = isVideo(src) ? `<video src="${src}" autoplay muted loop></video>` : `<img src="${src}" alt="${zfWork.title}">`;
+  }
+  const bio = document.getElementById('bio-portrait');
+  const bioWork = works.find(w => w.section==='galleria' && /riflesso|autoritratt/i.test(w.title));
+  if (bioWork) {
+    const src = getSrc(bioWork);
+    if (src && !isPdf(src) && !isVideo(src)) bio.innerHTML = `<img src="${src}" alt="Pietro Montis">`;
+  }
+}
+
+function renderAll() {
+  renderOpere(); renderGalleria(); renderNegozio(); renderAuxImages();
+  updateActiveNav();
+}
+
+/* ════════ MODAL (opera detail) ════════ */
+function openWorkModal(id) {
+  const w = works.find(x => x.id === id);
+  if (!w) return;
+  const src = getSrc(w);
+  let mediaHTML = '';
+  if (src && isVideo(src)) mediaHTML = `<video class="modal-image" src="${src}" controls style="height:auto;max-height:420px;"></video>`;
+  else if (src && isPdf(src)) mediaHTML = `<div class="modal-image" style="display:flex;align-items:center;justify-content:center;height:240px;background:var(--surface);"><a href="${src}" target="_blank" style="color:var(--accent);font-family:'Helvetica Neue',sans-serif;">📄 Apri PDF</a></div>`;
+  else if (src) mediaHTML = `<img class="modal-image" src="${src}" alt="${w.title}">`;
+
+  document.getElementById('modal-body').innerHTML = `
+    ${mediaHTML}
+    <h2>${w.title}</h2>
+    <div class="modal-meta">${[w.year,w.technique,w.size].filter(Boolean).join(' • ')}</div>
+    <p class="modal-desc">${w.desc||'Nessuna descrizione disponibile.'}</p>
+    ${w.series?`<p style="font-family:'Helvetica Neue',sans-serif;font-size:.8rem;color:var(--muted);margin-bottom:1rem;">${w.series}</p>`:''}
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+      <div style="font-size:1.3rem;color:var(--gold);font-weight:300;">${w.price||'Su richiesta'}</div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        ${w.status==='venduto'
+          ? `<span style="font-family:'Helvetica Neue',sans-serif;color:var(--muted);">Opera venduta</span>`
+          : `<button onclick="addToCart('${w.id}');closeModal();" class="btn-primary">Aggiungi al Carrello</button>
+             <button onclick="closeModal();go('contatti')" class="btn-ghost">Richiedi Info</button>`}
+      </div>
+    </div>`;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+
+/* ════════ CART ════════ */
+function addToCart(id) {
+  const w = works.find(x => x.id === id);
+  if (!w || w.status === 'venduto') return;
+  if (cart.find(c => c.id === id)) { toast('Già nel carrello', 'err'); return; }
+  cart.push({ id: w.id, title: w.title, price: w.price || 'Su richiesta', img: getSrc(w) });
+  persist(); renderCart(); updateCartCount();
+  toast('Aggiunto al carrello ✓');
+  setTimeout(() => document.getElementById('cart-drawer').classList.add('open'), 400);
+}
+function removeFromCart(id) { cart = cart.filter(c => c.id !== id); persist(); renderCart(); updateCartCount(); }
+function updateCartCount() { document.getElementById('cart-count').textContent = cart.length; }
+function parsePrice(p) { const m = String(p||'').match(/[\d.,]+/); return m ? parseFloat(m[0].replace(/\./g,'').replace(',','.')) : 0; }
+function renderCart() {
+  const el = document.getElementById('cart-items');
+  if (!cart.length) { el.innerHTML = `<div class="empty-cart"><p>Il carrello è vuoto.</p><p style="margin-top:.8rem;font-size:.8rem;">Scopri le opere nella sezione Negozio.</p></div>`; document.getElementById('cart-total').textContent = '€0'; return; }
+  el.innerHTML = cart.map(c => `
+    <div class="cart-item">
+      <div class="cart-item-info"><div class="cart-item-title">${c.title}</div><div class="cart-item-price">${c.price}</div></div>
+      <button class="cart-item-remove" onclick="removeFromCart('${c.id}')">×</button>
+    </div>`).join('');
+  const total = cart.reduce((s,c) => s + parsePrice(c.price), 0);
+  document.getElementById('cart-total').textContent = '€' + total.toLocaleString();
+}
+function toggleCart() { const d = document.getElementById('cart-drawer'); d.classList.toggle('open'); if (d.classList.contains('open')) renderCart(); }
+
+function checkout() {
+  if (!cart.length) { toast('Carrello vuoto', 'err'); return; }
+  const total = cart.reduce((s,c) => s + parsePrice(c.price), 0);
+  document.getElementById('cart-drawer').classList.remove('open');
+  setTimeout(() => {
+    document.getElementById('modal-body').innerHTML = `
+      <h2 style="margin-bottom:.6rem;">Checkout</h2>
+      <p style="color:var(--muted);font-family:'Helvetica Neue',sans-serif;font-size:.9rem;margin-bottom:1.5rem;">Totale ordine: <strong style="color:var(--gold);">€${total.toLocaleString()}</strong></p>
+      <p style="font-family:'Helvetica Neue',sans-serif;font-size:.85rem;line-height:1.8;color:var(--muted);padding:1.2rem;border:1px solid var(--border);margin-bottom:1.5rem;">
+        Per completare l'acquisto invia un'email a <strong style="color:var(--gold);">info@pietromontis.com</strong> con il titolo dell'opera, il tuo indirizzo e il metodo di pagamento preferito. Riceverai risposta entro 24h.
+      </p>
+      <div style="display:flex;gap:1rem;">
+        <button onclick="confirmOrder(${total})" class="btn-primary">Conferma Ordine</button>
+        <a href="mailto:info@pietromontis.com" class="btn-ghost">Invia Email</a>
+      </div>`;
+    document.getElementById('modal').classList.add('open');
+  }, 350);
+}
+function confirmOrder(total) {
+  orders.unshift({ id:'ORD-'+Date.now(), date:new Date().toLocaleDateString('it'), items:[...cart], total, status:'pending' });
+  cart = []; persist(); renderCart(); updateCartCount(); closeModal();
+  toast('Ordine ricevuto! Ti contatteremo a breve ✓');
+}
+
+/* ════════ ADMIN: open/close/tabs ════════ */
+function openAdmin() { document.getElementById('adm').classList.add('open'); document.body.style.overflow='hidden'; renderAdminStats(); renderAdminWorks(); renderOrders(); }
+function closeAdmin() { document.getElementById('adm').classList.remove('open'); document.body.style.overflow=''; }
+function switchTab(name, btn) {
+  document.querySelectorAll('.at').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.as').forEach(s => s.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
+}
+
+function renderAdminStats() {
+  const sold = works.filter(w => w.status === 'venduto').length;
+  const rev = orders.reduce((s,o) => s + (o.total||0), 0);
+  document.getElementById('admstats').innerHTML = `
+    <div class="sb"><div class="sbn">${works.length}</div><div class="sbl">Opere Totali</div></div>
+    <div class="sb"><div class="sbn">${sold}</div><div class="sbl">Vendute</div></div>
+    <div class="sb"><div class="sbn">${orders.length}</div><div class="sbl">Ordini</div></div>
+    <div class="sb"><div class="sbn">€<span>${rev.toLocaleString()}</span></div><div class="sbl">Ricavi Ordini</div></div>`;
+}
+
+const SECTION_LABEL = {opere:'Opere',galleria:'Galleria',negozio:'Negozio'};
+function renderAdminWorks() {
+  const el = document.getElementById('wlist');
+  document.getElementById('wcount').textContent = works.length ? `${works.length} elementi totali` : 'Nessuna opera ancora.';
+  if (!works.length) { el.innerHTML = ''; return; }
+  el.innerHTML = works.map(w => {
+    const src = getSrc(w);
+    const th = src && !isPdf(src) && !isVideo(src) ? `<img class="wth" src="${src}" onerror="this.outerHTML='<div class=wthph>🎨</div>'">` : `<div class="wthph">${isVideo(src)?'🎬':isPdf(src)?'📄':'🎨'}</div>`;
+    return `<div class="wrow">
+      ${th}
+      <div><div class="wt">${w.title}</div><div style="font-family:'Helvetica Neue',sans-serif;font-size:.68rem;color:var(--muted)">${SECTION_LABEL[w.section]||w.section} · ${w.year||''}</div></div>
+      <div class="wp">${w.price||'-'}</div>
+      <select class="fs" style="font-size:.68rem;padding:.25rem .4rem;" onchange="updateStatus('${w.id}',this.value)">
+        <option value="disponibile" ${w.status==='disponibile'?'selected':''}>Disponibile</option>
+        <option value="venduto" ${w.status==='venduto'?'selected':''}>Venduto</option>
+        <option value="riservato" ${w.status==='riservato'?'selected':''}>Riservato</option>
+      </select>
+      <div style="display:flex;gap:.4rem;">
+        <button class="be" onclick="editWork('${w.id}')">Modifica</button>
+        <button class="bd" onclick="delWork('${w.id}')">Elimina</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updateStatus(id, status) {
+  const w = works.find(x => x.id === id); if (!w) return;
+  w.status = status; persist(); renderAll(); toast('Stato aggiornato ✓');
+}
+
+function editWork(id) {
+  const w = works.find(x => x.id === id); if (!w) return;
+  editId = id;
+  document.getElementById('eid').value = id;
+  document.getElementById('ft').value = w.title || '';
+  document.getElementById('fy').value = w.year || '';
+  document.getElementById('fte').value = w.technique || '';
+  document.getElementById('fs').value = w.size || '';
+  document.getElementById('fsec').value = w.section || 'opere';
+  document.getElementById('fst').value = w.status || 'disponibile';
+  document.getElementById('fp').value = w.price || '';
+  document.getElementById('fse').value = w.series || '';
+  document.getElementById('fd').value = w.desc || '';
+  document.getElementById('fpath').value = w.path || '';
+  document.getElementById('furl').value = w.url || '';
+  document.getElementById('fsbtn').textContent = 'Aggiorna Opera';
+  document.querySelectorAll('.at').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.as').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.at')[1].classList.add('active');
+  document.getElementById('tab-aggiungi').classList.add('active');
+}
+
+function delWork(id) {
+  if (!confirm('Eliminare questo elemento?')) return;
+  works = works.filter(w => w.id !== id);
+  persist(); renderAdminWorks(); renderAdminStats(); renderAll();
+  toast('Elemento eliminato');
+}
+
+/* ════════ FILE UPLOAD (browser-local fallback) ════════ */
+function handleFile(e) { const f = e.target.files[0]; if (f) processFile(f); }
+function handleDrop(e) { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f) processFile(f); }
+function processFile(file) {
+  if (file.size > 20971520) { toast('File troppo grande (max 20MB)', 'err'); return; }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    pendingBase64 = ev.target.result;
+    const pw = document.getElementById('pw'); pw.style.display = 'block';
+    const pi = document.getElementById('previnner');
+    if (file.type.startsWith('video/')) pi.innerHTML = `<video src="${ev.target.result}" controls></video>`;
+    else if (file.type === 'application/pdf') pi.innerHTML = `<div style="padding:1rem;background:var(--surface);border:1px solid var(--border);font-family:'Helvetica Neue',sans-serif;font-size:.8rem;">📄 ${file.name}</div>`;
+    else pi.innerHTML = `<img src="${ev.target.result}">`;
+    document.getElementById('prevname').textContent = `${file.name} · ${(file.size/1024/1024).toFixed(1)}MB`;
+    document.getElementById('fpath').value = '';
+    document.getElementById('furl').value = '';
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ════════ SAVE WORK ════════ */
+function saveWork(e) {
+  e.preventDefault();
+  const path = document.getElementById('fpath').value.trim();
+  const url = document.getElementById('furl').value.trim();
+  const id = editId || ('w_' + Date.now());
+  const w = {
+    id,
+    section: document.getElementById('fsec').value,
+    number: '',
+    title: document.getElementById('ft').value.trim(),
+    year: document.getElementById('fy').value.trim(),
+    technique: document.getElementById('fte').value.trim(),
+    size: document.getElementById('fs').value.trim(),
+    status: document.getElementById('fst').value,
+    price: document.getElementById('fp').value.trim(),
+    series: document.getElementById('fse').value.trim(),
+    desc: document.getElementById('fd').value.trim(),
+    path, url,
+    base64: pendingBase64 || (editId ? (works.find(x=>x.id===editId)||{}).base64 || '' : '')
+  };
+  if (editId) { const idx = works.findIndex(x => x.id === editId); works[idx] = {...works[idx], ...w}; toast('Opera aggiornata ✓'); }
+  else { works.unshift(w); toast('Opera aggiunta ✓'); }
+  persist(); renderAll(); renderAdminWorks(); renderAdminStats(); resetForm();
+  document.querySelectorAll('.at').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.as').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.at')[0].classList.add('active');
+  document.getElementById('tab-opere').classList.add('active');
+}
+
+function resetForm() {
+  editId = null; pendingBase64 = null;
+  document.getElementById('eid').value = '';
+  document.getElementById('wform').reset();
+  document.getElementById('pw').style.display = 'none';
+  document.getElementById('previnner').innerHTML = '';
+  document.getElementById('fsbtn').textContent = 'Salva Opera';
+}
+
+/* ════════ ORDERS ════════ */
+function renderOrders() {
+  const el = document.getElementById('ordlist');
+  if (!orders.length) { el.innerHTML = `<p style="font-family:'Helvetica Neue',sans-serif;font-size:.85rem;color:var(--muted);padding:2rem 0;">Nessun ordine ancora.</p>`; return; }
+  el.innerHTML = orders.map(o => `
+    <div style="display:grid;grid-template-columns:auto 1fr auto auto;gap:1rem;align-items:center;padding:.85rem 1rem;background:var(--surface);border:1px solid var(--border);margin-bottom:1px;">
+      <span style="font-family:'Helvetica Neue',sans-serif;font-size:.66rem;color:var(--muted);">${o.id}</span>
+      <div style="font-size:.85rem;">${o.items.map(i=>i.title).join(', ')}<span style="color:var(--muted);font-size:.75rem"> · ${o.date}</span></div>
+      <span style="color:var(--gold);font-family:'Helvetica Neue',sans-serif;">€${(o.total||0).toLocaleString()}</span>
+      <select class="fs" style="font-size:.68rem;padding:.25rem .4rem;" onchange="updOrder('${o.id}',this.value)">
+        <option value="pending" ${o.status==='pending'?'selected':''}>In attesa</option>
+        <option value="paid" ${o.status==='paid'?'selected':''}>Pagato</option>
+        <option value="shipped" ${o.status==='shipped'?'selected':''}>Spedito</option>
+      </select>
+    </div>`).join('');
+}
+function updOrder(id, status) { const o = orders.find(x => x.id === id); if (o) { o.status = status; persist(); toast('Ordine aggiornato ✓'); } }
+
+/* ════════ INIT ════════ */
+renderAll();
+updateCartCount();
+renderCart();
+document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeModal();
+    document.getElementById('cart-drawer').classList.remove('open');
+    if (document.getElementById('adm').classList.contains('open')) closeAdmin();
+  }
+});
+
+/* TRL bar animation on scroll into view */
+const trlObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if (entry.isIntersecting) { const fill = document.querySelector('.trl-fill'); if (fill) fill.style.width = '55%'; } });
+}, { threshold: 0.6 });
+const bioSec = document.getElementById('biografia');
+if (bioSec) trlObserver.observe(bioSec);
+</script>
+</body>
+</html>
